@@ -1,4 +1,4 @@
-# Group7-SOEN341_Project_F24
+# Sharky-SOEN341_Project_F24
 
 Description of the project: 
 
