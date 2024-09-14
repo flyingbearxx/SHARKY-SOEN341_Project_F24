@@ -13,7 +13,13 @@ DISCUSSION TOPICS:
   3. Round table discussion our skills and weaknesses. 
   4. Breakdown the student assessment tasks into smaller tasks to focus on. 
   5. Proposition: UML drawings to kickstart the design and development of the project. 
-  6. Raghda's proposition of features to add: ability for a student to review the ratings given and received from previous semesters. 
+  6. UML diagram should include: 
+                        User Authentication & Team Management:
+                          ●	Implement Student and Instructor login system (with roles).
+                          ●	Functionality for instructors to create teams and assign students to specific groups. (For example, importing a course roaster from a CSV file)
+                          ●	Ensure teams are visible to both students and instructors.
+  7. Raghda's proposition of features to add: ability for a student to review the ratings given and received from previous semesters. 
+  
 
 
 DECISIONS: 
@@ -21,4 +27,5 @@ DECISIONS:
 
 ACTIONS FOR NEXT MEETING: 
   1. Each member will watch the udemy course found by Hala : https://concordia.udemy.com/course/full-stack-crash-course 
-  2. 
+  2. Each member will spend 1-2 hours to get more familiar with Github (through tutorial videos or documentation)
+  3. Come up with a sprint plan
