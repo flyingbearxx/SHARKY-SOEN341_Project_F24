@@ -1,6 +1,9 @@
 **Meeting Date:** September 14, 2024  (zoom meeting)
+
 **Minutes writer:** Shaili Hakimpour
+
 **MEETING PARTICIPANTS:** Shaili, Raghda, Ana, Yasmeen, Khujista
+
 
 **REVIEW OF ACTIONS:**
   1. Individual research on how to do the project - DONE by all members
