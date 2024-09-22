@@ -1,19 +1,15 @@
 # Sharky-SOEN341_Project_F24
 
-Description of the project: 
+## Description of the project  
 
 
+## SHARKY Members  
 
-Team Members & Roles:
-
-Yasmeen Adi - ROLE
-
-Hala Belamri - ROLE
-
-Raghda Elkei - ROLE
-
-Shaili Hakimpour - ROLE
-
-Ana Rostam - ROLE
-
-Khujista Faqiri - ROLE
+|**NAME**|**STUDENT ID**|**ROLE**|
+|--------|--------------|--------|
+|Shaili Hakimpour|40201808|Backend developer|
+|Hala Belamri|40221036|Backend developer|
+|Ana Rostam|40187433|Frontend developer|
+|Raghda Elkei|40251216|Backend developer|
+|Khujista Faqiri|40249541|Frontend developer|
+|Yasmeen Adi|40223656|Frontend developer|
