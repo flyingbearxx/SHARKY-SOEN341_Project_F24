@@ -1,6 +1,7 @@
 # Sharky-SOEN341_Project_F24
 
-## Description of the project  
+## Project Description  
+
 
 
 ## SHARKY Members  
