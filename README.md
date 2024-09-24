@@ -16,8 +16,8 @@ SHARKY aims to:
 - Enhance accountability within team projects.
 
 ### Technologies
-- **Frontend**: React.js, HTML/CSS, Javascript, JSX
-- **Backend**:
+- **Frontend**: HTML/CSS, Javascript
+- **Backend**: React.js, JSX
 - **Database**: Supabase
 
 ## SHARKY Members  
