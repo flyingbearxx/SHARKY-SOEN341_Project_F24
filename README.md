@@ -1,7 +1,10 @@
 # SHARKY-SOEN341_Project_F24
 
-## Project Description  
-The SHARKY Peer Assessment web application developed by university students, for university students, provides a platform for students to anonymously assess their teammates based on four key dimensions: cooperation, conceptual contribution, practical contribution, and work ethic. As students, we are often working in group projects, where collaboration is the key to success. SHARKY is designed to provide students with a dynamic environment to provide constructive feedback. Our product will bridge the gap between individual contribution and group accountability, ensuring that every student's effort is recognized. It is by facilitating transparent evaluation practices that SHARKY helps promote fairer grading while providing crucial insights to both students and their instructors. SHARKY fosters a culture of continuous improvement, empowering students to reflect on their performance, and contribute more effectively to their teams.  
+## Identified Problem  
+As students, we are often working in group projects, where collaboration is the key to success. University team projects often struggle with imbalanced participation, unclear roles, and unfair grading due to the lack of effective tools to properly evaluate each member's individual contribution. 
+
+## Offered Solution & Project Description  
+The SHARKY Peer Assessment web application is developed by university students, for university students. It provides a platform for students to anonymously assess their teammates based on four key dimensions: cooperation, conceptual contribution, practical contribution, and work ethic. SHARKY is designed to provide students with a dynamic environment to provide constructive feedback. Our product will bridge the gap between individual contribution and group accountability, ensuring that every student's effort is recognized. It is by facilitating transparent evaluation practices that SHARKY helps promote fairer grading while providing crucial insights to both students and their instructors. SHARKY fosters a culture of continuous improvement, empowering students to reflect on their performance, and contribute more effectively to their teams.  
 
 
 ### Features  
