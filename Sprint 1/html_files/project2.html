@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang = "en">
+   
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peer Assessment</title>
+    <link rel="Stylesheet" href="project2.css">
+    </head>
+
+    <body>
+
+       
+        
+
+        <div class="containter">
+            
+            <div class="background-img" id="background-img"></div>
+
+                
+            <header class="header1" id="header1">
+                <!-- <div class="logo">
+                    <img src="" alt="Logo">
+                </div> -->
+                <h2>Sharky <br> Peer Assement</h2>
+    
+         
+
+
+                </header>
+               
+                
+            
+            <div class="login-box" id="login-box">
+                <div class="switch-container" id="switch-container">
+                    <button type="button" id="student-btn" class="switch-btn active" onclick="toggleButton('student')">Student</button>
+                    <button type="button" id="teacher-btn" class="switch-btn" onclick="toggleButton('teacher')" >Teacher</button>
+                </div>
+                <h2>Login</h2>
+                <form action="" method="POST" id="loginform" onsubmit="return validlogin()">
+                    <div class="user-box" id="user-box">
+                        <input type="text" id="username" required>
+                        <label>Username</label>
+                    </div>
+                    <div class="user-box" id="user-box">
+                        <input type="text" id="password" required>
+                        <label>Password</label>
+                        <span class="show-password" onclick="togglePasswordVisibility()">👁️</span>
+                    </div>
+                    <div class="button-container" id="button-container">
+                        <button type="submit" class="submit-btn" id="submit-btn">Login</button>
+                    </div>
+                    <div class="forgotpw" id="forgotpw">
+                        <a href="forgetpw.html" >forget password?</a>
+                    </div>
+                    <div class="Createaccount" id="Createaccount"></div>
+                        <a href="creatacc.html" >Don't Have An Account(create one)?</a>
+                    </div>
+                    <p id="error-message"></p>
+                </form>
+            </div>
+            </div>
+
+       
+        
+    </body>
+
+
+   
+     <script src="project1.js"></script>
+    
+
+</html>

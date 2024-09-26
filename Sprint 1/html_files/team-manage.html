@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Management</title>
+    <link rel="stylesheet" href="project2.css">
+    <link rel="jsfile" href="project1.js">
+
+   <style>
+    .form-container {
+            display: flex;
+            flex-direction: column; /* Arrange elements vertically */
+        }
+
+        .toolbar, .student-input, .button-container {
+            margin-bottom: 20px; /* Space between sections */
+        }
+
+        label {
+            margin-bottom: 5px; /* Space between label and input */
+        }
+
+        .input-field, .select-field {
+            padding: 10px;
+            width: 100%; /* Full width for inputs */
+            border: none;
+            border-radius: 5px;
+            margin-bottom: 10px; /* Space between inputs */
+        }
+
+        .button-container {
+            text-align: center; /* Center the submit button */
+        }
+   </style>
+</head>
+<body>
+    <div class="container">
+    <nav class="sidebar">
+        <h2 style="color: #daae51"> <br>    Menu</h2>
+        <ul>
+            <li><a href="team-manage.html">Team managment</a></li>
+            <li><a href="assessment.html">Assessment</a></li>
+            <li><a href = "project1.html"> Login</a></li>
+            <li><a href = "creatacc.html"> Create an account</a></li>
+            <li><a href = "contact-Us.html"> Contact Us</a></li>
+        </ul>
+    </nav>
+    
+        <header class="header1" id="header1">
+            <!-- <div class="logo">
+                <img src="" alt="Logo">
+            </div> -->
+            <h2>Sharky <br> Peer Assement</h2>
+
+     
+
+
+            </header>
+           
+    <div class="description" >
+        <h2 style="color:#daae51">Team Managements </h2>
+    </div> 
+
+    
+    <div class="teamform">
+        
+    <div class="toolbar">
+        <label for="studentCount">Select number of students:</label>
+        <select id="studentCount">
+            <option value="0">--Select--</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+        </select>
+        <button class="generatebutn" onclick="generateStudentInputs()">Generate Inputs</button>
+    </div>
+
+    <div id="studentInputsContainer"></div>
+
+    <div class="student-input">
+        <label for="teamName">Team Name:</label>
+        <input type="text" id="teamName" class="input-field" placeholder="Enter Team Name" />
+    </div>
+
+    <div class="button-container">
+        <button class="submit-btn" id="submit-btn" onclick="submitData()">Submit</button>
+    </div>
+
+</div>
+
+
+</div>
+    <script src="project1.js"></script>
+</body>
+
+</html>
