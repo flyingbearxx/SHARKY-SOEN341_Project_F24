@@ -27,6 +27,31 @@ body {
     overflow: hidden;
     padding:20px;
 }
+.content{
+background-color: none;
+display: center;
+box-shadow: 0 0 25px 0 black;
+height: 45%;
+width: 60%; 
+margin-left: 100px;
+border-top-left-radius: 50px;
+border-top-right-radius: 50px;
+border-bottom-right-radius:50px;
+border-bottom-left-radius:50px;
+position: absolute;
+text-align: center;
+padding-top: 25px;
+padding-bottom: 25px;
+}
+.image {
+    display: right; 
+    width:100%;
+    position: absolute;
+    right: 10px;
+    bottom: 0px;
+    
+   
+}
 header{
     background-color: #daae51;
     position:relative;
