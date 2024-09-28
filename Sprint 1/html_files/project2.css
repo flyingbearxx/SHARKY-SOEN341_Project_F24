@@ -49,8 +49,9 @@ padding-bottom: 25px;
     position: absolute;
     right: 10px;
     bottom: 0px;
+    margin-bottom: 0px;
     
-   
+    
 }
 header{
     background-color: #daae51;
