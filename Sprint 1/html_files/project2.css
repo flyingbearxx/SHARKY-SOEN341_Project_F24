@@ -14,6 +14,8 @@ body {
     background: linear-gradient(135deg, #d53369, #daae51);
     overflow: hidden;
     padding-top:80px;
+    overflow-y: auto; /* Enable scrolling */
+
 }
 
 .container {
@@ -43,6 +45,25 @@ text-align: center;
 padding-top: 25px;
 padding-bottom: 25px;
 }
+
+.content2 {
+background-color: none; 
+ box-shadow: 0 0 25px 0 black;
+width: 60%; 
+left: 50%; 
+max-height: 90vh; 
+transform: translateX(-50%); 
+margin-top: 60px; 
+border-radius: 50px;
+position: absolute;
+text-align:center;
+padding: 25px 0; 
+overflow-y: auto; 
+ margin-left: 100px;
+min-height: 10%;
+min-width: 60%; 
+    }
+    
 .image {
     display: right; 
     width:100%;
@@ -131,17 +152,16 @@ header{
 }
 
 .header1{
-    position: center;
-    width: 380px;
+  
     backdrop-filter: blur(10px);
     text-align: center;
     color: #fff;
     transition: transforms 0.5s, box-shadow 0.5s;
-    text-align:center; 
     width:100%; 
     top:0; 
     left:0; 
     position:fixed;
+    z-index: 1000;
 }
 
 .login-box {
