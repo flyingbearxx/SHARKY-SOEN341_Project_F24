@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account</title>
+    <link rel="Stylesheet" href="project2.css">
+    <link rel="jsfile" href="project1.js">
+       
+</head>
+
+<body>
+    <div class="container">
+        <header class="header1" id="header1">
+            <!-- <div class="logo">
+                <img src="" alt="Logo">
+            </div> -->
+            <h2>Sharky <br> Peer Assement</h2>
+
+     
+
+
+            </header>
+        <div class="signup-box" id="signup-box">
+            <h2>Create Account</h2>
+            <form  action="" method="POST" id="signupform" onsubmit="return validSignup()">
+                <div class="user-box">
+                    <input type="text" id="nameoftheuser" required>
+                    <label>Name</label>
+                </div>
+                <div class="user-box">
+                    <input type="email" id="email" required>
+                    <label>Email</label>
+                </div>
+                <div class="user-box">
+                    <input type="text" id="new-username" required>
+                    <label>Username</label>
+                </div>
+                <div class="user-box">
+                    <input type="password" id="new-password" required>
+                    <label>Password</label>
+                </div>
+                <div class="button-container" id="button-container">
+                    <button type="submit" class="submit-btn" id="submit-btn">Sign Up</button>
+                </div>
+            </form>
+
+            <!-- Link to go back to login -->
+            <div class="login-link">
+                <p>Already have an account? <a href="project1.html">Log in</a></p>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script>
+     function validSubmit() {
+        // Get values from the form
+        const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const errorMessage = document.getElementById('error-message');
+            errorMessage.textContent = ''; // Clear previous error messages
+
+            // Validate username
+            if (username.length < 3) {
+                errorMessage.textContent += 'Username must be at least 3 characters long.\n';
+                return false; // Prevent form submission
+            }
+
+            // Validate password
+            if (password.length < 6) {
+                errorMessage.textContent += 'Password must be at least 6 characters long.\n';
+                return false; // Prevent form submission
+            }
+
+            // Check if passwords match
+            if (password !== confirmPassword) {
+                errorMessage.textContent += 'Passwords do not match.\n';
+                return false; // Prevent form submission
+            }
+
+            // If all validations pass
+            alert('Account created successfully!');
+            window.open.href = "welcomepage.html";
+            return true; // Allow form submission
+        }
+        
+</script>
+</html>
