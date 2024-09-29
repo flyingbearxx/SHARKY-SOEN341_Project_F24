@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account</title>
+    <link rel="Stylesheet" href="project1.css">
+       
+</head>
+
+<body>
+    <div class="container">
+        <div class="signup-box" id="signup-box">
+            <h2>Create Account</h2>
+            <form id="signupform" onsubmit="return validSignup()">
+                <div class="user-box">
+                    <input type="email" id="email" required>
+                    <label>Email</label>
+                </div>
+                <div class="user-box">
+                    <input type="text" id="new-username" required>
+                    <label>Username</label>
+                </div>
+                <div class="user-box">
+                    <input type="password" id="new-password" required>
+                    <label>Password</label>
+                </div>
+                <div class="button-container" id="button-container">
+                    <button type="submit" class="submit-btn" id="submit-btn">Sign Up</button>
+                </div>
+            </form>
+
+            <!-- Link to go back to login -->
+            <div class="login-link">
+                <p>Already have an account? <a href="project1.html">Log in</a></p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
