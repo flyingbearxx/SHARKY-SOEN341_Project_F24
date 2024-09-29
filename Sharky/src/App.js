@@ -1,5 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { LogIn, SignUp, Homepage, ContactUs } from "./pages/main";
+import {
+  LogIn,
+  SignUp,
+  Homepage,
+  ContactUs,
+  ForgotPw,
+  ResetPW,
+  TeamManagement,
+} from "./pages/main";
 import { Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./components/protectedRoute";
 
@@ -24,6 +32,10 @@ const App = () => {
       <Routes>
         <Route path={"/"} element={<LogIn setToken={setToken} />} />
         <Route path={"/signup"} element={<SignUp />} />
+        <Route path={"/forgot-passowrd"} element={<ForgotPw />} />
+        <Route path={"/reset-password"} element={<ResetPW />} />
+        <Route path={"/team-management"} element={<TeamManagement />} />
+
         <Route
           path="/homepage"
           element={
