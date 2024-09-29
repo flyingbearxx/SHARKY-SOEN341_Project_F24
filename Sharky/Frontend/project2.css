@@ -14,6 +14,8 @@ body {
     background: linear-gradient(135deg, #d53369, #daae51);
     overflow: hidden;
     padding-top:80px;
+    overflow-y: auto; /* Enable scrolling */
+
 }
 
 .container {
@@ -26,6 +28,51 @@ body {
     background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.2), transparent);
     overflow: hidden;
     padding:20px;
+}
+.content{
+background-color: none;
+display: center;
+box-shadow: 0 0 25px 0 black;
+height: 45%;
+width: 60%; 
+margin-left: 100px;
+border-top-left-radius: 50px;
+border-top-right-radius: 50px;
+border-bottom-right-radius:50px;
+border-bottom-left-radius:50px;
+position: absolute;
+text-align: center;
+padding-top: 25px;
+padding-bottom: 25px;
+}
+
+.content2 {
+background-color: none; 
+ box-shadow: 0 0 25px 0 black;
+width: 60%; 
+left: 50%; 
+max-height: 90vh; 
+transform: translateX(-50%); 
+margin-top: 60px; 
+border-radius: 50px;
+position: absolute;
+text-align:center;
+padding: 25px 0; 
+overflow-y: auto; 
+ margin-left: 100px;
+min-height: 10%;
+min-width: 60%; 
+    }
+    
+.image {
+    display: right; 
+    width:100%;
+    position: absolute;
+    right: 10px;
+    bottom: 0px;
+    margin-bottom: 0px;
+    
+    
 }
 header{
     background-color: #daae51;
@@ -105,17 +152,16 @@ header{
 }
 
 .header1{
-    position: center;
-    width: 380px;
+  
     backdrop-filter: blur(10px);
     text-align: center;
     color: #fff;
     transition: transforms 0.5s, box-shadow 0.5s;
-    text-align:center; 
     width:100%; 
     top:0; 
     left:0; 
     position:fixed;
+    z-index: 1000;
 }
 
 .login-box {
@@ -426,7 +472,9 @@ body {
     color: #fff;
     transition: transform 0.5s, box-shadow 0.5s;
 }
-
+.generatebutn{
+    
+}
 .description h2 {
     font-size: 28px;
     font-weight: 600;
@@ -454,6 +502,8 @@ body {
     backdrop-filter: blur(10px);
     text-align: left;
     color: white;
+    overflow-y: auto; 
+
 }
 
 .teambox:hover {
@@ -531,3 +581,4 @@ label {
     font-size: 14px;
     display: none;
 }
+
