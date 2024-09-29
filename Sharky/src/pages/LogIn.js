@@ -35,14 +35,35 @@ const LogIn = ({ setToken }) => {
       if (error) throw error;
 
       setToken(data);
-      navigate("./Homepage");
+
+      let { data: data2, error2 } = await supabase
+        .from("users")
+        .select("is_teacher")
+        .eq("email", formData.email.trim())
+        .single();
+
+      if (error2) throw error2;
+      console.log(data2);
+      if (data2) {
+        if (data2.is_teacher) {
+          console.log("in teacher");
+          navigate("/team-management"); // Redirect to Teams page if user is a teacher
+        } else {
+          console.log("in else first");
+          navigate("/homepage"); // Redirect to Homepage if user is not a teacher
+        }
+      } else {
+        console.log("in else second");
+        navigate("/homepage"); // Default redirect if no user is found
+      }
     } catch (error) {
+      console.log("in error");
       alert(error);
     }
   }
   return (
     <body>
-      <div className="containter">
+      <div className="container">
         <div className="background-img" id="background-img"></div>
 
         <header className="header1" id="header1">
@@ -135,7 +156,7 @@ const LogIn = ({ setToken }) => {
               </button>
             </div>
             <div className="forgotpw" id="forgotpw">
-              <a href="forgetpw.html">forget password?</a>
+              <a href="/forgot-passowrd">forgot password?</a>
             </div>
             <div className="forgotpw" id="forgotpw">
               Don't have an account?

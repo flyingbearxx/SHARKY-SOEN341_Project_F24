@@ -35,6 +35,16 @@ const SignUp = () => {
     } catch (error) {
       alert(error);
     }
+
+    const { data, error } = await supabase
+      .from("users")
+      .insert([
+        { email: formData.email, is_teacher: formData.role === "teacher" },
+      ]);
+
+    if (error) {
+      throw error;
+    }
   }
 
   return (
