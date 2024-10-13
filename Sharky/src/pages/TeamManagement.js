@@ -1,22 +1,27 @@
 import React, { useState } from "react";
 import { supabase } from "../client";
+import Papa from "papaparse";
 
 const TeamManagement = () => {
   const [studentCount, setStudentCount] = useState(0);
   const [teamName, setTeamName] = useState("");
   const [students, setStudents] = useState([]);
+  const [csvFile, setCsvFile] = useState(null);
 
   const handleStudentCountChange = (event) => {
     const count = parseInt(event.target.value, 10);
     setStudentCount(count);
     setStudents(Array(count).fill(""));
   };
-  const options = Array.from({ length: 11 }, (_, i) => i).slice(1); // Generate numbers from 1 to 10
 
   const handleStudentNameChange = (index, value) => {
     const newStudents = [...students];
     newStudents[index] = value;
     setStudents(newStudents);
+  };
+
+  const handleFileChange = (e) => {
+    setCsvFile(e.target.files[0]);
   };
 
   const handleSubmit = async () => {
@@ -35,15 +40,11 @@ const TeamManagement = () => {
       if (teamError) throw teamError;
 
       const teamId = teamData.id;
-      console.log("teamId", teamId);
 
-      ///
       const { data: users, error: fetchError } = await supabase
         .from("users")
         .select("id")
         .in("email", students);
-
-      console.log(users);
 
       const teamMembers = users.map((user) => ({
         user_id: user.id,
@@ -54,24 +55,113 @@ const TeamManagement = () => {
         .from("team_members")
         .insert(teamMembers);
 
-      ///
-
-      // const studentEntries = students.map((studentEmail) => ({
-      //   team_id: teamId,
-      //   name: studentEmail,
-      // }));
-
-      // const { error: studentError } = await supabase
-      //   .from("students")
-      //   .insert(studentEntries);
-
-      // if (studentError) throw studentError;
+      if (insertError) throw insertError;
 
       alert("Team and students added successfully!");
     } catch (error) {
       console.error("Error:", error.message);
       alert("Failed to create team or add students.");
     }
+  };
+
+  const handleCsvSubmit = async () => {
+    if (!csvFile) {
+      alert("Please upload a CSV file.");
+      return;
+    }
+
+    Papa.parse(csvFile, {
+      header: true,
+      complete: async (results) => {
+        const csvData = results.data;
+        if (!csvData.length) {
+          alert("CSV file is empty or invalid.");
+          return;
+        }
+
+        try {
+          const filteredCsvData = csvData.filter(
+            (row) => row.teamname && row.email
+          );
+          const teams = [
+            ...new Set(filteredCsvData.map((row) => row.teamname)),
+          ];
+
+          for (const team of teams) {
+            if (!team || team.trim() === "") {
+              console.log("Skipping empty team name");
+              continue;
+            }
+
+            const { data: teamData, error: teamError } = await supabase
+              .from("teams")
+              .insert([{ teamname: team }])
+              .select("id")
+              .single();
+
+            if (teamError) throw teamError;
+
+            const teamId = teamData.id;
+            const teamStudents = filteredCsvData.filter(
+              (row) => row.teamname === team
+            );
+            const emails = teamStudents
+              .map((row) => row.email)
+              .filter((email) => !!email);
+
+            if (emails.length === 0) {
+              console.log(`No valid emails found for team ${team}`);
+              continue;
+            }
+
+            for (const email of emails) {
+              if (!email || email.trim() === "") {
+                console.log("Invalid email detected:", email);
+                continue;
+              }
+
+              const { data: existingUser, error: fetchError } = await supabase
+                .from("users")
+                .select("id")
+                .eq("email", email)
+                .single();
+
+              let userId;
+
+              if (!existingUser) {
+                const { data: newUser, error: userError } = await supabase
+                  .from("users")
+                  .insert([{ email, is_teacher: false }])
+                  .select("id")
+                  .single();
+
+                if (userError) throw userError;
+                userId = newUser.id;
+              } else {
+                userId = existingUser.id;
+              }
+
+              const { error: teamMemberError } = await supabase
+                .from("team_members")
+                .insert([{ user_id: userId, team_id: teamId }]);
+
+              if (teamMemberError) throw teamMemberError;
+            }
+          }
+
+          alert("Teams and students added successfully from CSV!");
+          setCsvFile(null); // Reset the state holding the CSV file
+          document.getElementById("csv-upload-input").value = ""; // Clear the actual file input in the DOM
+        } catch (error) {
+          console.error("Error:", error.message);
+          alert("Failed to create teams or add students from CSV.");
+        }
+      },
+      error: (error) => {
+        console.error("Error parsing CSV:", error.message);
+        alert("Failed to parse CSV.");
+      },
+    });
   };
 
   return (
@@ -104,7 +194,10 @@ const TeamManagement = () => {
               </option>
             ))}
           </select>
-          <button onClick={() => setStudents(Array(studentCount).fill(""))}>
+          <button
+            className="btn"
+            onClick={() => setStudents(Array(studentCount).fill(""))}
+          >
             Generate Inputs
           </button>
         </div>
@@ -115,6 +208,7 @@ const TeamManagement = () => {
               placeholder={`Student ${index + 1} Email`}
               value={name}
               onChange={(e) => handleStudentNameChange(index, e.target.value)}
+              className="input-text"
             />
           </div>
         ))}
@@ -125,10 +219,26 @@ const TeamManagement = () => {
             placeholder="Enter Team Name"
             value={teamName}
             onChange={(e) => setTeamName(e.target.value)}
+            className="input-text"
           />
         </div>
         <div className="button-container">
-          <button onClick={handleSubmit}>Submit</button>
+          <button className="btn" onClick={handleSubmit}>
+            Submit
+          </button>
+        </div>
+        <div className="csv-upload">
+          <h3>Upload CSV to Create Teams</h3>
+          <input
+            type="file"
+            accept=".csv"
+            onChange={handleFileChange}
+            id="csv-upload-input"
+            className="input-file"
+          />
+          <button className="btn" onClick={handleCsvSubmit}>
+            Upload CSV
+          </button>
         </div>
       </div>
     </div>
