@@ -1,298 +1,212 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(135deg, #d53369, #daae51);
-    overflow: hidden;
+  font-family: "Poppins", sans-serif;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #d53369, #daae51);
+  overflow-y: auto;
+  padding-top: 80px;
 }
 
 .container {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    width: 100%;
-    background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.2), transparent);
-    overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
 }
 
-header{
-    background-color: #daae51;
-    position:relative;
-    top:0;
-    width:100%;
-    height:80px;
-    display:center;
-    align-items:center;
-    box-shadow:0 0 25px 0 black;
-}
-.button-btn{
-    background: none;
-    border: 2px solid #daae51;
-    padding: 10px 30px;
-    color: #daae51;
-    font-size: 18px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    cursor: pointer;
-    position: relative;
-    transition: color 0.5s, border-color 0.5s, box-shadow 0.5s;
-
+/* Form container and general box styling */
+.form-container,
+.teamform,
+.login-box,
+.signup-box {
+  width: 100%;
+  max-width: 400px;
+  background-color: rgba(0, 0, 0, 0.75);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  color: white;
 }
 
-.navigation-bar{
-    width: 200px;  
-    background:#daae51;
-    height: 680px;;
-    margin-top:80px;
-    overflow: auto; 
-    position:fixed; 
-    padding-top:50px; 
-    text-decoration: underline; 
-    left:0px;
-    top: 0px; 
-    bottom: 0px; 
-    border-bottom-right-radius:50px;
-
-}
-.nav-bar{
-    color: black;
-}
-.header1{
-    position: center;
-    width: 380px;
-    backdrop-filter: blur(10px);
-    text-align: center;
-    color: #fff;
-    transition: transforms 0.5s, box-shadow 0.5s;
-    text-align:center; 
-    width:100%; 
-    top:0; 
-    left:0; 
-    position:fixed;
-}
-.login-box {
-    position: relative;
-    width: 380px;
-    padding: 40px;
-    background: rgba(0, 0, 0, 0.75);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    text-align: center;
-    color: #fff;
-    transition: transform 0.5s, box-shadow 0.5s;
-}
-
-.login-box:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
-}
-.forgotpw{
-    position:relative;
-    width: 300px;
-    padding: 20px;
-    text-align:center;
-    color:#CBC399;
-    transition: transform 0.5s, box-shadow 0.5s;
+/* Header styling */
+.header1 {
+  width: 100%;
+  height: 80px;
+  background-color: #daae51;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 25px 0 black;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
 }
 
 h2 {
-    margin-bottom: 40px;
-    font-size: 28px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    color: #f2f2f2;
-    text-transform: uppercase;
+  font-size: 28px;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 20px;
+  text-transform: uppercase;
 }
 
-.user-box {
-    position: relative;
-    margin-bottom: 30px;
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-bottom: 2px solid #fff;
+  outline: none;
+  color: #fff;
+  font-size: 16px;
+  letter-spacing: 1px;
+  transition: border-color 0.3s ease;
 }
 
-.user-box input {
-    width: 100%;
-    padding: 10px 0;
-    margin-bottom: 30px;
-    background: transparent;
-    border: none;
-    border-bottom: 2px solid #fff;
-    outline: none;
-    color: #fff;
-    font-size: 18px;
-    letter-spacing: 1.5px;
-    transition: border-color 0.5s;
-}
-.password-container {
-    position: relative;
+input:focus,
+select:focus {
+  border-color: #daae51;
 }
 
-.show-password {
-    position: absolute;
-    right: 10px;
-    top: 40%;
-    transform: translateY(-50%);
-    cursor: pointer;
+button,
+.btn {
+  background: none;
+  border: 2px solid #daae51;
+  padding: 10px 30px;
+  color: #daae51;
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-.user-box input[type="password"] {
-    padding-right: 30px; 
-}
-.switch-container{
-    display: flex;
-    justify-content: center;
-    display:flex;
-    margin-bottom: 20px;
-}
-/* .switch-bg{
-    background: rgba(0, 0, 0, 0.75);
-    border-radius:50px;
-    padding:5px;
-    width: 200px;
-    height: 50px;
-    display:flex;
-    position:relative;
-} */
-.switch-btn{
-    background: none;
-    border: none;
-    padding: 10px 20px;
-    color:#daae51;
-    font-size:16px;
-    cursor:pointer;
-    transition:  color 0.3s;
-    width:100%;
-    position: relative;
-    z-index:2;
-}
-/* .switch-bg::before{
-    content:'';
-    position: absolute;
-    top:0;
-    left:0;
-    width:100px;
-    height:100%;
-    background: #daae51;
-    border-radius:50px;
-    z-index:1;
-    transition:trnasform 0.3s ease;
-} */
-.switch-btn.active{
-    background:#daae51;
-    color:#000;
-}
-.switch-btn:hover{
-    background:#daae51;
-    color:#000;
-}
-#student-btn.active ~ .switch-bg::before {
-    transform: translateX(0);
+button:hover,
+.btn:hover {
+  background-color: #daae51;
+  color: #000;
+  box-shadow: 0 10px 20px rgba(218, 174, 81, 0.4);
 }
 
-#teacher-btn.active ~ .switch-bg::before {
-    transform: translateX(100px); /* Move to the right */
+/* Sidebar styling to move options to the left */
+.sidebar {
+  width: 200px;
+  background-color: rgba(0, 0, 0, 0.75);
+  position: fixed;
+  top: 100px; /* Below the header */
+  left: 0; /* Align to the left */
+  height: calc(100% - 100px); /* Full height minus the header */
+  padding-top: 50px;
+  z-index: 100;
 }
 
-.user-box input:focus {
-    border-color: #daae51;
+/* Align the links properly inside the sidebar */
+.sidebar ul {
+  list-style: none;
+  padding-left: 20px; /* Add some padding to the left for spacing */
 }
 
+.sidebar ul li {
+  margin-bottom: 20px; /* Spacing between the links */
+}
+
+.sidebar ul li a {
+  color: #f1f1f1;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.sidebar ul li a:hover {
+  color: #daae51; /* Highlight effect on hover */
+}
+
+/* Form text alignment and spacing */
 .user-box label {
-    position: absolute;
-    top: 0;
-    left: 0;
-    color: #fff;
-    pointer-events: none;
-    transition: 0.5s;
+  color: #fff;
+  font-size: 14px;
+  margin-bottom: 5px;
+  display: block;
+  text-align: left;
 }
 
-.user-box input:focus ~ label,
-.user-box input:valid ~ label {
-    top: -24px;
-    left: 0;
-    color: #daae51;
-    font-size: 14px;
-}
-
-.button-container {
-    margin-top: 20px;
+.form-container .input-text {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-bottom: 2px solid #fff;
+  outline: none;
+  color: #fff;
+  font-size: 16px;
+  letter-spacing: 1.5px;
+  transition: border-color 0.5s;
 }
 
 .submit-btn {
-    background: none;
-    border: 2px solid #daae51;
-    padding: 10px 30px;
-    color: #daae51;
-    font-size: 18px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    cursor: pointer;
-    position: relative;
-    transition: color 0.5s, border-color 0.5s, box-shadow 0.5s;
+  background: none;
+  border: 2px solid #daae51;
+  padding: 10px 30px;
+  color: #daae51;
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: color 0.5s, border-color 0.5s, box-shadow 0.5s;
 }
 
 .submit-btn:hover {
-    background: #daae51;
-    color: #000;
-    box-shadow: 0 10px 20px rgba(218, 174, 81, 0.4);
-    border-color: #daae51;
-    transition: background 0.5s, color 0.5s, box-shadow 0.5s;
+  background: #daae51;
+  color: #000;
+  box-shadow: 0 10px 20px rgba(218, 174, 81, 0.4);
 }
 
-.submit-btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.1);
-    transform: translateX(-50%) scaleX(0);
-    transform-origin: left;
-    transition: transform 0.5s ease-in-out;
+.error-message {
+  color: #ff4d4d;
+  font-size: 14px;
+  margin-top: 20px;
 }
 
-.submit-btn:hover::before {
-    transform: translateX(-50%) scaleX(1);
-    transition: transform 0.5s ease-in-out;
+/* Switch buttons for student/teacher login */
+.switch-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
 }
 
-#error-message {
-    margin-top: 20px;
-    color: #ff4d4d;
-    display: none;
-    font-size: 14px;
-    animation: shake 0.5s;
+.switch-btn {
+  flex: 1;
+  background: none;
+  border: none;
+  padding: 10px;
+  color: #daae51;
+  font-size: 16px;
+  cursor: pointer;
+  transition: color 0.3s;
 }
 
-@keyframes shake {
-    0% { transform: translateX(0); }
-    25% { transform: translateX(-5px); }
-    50% { transform: translateX(5px); }
-    75% { transform: translateX(-5px); }
-    100% { transform: translateX(0); }
-}
-
-/* Additional background effects */
-@keyframes animateBg {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-body {
-    background-size: 200% 200%;
-    animation: animateBg 15s ease infinite;
+.switch-btn.active {
+  background-color: #daae51;
+  color: black;
 }

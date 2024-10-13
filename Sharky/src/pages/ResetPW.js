@@ -16,32 +16,32 @@ const ResetPW = () => {
     }
 
     try {
-      // Assuming the user is recovering the password through a recovery token sent via email
-      const { error } = await supabase.auth.updateUser({
-        password: password,
-      });
-
+      const { error } = await supabase.auth.updateUser({ password });
       if (error) throw error;
 
       alert("Your password has been updated.");
-      navigate("/login"); // Redirect user to login page after password update
+      navigate("/login");
     } catch (error) {
       console.error("Error in updating password:", error);
-      setErrorMessage(error.error_description || error.message);
+      setErrorMessage(error.message);
     }
   };
 
   return (
     <div className="container">
-      <header className="header1" id="header1">
+      <header className="header1">
         <h2>
           Sharky <br /> Peer Assessment
         </h2>
       </header>
 
-      <div className="login-box" id="login-box">
+      <div className="login-box">
         <h2>Create New Password</h2>
-        <form id="reset-password-form" onSubmit={handleSubmit}>
+        <form
+          id="reset-password-form"
+          onSubmit={handleSubmit}
+          className="form-container"
+        >
           <div className="user-box">
             <input
               type="password"
@@ -49,6 +49,7 @@ const ResetPW = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
+              className="input-text"
             />
             <label>New Password</label>
           </div>
@@ -59,15 +60,17 @@ const ResetPW = () => {
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               required
+              className="input-text"
             />
             <label>Confirm New Password</label>
           </div>
+
           <div className="button-container">
-            <button type="submit" className="submit-btn">
+            <button type="submit" className="btn">
               Submit
             </button>
           </div>
-          {errorMessage && <p id="error-message">{errorMessage}</p>}
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
         </form>
       </div>
     </div>
