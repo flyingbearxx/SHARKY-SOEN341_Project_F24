@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { supabase } from "../client";
+import { Link } from "react-router-dom";
 import Papa from "papaparse";
 
 const TeamManagement = () => {
@@ -7,6 +8,16 @@ const TeamManagement = () => {
   const [teamName, setTeamName] = useState("");
   const [students, setStudents] = useState([]);
   const [csvFile, setCsvFile] = useState(null);
+  const [menuVisible, setMenuVisible] = useState(false); // State to control menu visibility
+  const [teamFormVisible, setTeamFormVisible] = useState(false); // State for showing/hiding team creation sections
+
+  const toggleMenu = () => {
+    setMenuVisible(!menuVisible);
+  };
+
+  const toggleTeamManagement = () => {
+    setTeamFormVisible(!teamFormVisible);
+  };
 
   const handleStudentCountChange = (event) => {
     const count = parseInt(event.target.value, 10);
@@ -166,81 +177,108 @@ const TeamManagement = () => {
 
   return (
     <div className="container">
-      <nav className="sidebar">
-        <h2>Menu</h2>
-        <ul>
-          <li>Team management</li>
-          <li>Assessment</li>
-          <li>Login</li>
-          <li>Create an account</li>
-          <li>Contact Us</li>
-        </ul>
-      </nav>
       <header className="header1">
         <h2>
           Sharky <br /> Peer Assessment
         </h2>
       </header>
-      <div className="description">
-        <h2 style={{ color: "#daae51" }}>Team Management</h2>
+
+      {/* Menu Button pushed further down */}
+      <div className="menu-buttons-top">
+        <button className="btn" onClick={toggleMenu}>
+          {menuVisible ? "Hide Menu" : "Menu"}
+        </button>
+        {menuVisible && (
+          <nav className="menu-buttons">
+            <button className="btn" onClick={toggleTeamManagement}>
+              Team Management
+            </button>
+            <Link to="/assessment">
+              <button className="btn">Assessment</button>
+            </Link>
+            <Link to="/login">
+              <button className="btn">Login</button>
+            </Link>
+            <Link to="/signup">
+              <button className="btn">Create an Account</button>
+            </Link>
+            <Link to="/contact-us">
+              <button className="btn">Contact Us</button>
+            </Link>
+          </nav>
+        )}
       </div>
-      <div className="teamform">
-        <div className="toolbar">
-          <label>Select number of students:</label>
-          <select onChange={handleStudentCountChange} value={studentCount}>
-            {Array.from({ length: 11 }, (_, i) => (
-              <option key={i} value={i}>
-                {i}
-              </option>
-            ))}
-          </select>
-          <button
-            className="btn"
-            onClick={() => setStudents(Array(studentCount).fill(""))}
-          >
-            Generate Inputs
-          </button>
-        </div>
-        {students.map((name, index) => (
-          <div key={index} className="student-input">
-            <input
-              type="text"
-              placeholder={`Student ${index + 1} Email`}
-              value={name}
-              onChange={(e) => handleStudentNameChange(index, e.target.value)}
-              className="input-text"
-            />
+
+      {/* Create Team and Upload CSV Sections */}
+      {teamFormVisible && (
+        <>
+          {/* Moved Team Management title to the top, right after the main title */}
+          <div className="description">
+            <h2 style={{ color: "#6c3483" }}>Team Management</h2>
           </div>
-        ))}
-        <div className="student-input">
-          <label>Team Name:</label>
-          <input
-            type="text"
-            placeholder="Enter Team Name"
-            value={teamName}
-            onChange={(e) => setTeamName(e.target.value)}
-            className="input-text"
-          />
-        </div>
-        <div className="button-container">
-          <button className="btn" onClick={handleSubmit}>
-            Submit
-          </button>
-        </div>
-        <div className="csv-upload">
-          <h3>Upload CSV to Create Teams</h3>
-          <input
-            type="file"
-            accept=".csv"
-            onChange={handleFileChange}
-            id="csv-upload-input"
-            className="input-file"
-          />
-          <button className="btn" onClick={handleCsvSubmit}>
-            Upload CSV
-          </button>
-        </div>
-      </div>
+          <div className="teamform">
+            <h3>Create a Team</h3>
+            <div className="toolbar">
+              <label>Select number of students:</label>
+              <select onChange={handleStudentCountChange} value={studentCount}>
+                {Array.from({ length: 11 }, (_, i) => (
+                  <option key={i} value={i}>
+                    {i}
+                  </option>
+                ))}
+              </select>
+              <button
+                className="btn"
+                onClick={() => setStudents(Array(studentCount).fill(""))}
+              >
+                Generate Inputs
+              </button>
+            </div>
+            {students.map((name, index) => (
+              <div key={index} className="student-input">
+                <input
+                  type="text"
+                  placeholder={`Student ${index + 1} Email`}
+                  value={name}
+                  onChange={(e) =>
+                    handleStudentNameChange(index, e.target.value)
+                  }
+                  className="input-text"
+                />
+              </div>
+            ))}
+            <div className="student-input">
+              <label>Team Name:</label>
+              <input
+                type="text"
+                placeholder="Enter Team Name"
+                value={teamName}
+                onChange={(e) => setTeamName(e.target.value)}
+                className="input-text"
+              />
+            </div>
+            <div className="button-container">
+              <button className="btn" onClick={handleSubmit}>
+                Submit
+              </button>
+            </div>
+          </div>
+
+          <div className="csv-upload">
+            <h3>Upload CSV to Create Teams</h3>
+            <input
+              type="file"
+              accept=".csv"
+              onChange={handleFileChange}
+              id="csv-upload-input"
+              className="input-file"
+            />
+            <button className="btn" onClick={handleCsvSubmit}>
+              Upload CSV
+            </button>
+          </div>
+        </>
+      )}
     </div>
   );
 };

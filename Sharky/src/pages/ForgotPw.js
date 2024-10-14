@@ -46,8 +46,8 @@ const ForgotPw = () => {
               onChange={(e) => setEmail(e.target.value)}
               required
               className="input-text"
+              placeholder="Email"
             />
-            <label>Email</label>
           </div>
 
           <div className="button-container">

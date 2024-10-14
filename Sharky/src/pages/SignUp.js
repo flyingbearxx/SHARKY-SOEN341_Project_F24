@@ -46,6 +46,13 @@ const SignUp = () => {
 
   return (
     <div className="container">
+      {/* Add the Sharky Peer Assessment title at the top */}
+      <header className="header1">
+        <h2>
+          Sharky <br /> Peer Assessment
+        </h2>
+      </header>
+
       <div className="signup-box" id="signup-box">
         <h2>Create Account</h2>
         <form
@@ -61,8 +68,8 @@ const SignUp = () => {
               onChange={handleChange}
               required
               className="input-text"
+              placeholder="Email"
             />
-            <label>Email</label>
           </div>
           <div className="user-box">
             <input
@@ -72,8 +79,8 @@ const SignUp = () => {
               onChange={handleChange}
               required
               className="input-text"
+              placeholder="Username"
             />
-            <label>Username</label>
           </div>
           <div className="user-box">
             <input
@@ -83,8 +90,8 @@ const SignUp = () => {
               onChange={handleChange}
               required
               className="input-text"
+              placeholder="Password"
             />
-            <label>Password</label>
           </div>
 
           <div className="user-box">

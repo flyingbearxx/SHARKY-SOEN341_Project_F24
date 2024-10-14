@@ -111,14 +111,14 @@ const LogIn = ({ setToken }) => {
         <form id="loginform" onSubmit={handleSubmit} className="form-container">
           <div className="user-box">
             <input
-              type="text"
+              type="email"
               id="email"
               name="email"
               onChange={handleChange}
               required
               className="input-text"
+              placeholder="Email" /* Placeholder inside the input box */
             />
-            <label>Email</label>
           </div>
           <div className="user-box">
             <input
@@ -128,8 +128,8 @@ const LogIn = ({ setToken }) => {
               onChange={handleChange}
               required
               className="input-text"
+              placeholder="Password" /* Placeholder inside the input box */
             />
-            <label>Password</label>
           </div>
 
           <div className="button-container">
@@ -139,6 +139,16 @@ const LogIn = ({ setToken }) => {
           </div>
           {errorMessage && <p className="error-message">{errorMessage}</p>}
         </form>
+
+        {/* Links for Sign Up and Reset Password */}
+        <div className="extra-links">
+          <p>
+            Don't have an account? <Link to="/signup">Sign up</Link>
+          </p>
+          <p>
+            Forgot password? <Link to="/forgot-passowrd">Reset password</Link>
+          </p>
+        </div>
       </div>
     </div>
   );
