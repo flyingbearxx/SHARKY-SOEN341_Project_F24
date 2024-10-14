@@ -50,8 +50,8 @@ const ResetPW = () => {
               onChange={(e) => setPassword(e.target.value)}
               required
               className="input-text"
+              placeholder="New Password"
             />
-            <label>New Password</label>
           </div>
           <div className="user-box">
             <input
@@ -61,8 +61,8 @@ const ResetPW = () => {
               onChange={(e) => setConfirmPassword(e.target.value)}
               required
               className="input-text"
+              placeholder="Confirm New Password"
             />
-            <label>Confirm New Password</label>
           </div>
 
           <div className="button-container">

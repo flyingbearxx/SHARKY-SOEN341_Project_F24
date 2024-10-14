@@ -1,3 +1,4 @@
+/* General Styles */
 * {
   margin: 0;
   padding: 0;
@@ -10,44 +11,49 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, #d53369, #daae51);
-  overflow-y: auto;
-  padding-top: 80px;
+  background: linear-gradient(135deg, #9b59b6, #d4a5ff, #b39ddb, #8e44ad);
+  background-size: 400% 400%;
+  animation: backgroundMove 10s ease infinite;
+  overflow: hidden; /* Prevents scrollbars from appearing */
+}
+
+@keyframes backgroundMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  25% {
+    background-position: 100% 50%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  75% {
+    background-position: 0% 100%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
   min-height: 100vh;
   width: 100%;
   background: radial-gradient(
     circle at 50% 50%,
-    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.4),
     transparent
   );
+  overflow: hidden; /* Prevent content from pushing down */
 }
 
-/* Form container and general box styling */
-.form-container,
-.teamform,
-.login-box,
-.signup-box {
-  width: 100%;
-  max-width: 400px;
-  background-color: rgba(0, 0, 0, 0.75);
-  padding: 40px;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  text-align: center;
-  color: white;
-}
-
-/* Header styling */
+/* Header (for Sharky Peer Assessment Title) */
 .header1 {
   width: 100%;
   height: 80px;
-  background-color: #daae51;
+  background-color: #9b59b6;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -66,34 +72,80 @@ h2 {
   text-transform: uppercase;
 }
 
+/* Team Management Page Styles */
+.description {
+  margin-top: 100px; /* Ensure this is below the Sharky Peer Assessment title */
+}
+
+.menu-buttons-top {
+  position: absolute;
+  top: 150px; /* Pushed down so it doesn't touch the title */
+  left: 20px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-buttons {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-buttons .btn {
+  margin: 10px 0;
+  padding: 10px;
+  background-color: #9b59b6;
+  border: 2px solid #9b59b6;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  width: 100%;
+  max-width: 200px;
+}
+
+.menu-buttons .btn:hover {
+  background-color: #7d3c98;
+  border-color: #7d3c98;
+}
+
+.teamform,
+.csv-upload {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  width: 400px;
+}
+
 input[type="text"],
-input[type="email"],
-input[type="password"],
+input[type="file"],
 select {
   width: 100%;
   padding: 12px;
   margin-bottom: 20px;
-  background: rgba(255, 255, 255, 0.1);
-  border: none;
-  border-bottom: 2px solid #fff;
+  background: rgba(255, 255, 255, 0.8);
+  border: 2px solid #9b59b6;
   outline: none;
-  color: #fff;
+  color: #333;
   font-size: 16px;
   letter-spacing: 1px;
-  transition: border-color 0.3s ease;
 }
 
 input:focus,
 select:focus {
-  border-color: #daae51;
+  border-color: #9b59b6;
 }
 
 button,
 .btn {
-  background: none;
-  border: 2px solid #daae51;
+  background: #9b59b6;
+  border: 2px solid #9b59b6;
   padding: 10px 30px;
-  color: #daae51;
+  color: white;
   font-size: 18px;
   font-weight: 600;
   text-transform: uppercase;
@@ -103,92 +155,88 @@ button,
 
 button:hover,
 .btn:hover {
-  background-color: #daae51;
-  color: #000;
-  box-shadow: 0 10px 20px rgba(218, 174, 81, 0.4);
+  background-color: #7d3c98;
+  border-color: #7d3c98;
 }
 
-/* Sidebar styling to move options to the left */
-.sidebar {
-  width: 200px;
-  background-color: rgba(0, 0, 0, 0.75);
-  position: fixed;
-  top: 100px; /* Below the header */
-  left: 0; /* Align to the left */
-  height: calc(100% - 100px); /* Full height minus the header */
-  padding-top: 50px;
-  z-index: 100;
+/* SignUp Page Styles */
+.signup-box {
+  width: 100%;
+  max-width: 400px;
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  color: #333;
+  margin-top: 150px;
 }
 
-/* Align the links properly inside the sidebar */
-.sidebar ul {
-  list-style: none;
-  padding-left: 20px; /* Add some padding to the left for spacing */
+.signup-box h2 {
+  font-size: 28px;
+  font-weight: bold;
+  color: #6c3483; /* Dark Purple/Violet for the title */
+  margin-bottom: 20px;
+  text-transform: uppercase;
 }
 
-.sidebar ul li {
-  margin-bottom: 20px; /* Spacing between the links */
-}
-
-.sidebar ul li a {
-  color: #f1f1f1;
-  text-decoration: none;
-  font-size: 18px;
-}
-
-.sidebar ul li a:hover {
-  color: #daae51; /* Highlight effect on hover */
-}
-
-/* Form text alignment and spacing */
-.user-box label {
-  color: #fff;
-  font-size: 14px;
-  margin-bottom: 5px;
-  display: block;
-  text-align: left;
+.form-container .user-box {
+  margin-bottom: 20px;
 }
 
 .form-container .input-text {
   width: 100%;
-  padding: 10px;
-  margin-bottom: 20px;
-  background: rgba(255, 255, 255, 0.1);
-  border: none;
-  border-bottom: 2px solid #fff;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 2px solid #9b59b6;
   outline: none;
-  color: #fff;
+  color: #333;
   font-size: 16px;
-  letter-spacing: 1.5px;
-  transition: border-color 0.5s;
+  letter-spacing: 1px;
 }
 
-.submit-btn {
-  background: none;
-  border: 2px solid #daae51;
-  padding: 10px 30px;
-  color: #daae51;
-  font-size: 18px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  cursor: pointer;
-  transition: color 0.5s, border-color 0.5s, box-shadow 0.5s;
+.form-container .input-text:focus {
+  border-color: #9b59b6;
 }
 
-.submit-btn:hover {
-  background: #daae51;
-  color: #000;
-  box-shadow: 0 10px 20px rgba(218, 174, 81, 0.4);
-}
-
-.error-message {
-  color: #ff4d4d;
-  font-size: 14px;
+.button-container {
   margin-top: 20px;
 }
 
-/* Switch buttons for student/teacher login */
+.login-link {
+  margin-top: 20px;
+}
+
+.login-link a {
+  color: #9b59b6;
+  text-decoration: none;
+}
+
+.login-link a:hover {
+  color: #7d3c98;
+}
+
+/* LogIn Page Styles */
+.login-box {
+  width: 100%;
+  max-width: 450px; /* Increased width */
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 50px; /* Increased padding */
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  color: #333;
+  margin-top: 150px;
+}
+
+.login-box h2 {
+  font-size: 28px;
+  font-weight: bold;
+  color: #6c3483; /* Dark Purple/Violet for the title */
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
 .switch-container {
   display: flex;
   justify-content: center;
@@ -200,13 +248,76 @@ button:hover,
   background: none;
   border: none;
   padding: 10px;
-  color: #daae51;
+  color: #9b59b6;
   font-size: 16px;
   cursor: pointer;
   transition: color 0.3s;
 }
 
 .switch-btn.active {
-  background-color: #daae51;
-  color: black;
+  background-color: #9b59b6;
+  color: white;
+}
+
+.switch-btn:hover {
+  color: #7d3c98;
+}
+
+.form-container .user-box {
+  margin-bottom: 20px;
+}
+
+.form-container .input-text {
+  width: 100%;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 2px solid #9b59b6;
+  outline: none;
+  color: #333;
+  font-size: 16px;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+/* Placeholder styling inside the input box */
+.input-text::placeholder {
+  color: #aaa; /* Light color for the placeholder */
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.input-text:focus::placeholder {
+  color: transparent; /* Placeholder disappears when typing */
+}
+
+.input-text:focus {
+  border-color: #9b59b6;
+}
+
+.button-container {
+  margin-top: 20px;
+}
+
+.error-message {
+  color: #e74c3c;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+/* Extra Links Styling */
+.extra-links {
+  margin-top: 20px;
+}
+
+.extra-links p {
+  margin: 10px 0;
+}
+
+.extra-links a {
+  color: #9b59b6;
+  text-decoration: none;
+}
+
+.extra-links a:hover {
+  color: #7d3c98;
 }
