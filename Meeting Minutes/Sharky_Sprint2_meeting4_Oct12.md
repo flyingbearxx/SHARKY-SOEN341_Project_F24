@@ -11,7 +11,7 @@
   
 **DECISIONS:**  
 We will be implementing pair programming practices for this sprint.  
-  1. Raghda will implement the importation of a course roaster from a CSV file.
+  1. Hala will implement the importation of a course roaster from a CSV file and the role based login.
   2. Hala & Yasmeen will adjust the CSS file 
   3.   will work on Github (add tables)
   4. Hala & Yasmeen will work on feature 1 (oct 12-oct 16)
