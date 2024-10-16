@@ -65,6 +65,11 @@ const LogIn = ({ setToken }) => {
   return (
     <div className="container">
       <header className="header1">
+        <img
+          src={`${process.env.PUBLIC_URL}/logo.png`}
+          alt="Logo"
+          className="logo"
+        />
         <h2>
           Sharky <br /> Peer Assessment
         </h2>

@@ -48,6 +48,11 @@ const SignUp = () => {
     <div className="container">
       {/* Add the Sharky Peer Assessment title at the top */}
       <header className="header1">
+        <img
+          src={`${process.env.PUBLIC_URL}/logo.png`}
+          alt="Logo"
+          className="logo"
+        />
         <h2>
           Sharky <br /> Peer Assessment
         </h2>
