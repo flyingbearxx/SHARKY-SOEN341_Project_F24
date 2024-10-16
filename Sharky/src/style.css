@@ -14,7 +14,7 @@ body {
   background: linear-gradient(135deg, #9b59b6, #d4a5ff, #b39ddb, #8e44ad);
   background-size: 400% 400%;
   animation: backgroundMove 10s ease infinite;
-  overflow: hidden; /* Prevents scrollbars from appearing */
+  overflow: auto; /* scrollbars unabled */
 }
 
 @keyframes backgroundMove {
@@ -70,6 +70,13 @@ h2 {
   color: #fff;
   margin-bottom: 20px;
   text-transform: uppercase;
+  margin-top: 10px;
+}
+
+.logo {
+  width: 100px;
+  height: 100px;
+  padding: 10px;
 }
 
 /* Team Management Page Styles */
