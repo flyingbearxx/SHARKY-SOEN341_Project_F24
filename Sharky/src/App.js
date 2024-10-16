@@ -7,6 +7,7 @@ import {
   ForgotPw,
   ResetPW,
   TeamManagement,
+  Logout,
 } from "./pages/main";
 import { Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./components/protectedRoute";
@@ -21,20 +22,28 @@ const App = () => {
     }
   }, []);
 
-  useEffect(() => {
-    if (token) {
-      sessionStorage.setItem("token", JSON.stringify(token));
-    }
-  }, [token]);
+  const handleLogout = () => {
+    sessionStorage.removeItem("token");
+    setToken(false); // Clear token from state
+  };
 
   return (
     <div>
       <Routes>
-        <Route path={"/"} element={<LogIn setToken={setToken} />} />
-        <Route path={"/signup"} element={<SignUp />} />
-        <Route path={"/forgot-passowrd"} element={<ForgotPw />} />
-        <Route path={"/reset-password"} element={<ResetPW />} />
-        <Route path={"/team-management"} element={<TeamManagement />} />
+        <Route path="/" element={<LogIn setToken={setToken} />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/forgot-password" element={<ForgotPw />} />
+        <Route path="/reset-password" element={<ResetPW />} />
+        <Route path="/team-management" element={<TeamManagement />} />
+        
+        {/* Correcting the route for Contact Us */}
+        <Route path="/contact-us" element={<ContactUs />} />
+        
+        {/* Use lowercase for consistency */}
+        <Route path="/homepage" element={<Homepage />} />
+        
+        {/* Logout route with the logout function */}
+        <Route path="/logout" element={<Logout />} />
 
         <Route
           path="/homepage"
@@ -44,7 +53,6 @@ const App = () => {
             </ProtectedRoute>
           }
         />
-        <Route path={"/contactus"} element={<ContactUs />} />
       </Routes>
     </div>
   );

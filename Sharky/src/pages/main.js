@@ -5,6 +5,8 @@ import ContactUs from "./ContactUs";
 import ForgotPw from "./ForgotPw";
 import ResetPW from "./ResetPW";
 import TeamManagement from "./TeamManagement";
+import Logout from "./Logout"; //added logout page
+
 
 export {
   LogIn,
@@ -14,4 +16,5 @@ export {
   ForgotPw,
   ResetPW,
   TeamManagement,
+  Logout, // added logout page
 };
