@@ -328,3 +328,85 @@ button:hover,
 .extra-links a:hover {
   color: #7d3c98;
 }
+/* ContactUs style*/
+
+.contact-container {
+  background-color: white; /* White background */
+  color: #4b0082; /* Dark purple text */
+  padding: 20px;
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  max-width: 600px; /* Limit the width */
+  margin: 20px auto; /* Center align the container */
+}
+
+h1 {
+  font-size: 2.5em; /* Larger heading */
+  margin-bottom: 10px; /* Space below the heading */
+  color: #6a0dad; /* Lighter purple for heading */
+}
+
+h4 {
+  margin-top: 20px; /* Space above subheading */
+  color: #6a0dad; /* Lighter purple for subheading */
+}
+
+.contact-info p {
+  margin: 10px 0; /* Space between paragraphs */
+}
+
+footer {
+  margin-top: 20px; /* Space above footer */
+  text-align: center; /* Center align footer text */
+  font-size: 0.9em; /* Smaller footer text */
+  color: #666; /* Grey color for footer */
+}
+/* Styles for displaying teams */
+.teams-container {
+  margin-top: 100px; /* Ensure spacing below header */
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.95); /* Light background */
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px; /* Limit the width */
+  text-align: center; /* Center align text */
+}
+
+.team-item {
+  font-size: 18px; /* Larger font for team names */
+  color: #6a0dad; /* Purple color for team names */
+  padding: 10px;
+  border-bottom: 1px solid #ddd; /* Add a separator */
+}
+
+.team-item:last-child {
+  border-bottom: none; /* Remove border from the last item */
+}
+
+.loading,
+.error {
+  font-size: 16px;
+  color: #e74c3c; /* Red color for error messages */
+}
+
+/* SignUp Page Styles */
+.signup-box {
+  width: 100%;
+  max-width: 400px;
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  color: #333;
+  margin-top: 150px;
+}
+
+.signup-box h2 {
+  font-size: 28px;
+  font-weight: bold;
+  color: #6c3483; /* Dark Purple/Violet for the title */
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
