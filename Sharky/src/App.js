@@ -47,6 +47,7 @@ const App = () => {
         
         {/* Logout route with the logout function */}
         <Route path="/logout" element={<Logout />} />
+        {/* ShowTeams route with the logout function */}
         <Route path="/ShowTeams" element={<ShowTeams />} />
 
         <Route
@@ -62,4 +63,3 @@ const App = () => {
   );
 };
 
-export default App; 

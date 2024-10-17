@@ -204,6 +204,7 @@ const TeamManagement = () => {
             <Link to="/assessment">
               <button className="btn">Assessment</button>
             </Link>
+<<<<<<< HEAD
             <Link to="/ShowTeams">
               <button className="btn">Show Teams</button>
             </Link>
@@ -214,6 +215,17 @@ const TeamManagement = () => {
             <Link to="/Logout">
               <button className="btn">Logout</button>
             </Link>
+=======
+            <Link to="/login">
+              <button className="btn">Login</button>
+            </Link>
+            <Link to="/signup">
+              <button className="btn">Create an Account</button>
+            </Link>
+            <Link to="/contact-us">
+              <button className="btn">Contact Us</button>
+            </Link>
+>>>>>>> ad8dff34e15c5106351153b9853bfd486df83a48
           </nav>
         )}
       </div>

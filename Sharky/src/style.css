@@ -328,6 +328,7 @@ button:hover,
 .extra-links a:hover {
   color: #7d3c98;
 }
+<<<<<<< HEAD
 /* ContactUs style*/
 
 .contact-container {
@@ -410,3 +411,5 @@ footer {
   margin-bottom: 20px;
   text-transform: uppercase;
 }
+=======
+>>>>>>> ad8dff34e15c5106351153b9853bfd486df83a48
