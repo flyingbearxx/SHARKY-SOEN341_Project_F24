@@ -8,9 +8,11 @@ The SHARKY Peer Assessment web application is developed by university students, 
 
 
 ### Features  
-- Anonymous peer assessment where students rate their peers using a detailed 7-point scale and comments to support their evaluation.
+- Anonymous peer assessment where students rate their peers using a detailed 5-point scale and comments to support their evaluation.
 - Instructor Dashboard offers a comprehensive overview of the peer assessment results and the option to export its data in CSV format. 
 - Instructors can create teams using the Instructor Dashboard, or via CSV import.
+- Instructors have broad oversight of the students in their class and the breakdown of all the teams. 
+- Users can reset their password if they forgot it, via an email link.
 
 ### Project Goals
 SHARKY aims to: 
@@ -26,9 +28,9 @@ SHARKY aims to:
 
 |**NAME**|**STUDENT ID**|**ROLE**|
 |--------|--------------|--------|
-|Shaili Hakimpour|40201808|Backend developer|
+|Shaili Hakimpour|40201808|Full Stack developer|
 |Hala Belamri|40221036|Full Stack developer|
-|Ana Rostam|40187433|Frontend developer|
-|Raghda Elkei|40251216|Backend developer|
-|Khujista Faqiri|40249541|Frontend developer|
-|Yasmeen Adi|40223656|Frontend developer|
+|Ana Rostam|40187433|Full Stack developer|
+|Raghda Elkei|40251216|Full Stack developer|
+|Khujista Faqiri|40249541|Full Stack developer|
+|Yasmeen Adi|40223656|Full Stack developer|
