@@ -201,15 +201,14 @@ const TeamManagement = () => {
             <Link to="/assessment">
               <button className="btn">Assessment</button>
             </Link>
-           {/*I deleted the login and signup from the menu because the user already have an account and logged in at this point */}
+            <Link to="/login">
+              <button className="btn">Login</button>
+            </Link>
+            <Link to="/signup">
+              <button className="btn">Create an Account</button>
+            </Link>
             <Link to="/contact-us">
               <button className="btn">Contact Us</button>
-            </Link>
-            <Link to="/Homepage">
-              <button className="btn">Home Page</button>
-            </Link>
-            <Link to="/Logout">
-              <button className="btn">Logout</button> {/*adding logout to the side menu*/}
             </Link>
           </nav>
         )}
