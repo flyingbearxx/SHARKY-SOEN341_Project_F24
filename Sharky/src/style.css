@@ -434,3 +434,51 @@ footer {
   font-size: 16px;
   color: #e74c3c; /* Red color for error messages */
 }
+
+
+
+
+/* Container for the entire assessment page */
+.assessment-container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.95); /* Match the light background style */
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Soft shadow */
+  margin-top: 100px; /* Ensure space below the header */
+  max-width: 800px; /* Consistent with homepage content */
+  text-align: center;
+}
+
+/* Style for the assessment message box */
+.assessment-box {
+  background-color: #f0f0f0; /* Light gray background for the box */
+  border-radius: 8px;
+  padding: 20px;
+  width: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  margin-bottom: 20px;
+}
+
+/* Style for the heading */
+.assessment-box h2 {
+  font-size: 28px;
+  margin-bottom: 15px;
+  color: #6c3483; /* Same purple as homepage headings */
+  text-transform: uppercase; /* Consistent with other titles */
+}
+
+/* Style for the text inside the box */
+.assessment-box p {
+  font-size: 18px;
+  color: #333; /* Dark gray text for regular text */
+}
+
+/* Style for the strong element (selected member name) */
+.assessment-box p strong {
+  color: #6a0dad; /* Lighter purple for emphasis */
+  font-weight: bold;
+}

@@ -7,6 +7,7 @@ import ResetPW from "./ResetPW";
 import TeamManagement from "./TeamManagement";
 import ShowTeams from "./ShowTeams";
 import Logout from "./Logout";
+import Assessment from "./Assessment";
 
 export {
   LogIn,
@@ -18,4 +19,5 @@ export {
   TeamManagement,
   ShowTeams,
   Logout,
+  Assessment,
 };

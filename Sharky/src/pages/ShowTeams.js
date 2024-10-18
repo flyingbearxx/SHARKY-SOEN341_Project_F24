@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { supabase } from "../client";
+import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const ShowTeams = () => {
   const [teams, setTeams] = useState([]); // Holds the teams fetched from the database
@@ -108,7 +111,18 @@ const ShowTeams = () => {
               ))}
             </select>
           </div>
+      {/* Link to the Assessment page with the Button */}
+      <div style={{ marginTop: "20px"}}>
+        <Link to={{
+          pathname: "/assessment",
+          state: { member: selectedMember },
+        }}
+        >
+          <button disabled={!selectedMember}>Evaluate Now</button>
+        </Link>
         </div>
+      </div>
+      
       )}
     </div>
   );
