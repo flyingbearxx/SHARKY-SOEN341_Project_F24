@@ -1,28 +1,53 @@
 import React from "react";
-<<<<<<< HEAD
-import { Link } from "react-router-dom"; // Import Link
-=======
->>>>>>> ad8dff34e15c5106351153b9853bfd486df83a48
+import { Link } from "react-router-dom";
 
 const Homepage = () => {
   return (
     <div className="container">
-      <div className="content">
-        <h2>Welcome to Sharky Peer Assessment</h2>
-<<<<<<< HEAD
-        <p>SHARKY is a peer assesment application that allows student to create teammates</p>
-        <p> Also, Students can rate their peers using a detailed 7-point scale and comments to support their evaluation.</p>
-        <p>SHARKY is designed to provide students with a dynamic environment to provide constructive feedback.</p>
-        <p> Furthermore, instructors can create teams up to 10 members</p>
-        <p>SHARKY helps promote fairer grading while providing crucial insights to both students and their instructors.</p>
-          <p> SHARKY fosters a culture of continuous improvement, empowering students to reflect on their performance, and contribute more effectively to their teams.</p>
-          <p> The goal of SHARKY is to Offer instructors a reliable tool to monitor and analyze team dynamics.</p>
-        <p>In order to access our service you need to sign up.</p>
-        {/* Link to the signup page */}
-        <Link to="/signup" className="signUp">Sign Up</Link>
-=======
-        <p>Login was successful! You can now access your dashboard.</p>
->>>>>>> ad8dff34e15c5106351153b9853bfd486df83a48
+      <header className="header1">
+        <img src="logo.png" alt="Sharky Logo" className="logo" />
+        <h1>Welcome to Sharky Peer Assessment</h1>
+      </header>
+
+      <div className="homepage-content">
+        <section className="intro-section">
+          <p>
+            Sharky is a peer assessment tool designed to make teamwork more
+            effective and transparent. Students can create teams, rate their
+            peers using a detailed 7-point scale, and provide constructive
+            feedback.
+          </p>
+        </section>
+
+        <section className="features-section">
+          <h2>Key Features</h2>
+          <ul>
+            <li>Create teams with up to 10 members</li>
+            <li>Rate peers with a 7-point scale</li>
+            <li>Anonymous peer assessments to ensure fairness</li>
+            <li>Constructive feedback with comment support</li>
+            <li>Instructors can upload CSV files to quickly manage teams</li>
+          </ul>
+        </section>
+
+        <section className="instructor-section">
+          <h2>For Instructors</h2>
+          <p>
+            Instructors can easily create teams, monitor team dynamics, and
+            upload CSV files to manage large groups more efficiently. Sharky
+            provides comprehensive feedback that helps instructors make
+            well-informed grading decisions.
+          </p>
+        </section>
+
+        <section className="cta-section">
+          <p>
+            Ready to start? Sign up now to create your teams and get started!
+          </p>
+          <Link to="/signup" className="signUp-btn">
+            Sign Up
+          </Link>
+        </section>
       </div>
     </div>
   );

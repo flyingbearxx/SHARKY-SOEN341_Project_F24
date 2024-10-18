@@ -14,7 +14,7 @@ body {
   background: linear-gradient(135deg, #9b59b6, #d4a5ff, #b39ddb, #8e44ad);
   background-size: 400% 400%;
   animation: backgroundMove 10s ease infinite;
-  overflow: auto; /* scrollbars unabled */
+  overflow: auto; /* scrollbars enabled */
 }
 
 @keyframes backgroundMove {
@@ -77,6 +77,50 @@ h2 {
   width: 100px;
   height: 100px;
   padding: 10px;
+}
+
+/* Homepage content styling */
+.homepage-content {
+  background-color: rgba(255, 255, 255, 0.95); /* Light background */
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Soft shadow */
+  max-width: 800px; /* Width for the homepage content */
+  margin-top: 100px; /* Push content below header */
+  text-align: center;
+}
+
+.homepage-content h2 {
+  font-size: 30px; /* Slightly larger font for the title */
+  color: #6c3483; /* Purple color */
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.homepage-content p {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.signUp-btn {
+  display: inline-block;
+  background-color: #9b59b6;
+  color: white;
+  padding: 10px 30px;
+  border: 2px solid #9b59b6;
+  text-transform: uppercase;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+}
+
+.signUp-btn:hover {
+  background-color: #7d3c98;
+  border-color: #7d3c98;
+  color: white;
 }
 
 /* Team Management Page Styles */
@@ -328,9 +372,8 @@ button:hover,
 .extra-links a:hover {
   color: #7d3c98;
 }
-<<<<<<< HEAD
-/* ContactUs style*/
 
+/* ContactUs style */
 .contact-container {
   background-color: white; /* White background */
   color: #4b0082; /* Dark purple text */
@@ -362,6 +405,7 @@ footer {
   font-size: 0.9em; /* Smaller footer text */
   color: #666; /* Grey color for footer */
 }
+
 /* Styles for displaying teams */
 .teams-container {
   margin-top: 100px; /* Ensure spacing below header */
@@ -390,26 +434,3 @@ footer {
   font-size: 16px;
   color: #e74c3c; /* Red color for error messages */
 }
-
-/* SignUp Page Styles */
-.signup-box {
-  width: 100%;
-  max-width: 400px;
-  background-color: rgba(255, 255, 255, 0.95);
-  padding: 40px;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  text-align: center;
-  color: #333;
-  margin-top: 150px;
-}
-
-.signup-box h2 {
-  font-size: 28px;
-  font-weight: bold;
-  color: #6c3483; /* Dark Purple/Violet for the title */
-  margin-bottom: 20px;
-  text-transform: uppercase;
-}
-=======
->>>>>>> ad8dff34e15c5106351153b9853bfd486df83a48

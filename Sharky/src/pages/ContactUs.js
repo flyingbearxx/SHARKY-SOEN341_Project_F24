@@ -1,7 +1,6 @@
 import React from "react";
 
 const ContactUs = () => {
-<<<<<<< HEAD
   return (
     <div className="contact-container">
       <h1>Contact Us</h1>
@@ -22,12 +21,6 @@ const ContactUs = () => {
       </footer>
     </div>
   );
-=======
-
-    
-
-  return <div>Contact Page</div>;
->>>>>>> ad8dff34e15c5106351153b9853bfd486df83a48
 };
 
 export default ContactUs;

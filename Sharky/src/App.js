@@ -36,15 +36,13 @@ const App = () => {
         <Route path="/forgot-password" element={<ForgotPw />} />
         <Route path="/reset-password" element={<ResetPW />} />
         <Route path="/team-management" element={<TeamManagement />} />
-        
-       
-        
+
         {/* Correcting the route for Contact Us */}
         <Route path="/contact-us" element={<ContactUs />} />
-        
+
         {/* Use lowercase for consistency */}
         <Route path="/homepage" element={<Homepage />} />
-        
+
         {/* Logout route with the logout function */}
         <Route path="/logout" element={<Logout />} />
         {/* ShowTeams route with the logout function */}
@@ -63,3 +61,4 @@ const App = () => {
   );
 };
 
+export default App;

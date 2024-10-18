@@ -151,7 +151,7 @@ const LogIn = ({ setToken }) => {
             Don't have an account? <Link to="/signup">Sign up</Link>
           </p>
           <p>
-            Forgot password? <Link to="/forgot-passowrd">Reset password</Link>
+            Forgot password? <Link to="/forgot-password">Reset password</Link>
           </p>
         </div>
       </div>
