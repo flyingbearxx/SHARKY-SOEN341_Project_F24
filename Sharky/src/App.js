@@ -9,7 +9,9 @@ import {
   TeamManagement,
   ShowTeams,
   Logout,
+  Assessment,
 } from "./pages/main";
+//import Assessment from './pages/Assessment';
 import { Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./components/protectedRoute";
 
@@ -45,8 +47,12 @@ const App = () => {
 
         {/* Logout route with the logout function */}
         <Route path="/logout" element={<Logout />} />
+
         {/* ShowTeams route with the logout function */}
         <Route path="/ShowTeams" element={<ShowTeams />} />
+
+        {/* Assessment route to redirect from ShowTeams */}
+        <Route path="/assessment" element={<Assessment />}/>
 
         <Route
           path="/homepage"
