@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "../client";
 
 const SignUp = () => {
+  let navigate = useNavigate();
+
   const [formData, setFormdata] = useState({
     email: "",
     userName: "",
@@ -57,6 +59,24 @@ const SignUp = () => {
           Sharky <br /> Peer Assessment
         </h2>
       </header>
+
+      {/* Sidebar for Login, Sign Up, Contact Us, and Welcome Page */}
+      <nav className="sidebar">
+        <div className="menu-buttons">
+          <button className="btn" onClick={() => navigate("/login")}>
+            Login
+          </button>
+          <button className="btn" onClick={() => navigate("/signup")}>
+            Sign Up
+          </button>
+          <button className="btn" onClick={() => navigate("/contact-us")}>
+            Contact Us
+          </button>
+          <button className="btn" onClick={() => navigate("/")}>
+            About Sharky
+          </button>
+        </div>
+      </nav>
 
       <div className="signup-box" id="signup-box">
         <h2>Create Account</h2>
@@ -120,7 +140,7 @@ const SignUp = () => {
 
         <div className="login-link">
           <p>
-            Already have an account? <Link to="/">Log in</Link>
+            Already have an account? <Link to="/login">Log in</Link>
           </p>
         </div>
       </div>

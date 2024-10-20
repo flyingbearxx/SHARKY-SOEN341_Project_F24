@@ -111,18 +111,18 @@ const ShowTeams = () => {
               ))}
             </select>
           </div>
-      {/* Link to the Assessment page with the Button */}
-      <div style={{ marginTop: "20px"}}>
-        <Link to={{
-          pathname: "/assessment",
-          state: { member: selectedMember },
-        }}
-        >
-          <button disabled={!selectedMember}>Evaluate Now</button>
-        </Link>
+          {/* Link to the Assessment page with the Button */}
+          <div style={{ marginTop: "20px" }}>
+            <Link
+              to={{
+                pathname: "/assessment",
+                state: { member: selectedMember },
+              }}
+            >
+              <button disabled={!selectedMember}>Evaluate Now</button>
+            </Link>
+          </div>
         </div>
-      </div>
-      
       )}
     </div>
   );
