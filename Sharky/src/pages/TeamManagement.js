@@ -198,13 +198,13 @@ const TeamManagement = () => {
             <button className="btn" onClick={toggleTeamManagement}>
               Team Management
             </button>
-            <Link to="/Homepage">
-              <button className="btn">Homepage</button>
+            <Link to="/">
+              <button className="btn">Welcome Page</button>
             </Link>
             <Link to="/assessment">
               <button className="btn">Assessment</button>
             </Link>
-            <Link to="/ShowTeams">
+            <Link to="/handle-teams">
               <button className="btn">Show Teams</button>
             </Link>
 

@@ -1,13 +1,13 @@
 import React from "react";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
 
 const Logout = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    localStorage.removeItem('token'); // Adjust this key based on your implementation
+    localStorage.removeItem("token"); // Adjust this key based on your implementation
     // Navigate to the home page
-    navigate('/Homepage'); 
+    navigate("/");
   };
 
   return (

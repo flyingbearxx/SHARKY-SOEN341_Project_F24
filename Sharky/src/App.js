@@ -10,8 +10,9 @@ import {
   ShowTeams,
   Logout,
   Assessment,
+  HandleTeams,
+  Welcomepage,
 } from "./pages/main";
-//import Assessment from './pages/Assessment';
 import { Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./components/protectedRoute";
 
@@ -31,39 +32,66 @@ const App = () => {
   };
 
   return (
-    <div>
-      <Routes>
-        <Route path="/" element={<LogIn setToken={setToken} />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/forgot-password" element={<ForgotPw />} />
-        <Route path="/reset-password" element={<ResetPW />} />
-        <Route path="/team-management" element={<TeamManagement />} />
+    <Routes>
+      {/* Public Routes */}
+      <Route path="/" element={<Welcomepage />} />
+      <Route path="/login" element={<LogIn setToken={setToken} />} />
+      <Route path="/signup" element={<SignUp />} />
+      <Route path="/forgot-password" element={<ForgotPw />} />
+      <Route path="/reset-password" element={<ResetPW />} />
+      <Route path="/contact-us" element={<ContactUs />} />
+      <Route path="/logout" element={<Logout onLogout={handleLogout} />} />
 
-        {/* Correcting the route for Contact Us */}
-        <Route path="/contact-us" element={<ContactUs />} />
+      {/* Protected Routes */}
 
-        {/* Use lowercase for consistency */}
-        <Route path="/homepage" element={<Homepage />} />
+      {/* Student Homepage */}
+      <Route
+        path="/homepage"
+        element={
+          <ProtectedRoute token={token}>
+            <Homepage />
+          </ProtectedRoute>
+        }
+      />
 
-        {/* Logout route with the logout function */}
-        <Route path="/logout" element={<Logout />} />
+      {/* Instructor Homepage */}
+      <Route
+        path="/team-management"
+        element={
+          <ProtectedRoute token={token}>
+            <TeamManagement />
+          </ProtectedRoute>
+        }
+      />
 
-        {/* ShowTeams route with the logout function */}
-        <Route path="/ShowTeams" element={<ShowTeams />} />
+      {/* Student Show teams */}
+      <Route
+        path="/show-teams"
+        element={
+          <ProtectedRoute token={token}>
+            <ShowTeams />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/assessment"
+        element={
+          <ProtectedRoute token={token}>
+            <Assessment />
+          </ProtectedRoute>
+        }
+      />
 
-        {/* Assessment route to redirect from ShowTeams */}
-        <Route path="/assessment" element={<Assessment />}/>
-
-        <Route
-          path="/homepage"
-          element={
-            <ProtectedRoute token={token}>
-              <Homepage />
-            </ProtectedRoute>
-          }
-        />
-      </Routes>
-    </div>
+      {/* Instructor Show/Handle Teams */}
+      <Route
+        path="/handle-teams"
+        element={
+          <ProtectedRoute token={token}>
+            <HandleTeams />
+          </ProtectedRoute>
+        }
+      />
+    </Routes>
   );
 };
 

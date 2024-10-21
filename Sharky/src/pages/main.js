@@ -8,6 +8,8 @@ import TeamManagement from "./TeamManagement";
 import ShowTeams from "./ShowTeams";
 import Logout from "./Logout";
 import Assessment from "./Assessment";
+import HandleTeams from "./HandleTeamInstructure";
+import Welcomepage from "./Welcomepage";
 
 export {
   LogIn,
@@ -20,4 +22,6 @@ export {
   ShowTeams,
   Logout,
   Assessment,
+  HandleTeams,
+  Welcomepage,
 };

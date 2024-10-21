@@ -75,19 +75,22 @@ const LogIn = ({ setToken }) => {
         </h2>
       </header>
 
-      {/* Sidebar for Login, Sign Up, and Contact Us */}
+      {/* Sidebar for Login, Sign Up, Contact Us, and Welcome Page */}
       <nav className="sidebar">
-        <ul>
-          <li>
-            <Link to="/">Login</Link>
-          </li>
-          <li>
-            <Link to="/signup">Sign Up</Link>
-          </li>
-          <li>
-            <Link to="/contactus">Contact Us</Link>
-          </li>
-        </ul>
+        <div className="menu-buttons">
+          <button className="btn" onClick={() => navigate("/login")}>
+            Login
+          </button>
+          <button className="btn" onClick={() => navigate("/signup")}>
+            Sign Up
+          </button>
+          <button className="btn" onClick={() => navigate("/contact-us")}>
+            Contact Us
+          </button>
+          <button className="btn" onClick={() => navigate("/")}>
+            About Sharky
+          </button>
+        </div>
       </nav>
 
       <div className="login-box">

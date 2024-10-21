@@ -1,53 +1,44 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"; // Import Link
 
 const Homepage = () => {
   return (
     <div className="container">
       <header className="header1">
-        <img src="logo.png" alt="Sharky Logo" className="logo" />
-        <h1>Welcome to Sharky Peer Assessment</h1>
+        <img
+          src={`${process.env.PUBLIC_URL}/logo.png`}
+          alt="Logo"
+          className="logo"
+        />
+        <h2>
+          Sharky <br /> Peer Assessment
+        </h2>
       </header>
 
       <div className="homepage-content">
-        <section className="intro-section">
-          <p>
-            Sharky is a peer assessment tool designed to make teamwork more
-            effective and transparent. Students can create teams, rate their
-            peers using a detailed 7-point scale, and provide constructive
-            feedback.
-          </p>
-        </section>
+        <h2>Welcome, Student!</h2>
+        <p>
+          You are logged in to SHARKY, where you can manage your assessments,
+          create or join teams, and provide feedback to your peers.
+        </p>
+        <p>
+          Please choose from the options below to navigate through the platform.
+        </p>
 
-        <section className="features-section">
-          <h2>Key Features</h2>
-          <ul>
-            <li>Create teams with up to 10 members</li>
-            <li>Rate peers with a 7-point scale</li>
-            <li>Anonymous peer assessments to ensure fairness</li>
-            <li>Constructive feedback with comment support</li>
-            <li>Instructors can upload CSV files to quickly manage teams</li>
-          </ul>
-        </section>
-
-        <section className="instructor-section">
-          <h2>For Instructors</h2>
-          <p>
-            Instructors can easily create teams, monitor team dynamics, and
-            upload CSV files to manage large groups more efficiently. Sharky
-            provides comprehensive feedback that helps instructors make
-            well-informed grading decisions.
-          </p>
-        </section>
-
-        <section className="cta-section">
-          <p>
-            Ready to start? Sign up now to create your teams and get started!
-          </p>
-          <Link to="/signup" className="signUp-btn">
-            Sign Up
+        <div className="menu-options">
+          <Link to="/show-teams" className="menu-btn">
+            Manage Teams
           </Link>
-        </section>
+          <Link to="/assessment" className="menu-btn">
+            View Assessments
+          </Link>
+          <Link to="/profile" className="menu-btn">
+            Your Profile
+          </Link>
+          <Link to="/logout" className="menu-btn">
+            Logout
+          </Link>
+        </div>
       </div>
     </div>
   );

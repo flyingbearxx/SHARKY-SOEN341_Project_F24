@@ -1,7 +1,6 @@
 import React from "react";
 import { useLocation } from "react-router-dom"; 
 import { supabase } from "../client";
-//import "./style.css"; // Import your existing CSS file for consistent styling
 
 
 const Assessment = () => {

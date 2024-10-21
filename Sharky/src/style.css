@@ -7,14 +7,13 @@
 
 body {
   font-family: "Poppins", sans-serif;
-  height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   background: linear-gradient(135deg, #9b59b6, #d4a5ff, #b39ddb, #8e44ad);
   background-size: 400% 400%;
   animation: backgroundMove 10s ease infinite;
-  overflow: auto; /* scrollbars enabled */
+  overflow: auto;
 }
 
 @keyframes backgroundMove {
@@ -41,12 +40,13 @@ body {
   align-items: center;
   min-height: 100vh;
   width: 100%;
+  padding-top: 100px;
   background: radial-gradient(
     circle at 50% 50%,
     rgba(255, 255, 255, 0.4),
     transparent
   );
-  overflow: hidden; /* Prevent content from pushing down */
+  overflow: hidden;
 }
 
 /* Header (for Sharky Peer Assessment Title) */
@@ -79,20 +79,77 @@ h2 {
   padding: 10px;
 }
 
-/* Homepage content styling */
+/* Sidebar with hover effect */
+.sidebar {
+  position: fixed;
+  top: 80px; /* No gap between sidebar and header */
+  left: -200px; /* Initially hidden */
+  width: 200px;
+  height: 100%; /* Full height */
+  background-color: rgba(0, 0, 0, 0.75);
+  z-index: 100;
+  transition: left 0.3s ease; /* Smooth transition */
+}
+
+/* Adjusting the hover effect */
+.container:hover .sidebar {
+  left: 0; /* Slide in when the container is hovered */
+}
+
+/* Sidebar menu buttons */
+.sidebar ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.sidebar ul li {
+  margin-bottom: 10px;
+}
+
+.sidebar ul li a {
+  display: block;
+  padding: 10px 15px;
+  color: white;
+  text-decoration: none;
+  background-color: #9b59b6;
+  border: 2px solid #9b59b6;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar ul li a:hover {
+  background-color: #7d3c98;
+  border-color: #7d3c98;
+}
+
+/* Homepage Styling */
+.homepage-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 150px;
+  width: 100%;
+}
+
 .homepage-content {
-  background-color: rgba(255, 255, 255, 0.95); /* Light background */
+  background-color: rgba(255, 255, 255, 0.95);
   padding: 40px;
   border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Soft shadow */
-  max-width: 800px; /* Width for the homepage content */
-  margin-top: 100px; /* Push content below header */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  max-width: 800px;
   text-align: center;
 }
 
 .homepage-content h2 {
-  font-size: 30px; /* Slightly larger font for the title */
-  color: #6c3483; /* Purple color */
+  font-size: 30px;
+  color: #6c3483;
   margin-bottom: 20px;
   text-transform: uppercase;
 }
@@ -103,34 +160,92 @@ h2 {
   margin-bottom: 15px;
 }
 
-.signUp-btn {
+.menu-options {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-btn {
   display: inline-block;
-  background-color: #9b59b6;
-  color: white;
+  margin: 10px 0;
   padding: 10px 30px;
+  background-color: #9b59b6;
   border: 2px solid #9b59b6;
+  color: white;
   text-transform: uppercase;
   font-weight: 600;
+  font-size: 16px;
   text-decoration: none;
   cursor: pointer;
   transition: all 0.3s ease;
-  margin-top: 20px;
+  border-radius: 8px;
 }
 
-.signUp-btn:hover {
+.menu-btn:hover {
   background-color: #7d3c98;
   border-color: #7d3c98;
-  color: white;
+}
+
+/* Welcomepage Improvements */
+.intro-section p,
+.features-section ul,
+.instructor-section p,
+.cta-section p {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.section-title {
+  font-size: 32px;
+  color: #6c3483;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.features-section ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.features-section ul li {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.features-section ul li .icon {
+  margin-right: 10px;
+  color: #9b59b6;
+  font-size: 22px;
+}
+
+.cta-section {
+  margin-top: 40px;
+}
+
+.cta-section .cta-paragraph {
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: #6c3483;
+}
+
+.cta-section .menu-btn {
+  font-size: 18px;
+  font-weight: bold;
+  padding: 12px 30px;
 }
 
 /* Team Management Page Styles */
 .description {
-  margin-top: 100px; /* Ensure this is below the Sharky Peer Assessment title */
+  margin-top: 100px;
 }
 
 .menu-buttons-top {
   position: absolute;
-  top: 150px; /* Pushed down so it doesn't touch the title */
+  top: 150px;
   left: 20px;
   z-index: 1000;
   display: flex;
@@ -210,6 +325,111 @@ button:hover,
   border-color: #7d3c98;
 }
 
+/* Show Teams Page Styles */
+.options-container {
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  text-align: center;
+  max-width: 800px;
+  width: 100%;
+}
+
+.options h2 {
+  font-size: 24px;
+  color: #6c3483;
+  margin-bottom: 20px;
+}
+
+.option-btn {
+  margin: 10px;
+  padding: 15px 30px;
+  background-color: #9b59b6;
+  border: 2px solid #9b59b6;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.option-btn:hover {
+  background-color: #7d3c98;
+  border-color: #7d3c98;
+}
+
+/* Teams Container */
+.teams-container,
+.modify-teams-container,
+.add-member-container {
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  max-width: 800px;
+  width: 100%;
+  text-align: left;
+}
+
+.teams-container h3,
+.modify-teams-container h3,
+.add-member-container h3 {
+  font-size: 22px;
+  color: #6a0dad;
+  margin-bottom: 15px;
+}
+
+.team-item {
+  font-size: 18px;
+  color: #6a0dad;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.team-item:last-child {
+  border-bottom: none;
+}
+
+.team-item ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.team-item li {
+  font-size: 16px;
+  color: #333;
+  margin: 5px 0;
+}
+
+.btn-remove {
+  margin-left: 10px;
+  background-color: #e74c3c;
+  border: none;
+  padding: 5px 10px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-remove:hover {
+  background-color: #c0392b;
+}
+
+select {
+  padding: 5px;
+  font-size: 14px;
+}
+
+.options-container h2 {
+  color: #6c3483;
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
 /* SignUp Page Styles */
 .signup-box {
   width: 100%;
@@ -220,13 +440,13 @@ button:hover,
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   text-align: center;
   color: #333;
-  margin-top: 150px;
+  margin-top: 100px;
 }
 
 .signup-box h2 {
   font-size: 28px;
   font-weight: bold;
-  color: #6c3483; /* Dark Purple/Violet for the title */
+  color: #6c3483;
   margin-bottom: 20px;
   text-transform: uppercase;
 }
@@ -270,9 +490,9 @@ button:hover,
 /* LogIn Page Styles */
 .login-box {
   width: 100%;
-  max-width: 450px; /* Increased width */
+  max-width: 450px;
   background-color: rgba(255, 255, 255, 0.95);
-  padding: 50px; /* Increased padding */
+  padding: 50px;
   border-radius: 20px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   text-align: center;
@@ -283,7 +503,7 @@ button:hover,
 .login-box h2 {
   font-size: 28px;
   font-weight: bold;
-  color: #6c3483; /* Dark Purple/Violet for the title */
+  color: #6c3483;
   margin-bottom: 20px;
   text-transform: uppercase;
 }
@@ -330,15 +550,14 @@ button:hover,
   transition: all 0.3s ease;
 }
 
-/* Placeholder styling inside the input box */
 .input-text::placeholder {
-  color: #aaa; /* Light color for the placeholder */
+  color: #aaa;
   font-size: 16px;
   transition: all 0.3s ease;
 }
 
 .input-text:focus::placeholder {
-  color: transparent; /* Placeholder disappears when typing */
+  color: transparent;
 }
 
 .input-text:focus {
@@ -375,68 +594,36 @@ button:hover,
 
 /* ContactUs style */
 .contact-container {
-  background-color: white; /* White background */
-  color: #4b0082; /* Dark purple text */
+  background-color: white;
+  color: #4b0082;
   padding: 20px;
-  border-radius: 8px; /* Rounded corners */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
-  max-width: 600px; /* Limit the width */
-  margin: 20px auto; /* Center align the container */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 20px auto;
 }
 
 h1 {
-  font-size: 2.5em; /* Larger heading */
-  margin-bottom: 10px; /* Space below the heading */
-  color: #6a0dad; /* Lighter purple for heading */
+  font-size: 2.5em;
+  margin-bottom: 10px;
+  color: #6a0dad;
 }
 
 h4 {
-  margin-top: 20px; /* Space above subheading */
-  color: #6a0dad; /* Lighter purple for subheading */
+  margin-top: 20px;
+  color: #6a0dad;
 }
 
 .contact-info p {
-  margin: 10px 0; /* Space between paragraphs */
+  margin: 10px 0;
 }
 
 footer {
-  margin-top: 20px; /* Space above footer */
-  text-align: center; /* Center align footer text */
-  font-size: 0.9em; /* Smaller footer text */
-  color: #666; /* Grey color for footer */
+  margin-top: 20px;
+  text-align: center;
+  font-size: 0.9em;
+  color: #666;
 }
-
-/* Styles for displaying teams */
-.teams-container {
-  margin-top: 100px; /* Ensure spacing below header */
-  padding: 20px;
-  background-color: rgba(255, 255, 255, 0.95); /* Light background */
-  border-radius: 10px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 600px; /* Limit the width */
-  text-align: center; /* Center align text */
-}
-
-.team-item {
-  font-size: 18px; /* Larger font for team names */
-  color: #6a0dad; /* Purple color for team names */
-  padding: 10px;
-  border-bottom: 1px solid #ddd; /* Add a separator */
-}
-
-.team-item:last-child {
-  border-bottom: none; /* Remove border from the last item */
-}
-
-.loading,
-.error {
-  font-size: 16px;
-  color: #e74c3c; /* Red color for error messages */
-}
-
-
-
 
 /* Container for the entire assessment page */
 .assessment-container {
@@ -445,7 +632,12 @@ footer {
   flex-direction: column;
   align-items: center;
   width: 100%;
-  background-color: rgba(255, 255, 255, 0.95); /* Match the light background style */
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.95
+  ); /* Match the light background style */
   border-radius: 10px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Soft shadow */
   margin-top: 100px; /* Ensure space below the header */
