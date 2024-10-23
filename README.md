@@ -6,7 +6,6 @@ As students, we are often working in group projects, where collaboration is the 
 ## Offered Solution & Project Description  
 The SHARKY Peer Assessment web application is developed by university students, for university students. It provides a platform for students to anonymously assess their teammates based on four key dimensions: cooperation, conceptual contribution, practical contribution, and work ethic. SHARKY is designed to provide students with a dynamic environment to provide constructive feedback. Our product will bridge the gap between individual contribution and group accountability, ensuring that every student's effort is recognized. It is by facilitating transparent evaluation practices that SHARKY helps promote fairer grading while providing crucial insights to both students and their instructors. SHARKY fosters a culture of continuous improvement, empowering students to reflect on their performance, and contribute more effectively to their teams.  
 
-
 ### Features  
 - Anonymous peer assessment where students rate their peers using a detailed 5-point scale and comments to support their evaluation.
 - Instructor Dashboard offers a comprehensive overview of the peer assessment results and the option to export its data in CSV format. 
@@ -23,6 +22,17 @@ SHARKY aims to:
 ### Technologies
 - **Frontend**: HTML/CSS, Javascript, React.js, JSX
 - **Backend/Database**: Supabase
+
+## Installation Procedure
+Ensure Node.js is installed on your computer. If not, you can download and install it from [here](https://nodejs.org/en/download/prebuilt-installer).  
+  
+**Step 1:** Clone the repository.  
+**Step 2:** Navigate to the SHARKY-SOEN341_Project_F24\Sharky directory.  
+**Step 3:** To confirm that Node.js is installed correctly, execute the following commands: `node -v` and `npm -v`.  
+**Step 3:** Install all the revelent dependencies using the following command: `npm install`.  
+**Step 4:** Run the program using the following command: `npm start`.  
+**Step 5:** The web application will open in your default browser. Enjoy!
+
 
 ## SHARKY Members  
 
