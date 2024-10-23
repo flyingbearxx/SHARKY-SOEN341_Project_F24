@@ -32,17 +32,17 @@ Before you begin, ensure you have the following installed:
   
 **Step 1:Clone the repository** 
 First, clone the SHARKY project repository to your local machine using Git. Open your terminal and run the following command:
-git clone https://github.com/hlbels/SHARKY-SOEN341_Project_F24.git
-**Step 2:Navigate to the Project Directory** 
-Navigate to the SHARKY-SOEN341_Project_F24\Sharky directory. 
-cd SHARKY-SOEN341_Project_F24/Sharky
-**Step 3:Verify Node.js Installation** 
-To confirm that Node.js is installed correctly, execute the following commands: `node -v` and `npm -v`. This will display the versions of Node.js and npm installed, which should meet the prerequisites mentioned earlier. 
-**Step 3:Install Dependencies** 
-Install all the revelent dependencies using the following command: `npm install`. This command will install all dependencies listed in the package.json file, including React and Supabase client libraries, ensuring your application has all it needs to run properly.
-**Step 4:Run the Application** 
+`git clone https://github.com/hlbels/SHARKY-SOEN341_Project_F24.git`  
+**Step 2:Navigate to the Project Directory**  
+Navigate to the SHARKY-SOEN341_Project_F24\Sharky directory.  
+`cd SHARKY-SOEN341_Project_F24/Sharky`  
+**Step 3:Verify Node.js Installation**  
+To confirm that Node.js is installed correctly, execute the following commands: `node -v` and `npm -v`. This will display the versions of Node.js and npm installed, which should meet the prerequisites mentioned earlier.  
+**Step 3:Install Dependencies**  
+Install all the revelent dependencies using the following command: `npm install`. This command will install all dependencies listed in the package.json file, including React and Supabase client libraries, ensuring your application has all it needs to run properly.  
+**Step 4:Run the Application**  
 Once the installation is complete, you can start the application locally by using the following command: `npm start`.  
-This command will start the React development server and open the SHARKY Peer Assessment Platform in your default web browser, typically accessible via http://localhost:3000/. Enjoy!
+This command will start the React development server and open the SHARKY Peer Assessment Platform in your default web browser, typically accessible via http://localhost:3000/. Enjoy!  
 
 
 ## SHARKY Members  
