@@ -13,8 +13,9 @@ import {
   HandleTeams,
   Welcomepage,
 } from "./pages/main";
-import { Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./components/protectedRoute";
+
 
 const App = () => {
   const [token, setToken] = useState(false);
@@ -41,6 +42,7 @@ const App = () => {
       <Route path="/reset-password" element={<ResetPW />} />
       <Route path="/contact-us" element={<ContactUs />} />
       <Route path="/logout" element={<Logout onLogout={handleLogout} />} />
+    
 
       {/* Protected Routes */}
 
@@ -74,7 +76,7 @@ const App = () => {
         }
       />
       <Route
-        path="/assessment"
+        path="/Assessment"
         element={
           <ProtectedRoute token={token}>
             <Assessment />

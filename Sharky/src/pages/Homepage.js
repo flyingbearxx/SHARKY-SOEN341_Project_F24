@@ -29,7 +29,7 @@ const Homepage = () => {
           <Link to="/show-teams" className="menu-btn">
             Manage Teams
           </Link>
-          <Link to="/assessment" className="menu-btn">
+          <Link to="/Assessmentt" className="menu-btn">
             View Assessments
           </Link>
           <Link to="/profile" className="menu-btn">

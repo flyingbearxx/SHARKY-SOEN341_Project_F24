@@ -115,11 +115,14 @@ const ShowTeams = () => {
           <div style={{ marginTop: "20px" }}>
             <Link
               to={{
-                pathname: "/assessment",
-                state: { member: selectedMember },
+                pathname: "/Assessment",
+                state: { member: selectedMember,
+                  team: selectedTeam
+                 },
               }}
             >
-              <button disabled={!selectedMember}>Evaluate Now</button>
+              
+          <button disabled={!selectedMember}>Evaluate Now</button>
             </Link>
           </div>
         </div>
