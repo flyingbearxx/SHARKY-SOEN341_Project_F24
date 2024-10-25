@@ -162,12 +162,12 @@ const Assessment = () => {
         <h3 style={{ color: 'black' }}><i>Evaluation Form</i></h3>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label htmlFor="assessorName">Your Name:</label>
+            <label htmlFor="Assessorid">Your Name:</label>
             <input
               type="text"
-              id="assessorName"
-              name="assessor_name"
-              value={formData.assessor_name}
+              id="Assessorid"
+              name="Assessorid"
+              value={formData.Assessorid}
               onChange={handleInputChange}
               required
             />
@@ -230,7 +230,7 @@ const Assessment = () => {
                 <label key={value}>
                   <input
                     type="radio"
-                    name="communication_rating"
+                    name="Communication"
                     value={value}
                     checked={formData.Communication === String(value)}
                     onChange={handleInputChange}
@@ -248,7 +248,7 @@ const Assessment = () => {
                 <label key={value}>
                   <input
                     type="radio"
-                    name="participation_rating"
+                    name="Participation"
                     value={value}
                     checked={formData.Participation === String(value)}
                     onChange={handleInputChange}
@@ -266,7 +266,7 @@ const Assessment = () => {
                 <label key={value}>
                   <input
                     type="radio"
-                    name="support_rating"
+                    name="Assistance"
                     value={value}
                     checked={formData.Assistance === String(value)}
                     onChange={handleInputChange}
@@ -284,7 +284,7 @@ const Assessment = () => {
                 <label key={value}>
                   <input
                     type="radio"
-                    name="respect_rating"
+                    name="Respect"
                     value={value}
                     checked={formData.Respect === String(value)}
                     onChange={handleInputChange}
@@ -296,10 +296,10 @@ const Assessment = () => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="feedback">Additional Feedback:</label>
+            <label htmlFor="Commentsection">Additional Feedback:</label>
             <textarea
-              id="feedback"
-              name="feedback"
+              id="Commentsection"
+              name="Commentsection"
               rows="4"
               value={formData.Commentsection}
               onChange={handleInputChange}
