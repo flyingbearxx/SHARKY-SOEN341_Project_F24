@@ -10,6 +10,7 @@ import Logout from "./Logout";
 import Assessment from "./Assessment";
 import HandleTeams from "./HandleTeamInstructure";
 import Welcomepage from "./Welcomepage";
+import Confirmpage from "./Confirmpage";
 
 export {
   LogIn,
@@ -24,4 +25,5 @@ export {
   Assessment,
   HandleTeams,
   Welcomepage,
+  Confirmpage,
 };
