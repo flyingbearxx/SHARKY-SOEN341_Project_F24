@@ -4,12 +4,12 @@
 **MEETING PARTICIPANTS:** Shaili, Raghda, Ana, Yasmeen, Hala, Khujista, TA
 
 **DISCUSSION TOPICS:**
-  1. Showing the TA our progress and taking notes of what we should add/change in our project. 
+  1. Hala showed the TA our progress and the team sought feedback of what we should add/change in our project Github. 
   
-**DECISIONS:**  
+**Feedback Received:**  
   1. We should create 2 acceptance tests (minimum) for functionalities implemeted in sprint 1
-  2. 
-  3. 
+  2. We should create user stories to capture the requirements of each feature.
+  3. We should establish a CI pipeline to automate test runs and code quality checks.
  
 
 
