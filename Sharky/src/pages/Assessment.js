@@ -65,6 +65,7 @@ const Assessment = () => {
   const handleTeamSelection = (event) => {
     const selectedTeamName = event.target.value;
     setSelectedTeam(selectedTeamName); // Updates the selected team name
+    
     const selectedTeamObj = teams.find(
       (team) => team.teamname === selectedTeamName
     );
@@ -74,13 +75,27 @@ const Assessment = () => {
       setTeamMembers(
         selectedTeamObj.team_members.map((member) => member.users.email)
       );
-    } else {
+
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        Team_id: selectedTeamObj.id, // Set the correct team ID
+      }));
+    }
+    
+   else {
       setTeamMembers([]); // Clear if no team is selected
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        Team_id: "", // Clear team ID if no team is selected
+      }));
     }
   };
 
   const handleMemberSelection = (event) => {
     setSelectedMember(event.target.value); // Updates the selected member
+   
+    
+    
   };
   // Handle form input changes
   const handleInputChange = (e) => {
@@ -93,10 +108,7 @@ const Assessment = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // if(!member || !team){
-    //   alert('No team member or team selected for evaluation.');
-    //   return;
-    // }
+    
     console.log('Form Data:', formData);
     try{
       const { data, error } = await supabase
@@ -172,13 +184,7 @@ const Assessment = () => {
               required
             />
           </div>
-          {/* Show the selected team and member */}
-        {/* <h3>Selected Team: {team}</h3>
-        <h3>Evaluating Member: {member}</h3> */}
-        {/* { member && team ? (
-          <p>You are evaluating {member} from team {team}.</p>) : (
-            <p>No team member selected for evaluation.</p>
-          )} */}
+          
         
           {teams.map((team) => (
             <div key={team.id}>
@@ -277,7 +283,7 @@ const Assessment = () => {
             </div>
           </div>
 
-          <div className="form-group">
+           <div className="form-group">
             <label>Respect for Others' Ideas:</label>
             <div className="rating">
               {[1, 2, 3, 4, 5].map((value) => (

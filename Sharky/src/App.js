@@ -68,21 +68,21 @@ const App = () => {
 
       {/* Student Show teams */}
       <Route
-        path="/show-teams"
-        element={
-          <ProtectedRoute token={token}>
-            <ShowTeams />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/Assessment"
+        path="/Show-teams"
         element={
           <ProtectedRoute token={token}>
             <Assessment />
           </ProtectedRoute>
         }
       />
+      {/* <Route
+        path="/Assessment"
+        element={
+          <ProtectedRoute token={token}>
+            <Assessment />
+          </ProtectedRoute>
+        }
+      /> */}
 
       {/* Instructor Show/Handle Teams */}
       <Route
