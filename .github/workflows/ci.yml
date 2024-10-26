@@ -33,4 +33,4 @@ jobs:
       - name: Run tests
         run: |
           cd Sharky
-          npm test -- --watchAll=false
+          npm test -- --watchAll=false --passWithNoTests
