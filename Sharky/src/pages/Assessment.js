@@ -17,12 +17,15 @@ const Assessment = () => {
   const [formData, setFormData] = useState({
     Assessorid: '',
     Assessedmemberid: member,
+    Team_id: team,
     Communication: '',
     Participation: '',
     Assistance: '',
     Respect: '',
+    Cooperation: '', 
+    Conflict_Resolution: '', 
+    AdaptibilityandFlexibility: '', 
     Commentsection: '',
-    Team_id: team,
   });
   const [teams, setTeams] = useState([]); // Holds the teams fetched from the database
   const [selectedTeam, setSelectedTeam] = useState(""); // Holds the selected team from the dropdown
@@ -62,6 +65,7 @@ const Assessment = () => {
     fetchTeams();
   }, []);
 
+
   const handleTeamSelection = (event) => {
     const selectedTeamName = event.target.value;
     setSelectedTeam(selectedTeamName); // Updates the selected team name
@@ -97,6 +101,7 @@ const Assessment = () => {
     
     
   };
+  
   // Handle form input changes
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -110,8 +115,10 @@ const Assessment = () => {
 
     
     console.log('Form Data:', formData);
+  
+  
     try{
-      const { data, error } = await supabase
+      const { Data, error } = await supabase
       .from('Peer Assessment Questions')
       .insert([
         {
@@ -122,6 +129,9 @@ const Assessment = () => {
           Assistance: formData.Assistance,
           Respect: formData.Respect,
           Commentsection: formData.Commentsection,
+          Cooperation: formData.Cooperation,
+          Conflict_Resolution: formData.Conflict_Resolution,
+          AdaptibilityandFlexibility: formData.AdaptibilityandFlexibility, 
           Team_id: formData.Team_id,
         },
       ]);
@@ -134,12 +144,15 @@ const Assessment = () => {
 
     setFormData({
       Assessorid: '',
-      Assessedmemberid: member,
+      Assessedmemberid: '',
       Communication: '',
       Participation: '',
       Assistance: '',
       Respect: '',
       Commentsection: '',
+      Cooperation: '', 
+      Conflict_Resolution: '', 
+      AdaptibilityandFlexibility: '', 
       Team_id: team,
     });
   } catch (error) {
@@ -147,7 +160,6 @@ const Assessment = () => {
     alert('Error submitting the assessment. Please try again.'); // Provide user feedback
   }
   };
-
   return (
     <div className="container" id="welcomepage">
       <nav className="sidebar">
@@ -171,7 +183,7 @@ const Assessment = () => {
       </main>
 
       <div className="content2" id="content2">
-        <h3 style={{ color: 'black' }}><i>Evaluation Form</i></h3>
+      <h3 style={{ color: 'black', textAlign: 'center'}}><i>Evaluation Form</i></h3>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="Assessorid">Your Name:</label>
@@ -184,16 +196,18 @@ const Assessment = () => {
               required
             />
           </div>
-          
+       
+ {/* Show the selected team and member */}
+        {/* <h3>Selected Team: {team}</h3>
+        <h3>Evaluating Member: {member}</h3> */}
+        {/* { member && team ? (
+          <p>You are evaluating {member} from team {team}.</p>) : (
+            <p>No team member selected for evaluation.</p>
+          )} */}
         
-          {teams.map((team) => (
-            <div key={team.id}>
-              <h3>{team.teamname}</h3>
-              <p>Members: {team.members}</p>
-            </div>
-          ))}
+       
           <div style={{ marginTop: "20px" }}>
-            <button
+          <button
               onClick={() => alert(`You are in team: ${selectedTeam}`)}
               style={{ marginBottom: "10px" }}
             >
@@ -226,92 +240,254 @@ const Assessment = () => {
               ))}
             </select>
           </div>
-
-
+      
 <h4>Please choose the number best describing the teammate (1 to 5):</h4>
+<div>
+    <p><br/></p>
+  </div> 
           <div className="form-group">
-            <label>Communication:</label>
             <div className="rating">
-              {[1, 2, 3, 4, 5].map((value) => (
-                <label key={value}>
-                  <input
-                    type="radio"
-                    name="Communication"
-                    value={value}
-                    checked={formData.Communication === String(value)}
-                    onChange={handleInputChange}
-                    required
-                  /> {value}
-                </label>
-              ))}
+            <label><b>1. Did this team member communicate effectively with the rest of the group?</b></label> <div>
+   
+  </div>
+  <div style={{ display: 'flex', gap: '5px', cursor: 'pointer' }}>
+          {[1, 2, 3, 4, 5].map((value) => (
+            <label key={value}>
+              <input
+                type="radio"
+                name="Communication"
+                value={value}
+                checked={formData.Communication === String(value)}
+                onChange={handleInputChange}
+                style={{ display: 'none' }} // Hide radio buttons
+                required
+              />
+              <span
+                style={{
+                  fontSize: '1.5rem',
+                  color: value <= formData.Communication ? '#FFD700' : '#ccc'
+                }}
+              >
+                ★
+              </span>
+            </label>
+          ))}
+        </div>
+            </div>
+          </div>      
+  <div>
+    <p><br/></p>
+  </div>      
+<div className="form-group">
+            
+            <div className="rating">
+            <label><b>2. Did this team member actively participate in group discussions?</b></label>
+            <div style={{ display: 'flex', gap: '5px', cursor: 'pointer' }}>
+          {[1, 2, 3, 4, 5].map((value) => (
+            <label key={value}>
+              <input
+                type="radio"
+                name="Participation"
+                value={value}
+                checked={formData.Participation === String(value)}
+                onChange={handleInputChange}
+                style={{ display: 'none' }} // Hide radio buttons
+                required
+              />
+              <span
+                style={{
+                  fontSize: '1.5rem',
+                  color: value <= formData.Participation ? '#FFD700' : '#ccc'
+                }}
+              >
+                ★
+              </span>
+            </label>
+          ))}
+        </div>
             </div>
           </div>
-
+          <div>
+    <p><br/></p>
+  </div> 
           <div className="form-group">
-            <label>Participation:</label>
             <div className="rating">
-              {[1, 2, 3, 4, 5].map((value) => (
-                <label key={value}>
-                  <input
-                    type="radio"
-                    name="Participation"
-                    value={value}
-                    checked={formData.Participation === String(value)}
-                    onChange={handleInputChange}
-                    required
-                  /> {value}
-                </label>
-              ))}
+            <label><b>3. Was this team member willing to assist others when needed?</b></label>
+
+            <div style={{ display: 'flex', gap: '5px', cursor: 'pointer' }}>
+          {[1, 2, 3, 4, 5].map((value) => (
+            <label key={value}>
+              <input
+                type="radio"
+                name="Assistance"
+                value={value}
+                checked={formData.Assistance === String(value)}
+                onChange={handleInputChange}
+                style={{ display: 'none' }} // Hide radio buttons
+                required
+              />
+              <span
+                style={{
+                  fontSize: '1.5rem',
+                  color: value <= formData.Assistance ? '#FFD700' : '#ccc'
+                }}
+              >
+                ★
+              </span>
+            </label>
+          ))}
+        </div>
             </div>
           </div>
-
+          <div>
+    <p><br/></p>
+  </div> 
           <div className="form-group">
-            <label>Support:</label>
             <div className="rating">
-              {[1, 2, 3, 4, 5].map((value) => (
-                <label key={value}>
-                  <input
-                    type="radio"
-                    name="Assistance"
-                    value={value}
-                    checked={formData.Assistance === String(value)}
-                    onChange={handleInputChange}
-                    required
-                  /> {value}
-                </label>
-              ))}
+            <label><b>4. Did this team member respect and consider the ideas and perspectives of others?</b></label>
+
+            <div style={{ display: 'flex', gap: '5px', cursor: 'pointer' }}>
+          {[1, 2, 3, 4, 5].map((value) => (
+            <label key={value}>
+              <input
+                type="radio"
+                name="Respect"
+                value={value}
+                checked={formData.Respect === String(value)}
+                onChange={handleInputChange}
+                style={{ display: 'none' }} // Hide radio buttons
+                required
+              />
+              <span
+                style={{
+                  fontSize: '1.5rem',
+                  color: value <= formData.Respect ? '#FFD700' : '#ccc'
+                }}
+              >
+                ★
+              </span>
+            </label>
+          ))}
+        </div>
             </div>
           </div>
-
-           <div className="form-group">
-            <label>Respect for Others' Ideas:</label>
+          <div>
+    <p><br/></p>
+  </div> 
+  <div className="form-group">
             <div className="rating">
-              {[1, 2, 3, 4, 5].map((value) => (
-                <label key={value}>
-                  <input
-                    type="radio"
-                    name="Respect"
-                    value={value}
-                    checked={formData.Respect === String(value)}
-                    onChange={handleInputChange}
-                    required
-                  /> {value}
-                </label>
-              ))}
+            <label><b>5. How well did this team member adapt to changes in the project or team dynamics?</b></label>
+
+            <div style={{ display: 'flex', gap: '5px', cursor: 'pointer' }}>
+          {[1, 2, 3, 4, 5].map((value) => (
+            <label key={value}>
+              <input
+                type="radio"
+                name="AdaptibilityandFlexibility"
+                value={value}
+                checked={formData.AdaptibilityandFlexibility === String(value)}
+                onChange={handleInputChange}
+                style={{ display: 'none' }} // Hide radio buttons
+                required
+              />
+              <span
+                style={{
+                  fontSize: '1.5rem',
+                  color: value <= formData.AdaptibilityandFlexibility ? '#FFD700' : '#ccc'
+                }}
+              >
+                ★
+              </span>
+            </label>
+          ))}
+        </div>
             </div>
           </div>
+          <div>
+    <p><br/></p>
+  </div> 
+  <div className="form-group">
+            <div className="rating">
+            <label><b>6. Did they collaborate to find solutions rather than escalate issues?</b></label>
 
-          <div className="form-group">
-            <label htmlFor="Commentsection">Additional Feedback:</label>
+            <div style={{ display: 'flex', gap: '5px', cursor: 'pointer' }}>
+          {[1, 2, 3, 4, 5].map((value) => (
+            <label key={value}>
+              <input
+                type="radio"
+                name="Conflict_Resolution"
+                value={value}
+                checked={formData.Conflict_Resolution === String(value)}
+                onChange={handleInputChange}
+                style={{ display: 'none' }} // Hide radio buttons
+                required
+              />
+              <span
+                style={{
+                  fontSize: '1.5rem',
+                  color: value <= formData.Conflict_Resolution ? '#FFD700' : '#ccc'
+                }}
+              >
+                ★
+              </span>
+            </label>
+          ))}
+        </div>
+            </div>
+          </div>
+          <div>
+    <p><br/></p>
+  </div> 
+  <div className="form-group">
+            <div className="rating">
+            <label><b>7. Did this team member collaborate effectively and contribute to a positive team environment?</b></label>
+
+            <div style={{ display: 'flex', gap: '5px', cursor: 'pointer' }}>
+          {[1, 2, 3, 4, 5].map((value) => (
+            <label key={value}>
+              <input
+                type="radio"
+                name="Cooperation"
+                value={value}
+                checked={formData.Cooperation === String(value)}
+                onChange={handleInputChange}
+                style={{ display: 'none' }} // Hide radio buttons
+                required
+              />
+              <span
+                style={{
+                  fontSize: '1.5rem',
+                  color: value <= formData.Cooperation ? '#FFD700' : '#ccc'
+                }}
+              >
+                ★
+              </span>
+            </label>
+          ))}
+        </div>
+            </div>
+          </div>
+          <div>
+    <p><br/></p>
+  </div> 
+          <label htmlFor="Commentsection"><b>Additional Feedback:</b></label>
+          <div>
+    <p><br/></p>
+  </div> 
+          <div className="form-group">  
             <textarea
               id="Commentsection"
               name="Commentsection"
-              rows="4"
+              rows="3"
+              style={{width:"100%"}}
               value={formData.Commentsection}
               onChange={handleInputChange}
               placeholder="Write any comments here..."
             />
           </div>
+          <div>
+    <p><br/></p>
+  </div> 
 
           <button type="submit">Submit Assessment</button>
         </form>
