@@ -674,3 +674,32 @@ footer {
   color: #6a0dad; /* Lighter purple for emphasis */
   font-weight: bold;
 }
+
+/* Section for ShowTeams, addition & transfer of styling from ShowTeams*/
+.show-teams-container {
+  text-align: left;
+  padding: 20px;
+}
+
+.team-item{
+  margin: 10px 0;
+}
+
+.team-selection-container, .member-selection-container,.evaluation-link-container {
+  margin-top: 20px;
+}
+
+.team-button{
+  margin-bottom: 10px;
+  padding: 10px 20px;
+  background-color: #9b59b6;
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.team-button:hover {
+  background-color: #7d3c98;
+}
+

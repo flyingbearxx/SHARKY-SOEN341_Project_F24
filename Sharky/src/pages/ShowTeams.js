@@ -65,22 +65,22 @@ const ShowTeams = () => {
   };
 
   return (
-    <div>
+    <div className="show-teams-container">
       <h2>Teams</h2>
       {teams.length === 0 ? (
         <p>No teams found.</p>
       ) : (
         <div>
           {teams.map((team) => (
-            <div key={team.id}>
+            <div key={team.id} className="team-item">
               <h3>{team.teamname}</h3>
               <p>Members: {team.members}</p>
             </div>
           ))}
-          <div style={{ marginTop: "20px" }}>
+          <div className="team-selection-container">
             <button
               onClick={() => alert(`You are in team: ${selectedTeam}`)}
-              style={{ marginBottom: "10px" }}
+              className="team-button"
             >
               Which team are you in?
             </button>
@@ -93,12 +93,12 @@ const ShowTeams = () => {
               ))}
             </select>
           </div>
-          <div style={{ marginTop: "20px" }}>
+          <div className="member-selection-container">
             <button
               onClick={() =>
                 alert(`You selected to evaluate: ${selectedMember}`)
               }
-              style={{ marginBottom: "10px" }}
+              className="team-button"
             >
               Which one of your team members would you like to evaluate?
             </button>
@@ -112,7 +112,7 @@ const ShowTeams = () => {
             </select>
           </div>
           {/* Link to the Assessment page with the Button */}
-          <div style={{ marginTop: "20px" }}>
+          <div className="evaluation-link-container">
             <Link
               to={{
                 pathname: "/assessment",
