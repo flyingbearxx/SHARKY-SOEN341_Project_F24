@@ -1,4 +1,4 @@
-# SHARKY-SOEN341_Project_F24
+# SHARKY-SOEN341_Project_F24 &middot; [![GitHub License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/hlbels/SHARKY-SOEN341_Project_F24/blob/main/LICENSE)
 
 ## Identified Problem  
 As students, we are often working in group projects, where collaboration is the key to success. University team projects often struggle with imbalanced participation, unclear roles, and unfair grading due to the lack of effective tools to properly evaluate each member's individual contribution. 
@@ -32,24 +32,46 @@ Before you begin, ensure you have the following installed:
   
 **Step 1: Clone the repository** 
 First, clone the SHARKY project repository to your local machine using Git. Open your terminal and run the following command:
-`git clone https://github.com/hlbels/SHARKY-SOEN341_Project_F24.git`  
-  
+
+```bash
+git clone https://github.com/hlbels/SHARKY-SOEN341_Project_F24.git  
+```
+
 **Step 2: Navigate to the Project Directory**  
 Navigate to the SHARKY-SOEN341_Project_F24\Sharky directory.  
-`cd SHARKY-SOEN341_Project_F24/Sharky`  
+
+```bash
+cd SHARKY-SOEN341_Project_F24/Sharky
+```  
   
 **Step 3: Verify Node.js Installation**  
-To confirm that Node.js is installed correctly, execute the following commands: `node -v` and `npm -v`. This will display the versions of Node.js and npm installed, which should meet the prerequisites mentioned earlier.  
+To confirm that Node.js is installed correctly, execute the following commands:
+
+```bash
+node -v
+npm -v
+```
+
+This will display the versions of Node.js and npm installed, which should meet the prerequisites mentioned earlier.  
   
 **Step 3: Install Dependencies**  
-Install all the revelent dependencies using the following command: `npm install`. This command will install all dependencies listed in the package.json file, including React and Supabase client libraries, ensuring your application has all it needs to run properly.  
-  
+Install all the revelent dependencies using the following command: 
+
+```bash
+npm install
+```
+This command will install all dependencies listed in the package.json file, including React and Supabase client libraries, ensuring your application has all it needs to run properly.  
+
 **Step 4: Run the Application**  
-Once the installation is complete, you can start the application locally by using the following command: `npm start`.  
+Once the installation is complete, you can start the application locally by using the following command: 
+```bash
+npm run start
+```
+
 This command will start the React development server and open the SHARKY Peer Assessment Platform in your default web browser, typically accessible via http://localhost:3000/. Enjoy!  
 
 
-## SHARKY Members  
+## SHARKY Members
 
 |**NAME**|**STUDENT ID**|**ROLE**|
 |--------|--------------|--------|
@@ -59,3 +81,6 @@ This command will start the React development server and open the SHARKY Peer As
 |Raghda Elkei|40251216|Full Stack developer|
 |Khujista Faqiri|40249541|Full Stack developer|
 |Yasmeen Adi|40223656|Full Stack developer|
+
+## License 
+SHARKY Peer Assessment is [MIT Licenced](./LICENSE).
