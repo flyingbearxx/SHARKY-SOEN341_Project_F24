@@ -72,7 +72,7 @@ const App = () => {
         path="/Show-teams"
         element={
           <ProtectedRoute token={token}>
-            <Assessment />
+            <ShowTeams />
           </ProtectedRoute>
         }
       />

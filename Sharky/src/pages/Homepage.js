@@ -29,8 +29,8 @@ const Homepage = () => {
           <Link to="/show-teams" className="menu-btn">
             Manage Teams
           </Link>
-          <Link to="/Assessmentt" className="menu-btn">
-            View Assessments
+          <Link to="/Assessment" className="menu-btn">
+            Evaluation
           </Link>
           <Link to="/profile" className="menu-btn">
             Your Profile

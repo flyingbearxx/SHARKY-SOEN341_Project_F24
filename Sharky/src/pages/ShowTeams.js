@@ -77,7 +77,7 @@ const ShowTeams = () => {
               <p>Members: {team.members}</p>
             </div>
           ))}
-          <div style={{ marginTop: "20px" }}>
+          {/* <div style={{ marginTop: "20px" }}>
             <button
               onClick={() => alert(`You are in team: ${selectedTeam}`)}
               style={{ marginBottom: "10px" }}
@@ -92,8 +92,8 @@ const ShowTeams = () => {
                 </option>
               ))}
             </select>
-          </div>
-          <div style={{ marginTop: "20px" }}>
+          </div> */}
+          {/* <div style={{ marginTop: "20px" }}>
             <button
               onClick={() =>
                 alert(`You selected to evaluate: ${selectedMember}`)
@@ -110,18 +110,20 @@ const ShowTeams = () => {
                 </option>
               ))}
             </select>
-          </div>
+          </div> */}
           {/* Link to the Assessment page with the Button */}
           <div style={{ marginTop: "20px" }}>
             <Link
-              to={{
-                pathname: "/Assessment",
-                state: { member: selectedMember,
-                  team: selectedTeam
-                 },
-              }}
+            to = "/Assessment"
+              // to={{
+              //   pathname: "/Assessment",
+              //   // state: { member: selectedMember,
+              //   //   team: selectedTeam
+              //   //  },
+              // }}
             >
-          <button disabled={!selectedMember}>Evaluate Now</button>
+          {/* <button disabled={!selectedMember}>Evaluate Now</button> */}
+          <button >Evaluate Now</button>
             </Link>
           </div>
         </div>
