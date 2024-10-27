@@ -8,11 +8,7 @@ import ShowTeams from './ShowTeams';
 
 const Assessment = () => {
   const location = useLocation();
-<<<<<<< HEAD
-=======
   const navigate=useNavigate(); 
-  // const { member, team} = location.state || {};
->>>>>>> origin/backend-khujista
   const member = location.state?.member;
   const team = location.state?.team;
   
