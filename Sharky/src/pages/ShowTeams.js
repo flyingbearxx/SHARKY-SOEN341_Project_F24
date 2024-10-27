@@ -110,16 +110,20 @@ const ShowTeams = () => {
                 </option>
               ))}
             </select>
-          </div>
+          </div> */
           {/* Link to the Assessment page with the Button */}
           <div className="evaluation-link-container">
             <Link
-              to={{
-                pathname: "/assessment",
-                state: { member: selectedMember },
-              }}
+            to = "/Assessment"
+              // to={{
+              //   pathname: "/Assessment",
+              //   // state: { member: selectedMember,
+              //   //   team: selectedTeam
+              //   //  },
+              // }}
             >
-              <button disabled={!selectedMember}>Evaluate Now</button>
+          {/* <button disabled={!selectedMember}>Evaluate Now</button> */}
+          <button >Evaluate Now</button>
             </Link>
           </div>
         </div>

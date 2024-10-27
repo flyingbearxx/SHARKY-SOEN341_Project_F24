@@ -89,6 +89,7 @@ h2 {
   background-color: rgba(0, 0, 0, 0.75);
   z-index: 100;
   transition: left 0.3s ease; /* Smooth transition */
+ 
 }
 
 /* Adjusting the hover effect */
@@ -104,6 +105,7 @@ h2 {
   padding: 0;
   margin: 0;
   list-style: none;
+  width:100%; 
 }
 
 .sidebar ul li {
@@ -112,6 +114,7 @@ h2 {
 
 .sidebar ul li a {
   display: block;
+  width: 100%;
   padding: 10px 15px;
   color: white;
   text-decoration: none;
@@ -121,6 +124,7 @@ h2 {
   text-transform: uppercase;
   font-weight: bold;
   transition: background-color 0.3s ease;
+  
 }
 
 .sidebar ul li a:hover {

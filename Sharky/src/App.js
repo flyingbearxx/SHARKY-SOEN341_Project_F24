@@ -8,13 +8,15 @@ import {
   ResetPW,
   TeamManagement,
   ShowTeams,
+  Confirmpage, 
   Logout,
   Assessment,
   HandleTeams,
   Welcomepage,
 } from "./pages/main";
-import { Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./components/protectedRoute";
+
 
 const App = () => {
   const [token, setToken] = useState(false);
@@ -41,6 +43,7 @@ const App = () => {
       <Route path="/reset-password" element={<ResetPW />} />
       <Route path="/contact-us" element={<ContactUs />} />
       <Route path="/logout" element={<Logout onLogout={handleLogout} />} />
+    
 
       {/* Protected Routes */}
 
@@ -66,21 +69,30 @@ const App = () => {
 
       {/* Student Show teams */}
       <Route
-        path="/show-teams"
+        path="/Show-teams"
         element={
           <ProtectedRoute token={token}>
-            <ShowTeams />
+           
+            <ShowTeams/>
           </ProtectedRoute>
         }
       />
-      <Route
-        path="/assessment"
+       <Route
+        path="/Assessment"
         element={
           <ProtectedRoute token={token}>
             <Assessment />
           </ProtectedRoute>
         }
-      />
+      /> 
+      <Route 
+      path="/Confirmpage"
+      element={
+        <ProtectedRoute token={token}>
+          <Confirmpage/>
+        </ProtectedRoute>
+      }
+      /> 
 
       {/* Instructor Show/Handle Teams */}
       <Route

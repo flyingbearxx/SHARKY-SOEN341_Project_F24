@@ -35,7 +35,7 @@ const Welcomepage = () => {
               <FaUsers className="icon" /> Create teams with up to 10 members
             </li>
             <li>
-              <FaStar className="icon" /> Rate peers with a detailed 7-point
+              <FaStar className="icon" /> Rate peers with a detailed 5-point
               scale
             </li>
             <li>
