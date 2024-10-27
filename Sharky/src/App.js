@@ -8,6 +8,7 @@ import {
   ResetPW,
   TeamManagement,
   ShowTeams,
+  Confirmpage, 
   Logout,
   Assessment,
   HandleTeams,
@@ -71,18 +72,26 @@ const App = () => {
         path="/Show-teams"
         element={
           <ProtectedRoute token={token}>
-            <Assessment />
+            <ShowTeams />
           </ProtectedRoute>
         }
       />
-      {/* <Route
+       <Route
         path="/Assessment"
         element={
           <ProtectedRoute token={token}>
             <Assessment />
           </ProtectedRoute>
         }
-      /> */}
+      /> 
+      <Route 
+      path="/Confirmpage"
+      element={
+        <ProtectedRoute token={token}>
+          <Confirmpage/>
+        </ProtectedRoute>
+      }
+      /> 
 
       {/* Instructor Show/Handle Teams */}
       <Route

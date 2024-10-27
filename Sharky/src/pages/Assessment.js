@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { supabase } from "../client";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import Papa from "papaparse";
 import ShowTeams from './ShowTeams';
@@ -8,6 +8,11 @@ import ShowTeams from './ShowTeams';
 
 const Assessment = () => {
   const location = useLocation();
+<<<<<<< HEAD
+=======
+  const navigate=useNavigate(); 
+  // const { member, team} = location.state || {};
+>>>>>>> origin/backend-khujista
   const member = location.state?.member;
   const team = location.state?.team;
   
@@ -175,7 +180,7 @@ useEffect(() => {
     console.log('Form Submitted:', formData);
     alert('Assessment submitted successfully!');
     // Add logic to submit formData to backend
-
+     
     setFormData({
       Assessorid: '',
       Assessedmemberid: '',
@@ -189,6 +194,9 @@ useEffect(() => {
       AdaptibilityandFlexibility: '', 
       Team_id: team,
     });
+    navigate("/Confirmpage", {
+      state:{ member: formData.Assessedmemberid, team: formData.Team_id }, 
+    }); 
   } catch (error) {
     console.error('Error submitting form:', error.message);
     alert('Error submitting the assessment. Please try again.'); // Provide user feedback
@@ -521,15 +529,25 @@ useEffect(() => {
               placeholder="Write any comments here..."
             />
           </div>
+        {/* Link to the Assessment page with the Button */}
+        <div style={{ marginTop: "20px" }}>
+        <button type="submit">Submit Assessment</button>
+        </div> 
+        </form>
+            <Link
+              to={{
+                pathname: "/Confirmpage",
+                state: { member: selectedMember,
+                  team: selectedTeam
+                 },
+              }}
+            >
+            </Link>
+          </div>
           <div>
     <p><br/></p>
-  </div> 
-
-          <button type="submit">Submit Assessment</button>
-        </form>
-        <br />
+ 
       </div>
-
       <div className="image" id="image">
         {/* <img src={babySharkImage} width="270" alt="Sharky" /> */}
       </div>
