@@ -77,7 +77,7 @@ const ShowTeams = () => {
               <p>Members: {team.members}</p>
             </div>
           ))}
-          <div className="team-selection-container">
+          {/* <div className="team-selection-container">
             <button
               onClick={() => alert(`You are in team: ${selectedTeam}`)}
               className="team-button"
@@ -92,8 +92,8 @@ const ShowTeams = () => {
                 </option>
               ))}
             </select>
-          </div>
-          <div className="member-selection-container">
+          </div> */}
+          {/* <div className="member-selection-container">
             <button
               onClick={() =>
                 alert(`You selected to evaluate: ${selectedMember}`)
@@ -110,7 +110,7 @@ const ShowTeams = () => {
                 </option>
               ))}
             </select>
-          </div> */
+          </div>  */}
           {/* Link to the Assessment page with the Button */}
           <div className="evaluation-link-container">
             <Link
