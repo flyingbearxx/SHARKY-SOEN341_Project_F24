@@ -8,7 +8,6 @@ import ShowTeams from './ShowTeams';
 
 const Assessment = () => {
   const location = useLocation();
-  // const { member, team} = location.state || {};
   const member = location.state?.member;
   const team = location.state?.team;
   
@@ -64,9 +63,30 @@ const Assessment = () => {
     };
     fetchTeams();
   }, []);
+//////////////////////
+useEffect(() => {
+  const fetchTeamMembers = async () => {
+    if (!selectedTeam) return; // If no team is selected, exit early
+    const { data: membersData, error } = await supabase
+      .from("team_members")
+      .select("user_id, users(email)")
+      .eq("team_id", selectedTeam.id); // Assuming you have a field for team_id in team_members
+    
+    if (error) {
+      console.error("Error fetching team members:", error.message);
+    } else {
+      // Update the teamMembers state with the fetched data
+      setTeamMembers(membersData.map(member => ({
+        email: member.users.email,
+        user_id: member.user_id,
+      })));
+    }
+  };
+  fetchTeamMembers();
+}, [selectedTeam]); // Dependency on selectedTeam
+/////////////////////
 
-
-  const handleTeamSelection = (event) => {
+  const handleTeamSelection = async (event) => {
     const selectedTeamName = event.target.value;
     setSelectedTeam(selectedTeamName); // Updates the selected team name
     
@@ -77,16 +97,19 @@ const Assessment = () => {
     if (selectedTeamObj) {
       // Update the teamMembers state with the emails of the selected team's members
       setTeamMembers(
-        selectedTeamObj.team_members.map((member) => member.users.email)
+        selectedTeamObj.team_members.map((member) => ({
+          ////////////
+          email: member.users.email,
+          user_id: member.user_id,})
+        )
       );
 
       setFormData((prevFormData) => ({
         ...prevFormData,
         Team_id: selectedTeamObj.id, // Set the correct team ID
       }));
-    }
-    
-   else {
+
+    }else {
       setTeamMembers([]); // Clear if no team is selected
       setFormData((prevFormData) => ({
         ...prevFormData,
@@ -96,10 +119,19 @@ const Assessment = () => {
   };
 
   const handleMemberSelection = (event) => {
-    setSelectedMember(event.target.value); // Updates the selected member
-   
+    // setSelectedMember(event.target.value); // Updates the selected member
+
+    const selectedMemberEmail = event.target.value;
+    const selectedMember = teamMembers.find(member => member.email === selectedMemberEmail);
     
-    
+    if (selectedMember) {
+      setSelectedMember(selectedMemberEmail);
+      setFormData(prevFormData => ({
+        ...prevFormData,
+        Assessedmemberid: selectedMember.user_id, // Set to the correct user_id
+      }));
+      console.log('Selected Member ID:', selectedMember.user_id); // Log the selected user ID
+    }
   };
   
   // Handle form input changes
@@ -118,7 +150,7 @@ const Assessment = () => {
   
   
     try{
-      const { Data, error } = await supabase
+      const { data, error } = await supabase
       .from('Peer Assessment Questions')
       .insert([
         {
@@ -138,6 +170,8 @@ const Assessment = () => {
       if(error){
         throw error;
       }
+      
+
     console.log('Form Submitted:', formData);
     alert('Assessment submitted successfully!');
     // Add logic to submit formData to backend
@@ -233,9 +267,11 @@ const Assessment = () => {
             </button>
             <select value={selectedMember} onChange={handleMemberSelection}>
               <option value="">Select a team member</option>
-              {teamMembers.map((member, index) => (
-                <option key={index} value={member}>
-                  {member}
+              {/* {teamMembers.map((member, index) => ( */}
+              {teamMembers.map(member => (
+                <option key={member.user_id} value={member.email}>
+                  {/* {member} */}
+                  {member.email}
                 </option>
               ))}
             </select>
