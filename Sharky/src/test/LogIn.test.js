@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import LogIn from "../pages/logIn";
+import LogIn from "../pages/LogIn";
 import { supabase } from "../client";
 import "@testing-library/jest-dom";
 
