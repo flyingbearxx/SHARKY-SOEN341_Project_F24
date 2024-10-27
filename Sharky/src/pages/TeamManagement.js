@@ -228,8 +228,14 @@ const TeamManagement = () => {
           <div className="teamform">
             <h3>Create a Team</h3>
             <div className="toolbar">
-              <label>Select number of students:</label>
-              <select onChange={handleStudentCountChange} value={studentCount}>
+              <label htmlFor="student-count-select">
+                Select number of students:
+              </label>
+              <select
+                id="student-count-select"
+                onChange={handleStudentCountChange}
+                value={studentCount}
+              >
                 {Array.from({ length: 11 }, (_, i) => (
                   <option key={i} value={i}>
                     {i}
