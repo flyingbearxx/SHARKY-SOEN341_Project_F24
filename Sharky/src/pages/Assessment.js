@@ -199,17 +199,27 @@ useEffect(() => {
   }
   };
   return (
+    
     <div className="container" id="welcomepage">
       <nav className="sidebar">
-        <h2 style={{ color: '#daae51' }}> <br /> Menu</h2>
-        <ul>
-          <li><a href="/welcomepage">Home</a></li>
-          <li><a href="/team-manage">Team management</a></li>
-          <li><a href="/Overview">Teams/Assessment</a></li>
-          <li><a href="/login">Login</a></li>
-          <li><a href="/create-account">Create an account</a></li>
-          <li><a href="/contact-us">Contact Us</a></li>
-        </ul>
+        <div className="menu-buttons">
+        <h2 style={{ color: '#daae51' }}> <br />Menu</h2>
+        <Link to="/profile" className="menu-btn">
+            Your Profile
+          </Link>
+        <Link to="/homepage" className="menu-btn">
+            Home
+          </Link>
+          <Link to="/contact-us" className="menu-btn">
+            Contact Us
+          </Link>
+          <Link to="/" className="menu-btn">
+            About Us
+          </Link>
+          <Link to="/logout" className="menu-btn">
+            Logout
+          </Link>
+          </div>
       </nav>
 
       <header className="header1" id="header1">
