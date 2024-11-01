@@ -13,6 +13,7 @@ import {
   Assessment,
   HandleTeams,
   Welcomepage,
+  ConceptualAssessment,
 } from "./pages/main";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./components/protectedRoute";
@@ -43,6 +44,7 @@ const App = () => {
       <Route path="/reset-password" element={<ResetPW />} />
       <Route path="/contact-us" element={<ContactUs />} />
       <Route path="/logout" element={<Logout onLogout={handleLogout} />} />
+      <Route path="/conceptualassessment" element={<ConceptualAssessment />} /> 
     
 
       {/* Protected Routes */}
@@ -85,6 +87,17 @@ const App = () => {
           </ProtectedRoute>
         }
       /> 
+
+        <Route
+        path="/ConceptualAssessment"
+        element={
+          <ProtectedRoute token={token}>
+            <ConceptualAssessment />
+          </ProtectedRoute>
+        }
+      /> 
+
+
       <Route 
       path="/Confirmpage"
       element={
