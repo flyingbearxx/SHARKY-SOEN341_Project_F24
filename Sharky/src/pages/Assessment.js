@@ -13,7 +13,7 @@ const Assessment = () => {
   const team = location.state?.team;
   
 
-  // Form State
+  // Form State for COOPERATION DIMENTSION
   const [formData, setFormData] = useState({
     Assessorid: '',
     Assessedmemberid: member,
@@ -27,6 +27,8 @@ const Assessment = () => {
     AdaptibilityandFlexibility: '', 
     Commentsection: '',
   });
+
+
   const [teams, setTeams] = useState([]); // Holds the teams fetched from the database
   const [selectedTeam, setSelectedTeam] = useState(""); // Holds the selected team from the dropdown
   const [teamMembers, setTeamMembers] = useState([]); // Holds the team members for the selected team
@@ -117,7 +119,15 @@ useEffect(() => {
         Team_id: "", // Clear team ID if no team is selected
       }));
     }
+
+    
+
+
   };
+
+
+  
+
 
   const handleMemberSelection = (event) => {
     // setSelectedMember(event.target.value); // Updates the selected member
@@ -129,16 +139,15 @@ useEffect(() => {
       setSelectedMember(selectedMemberEmail);
       setFormData(prevFormData => ({
         ...prevFormData,
-        Assessedmemberid: selectedMember.user_id, // Set to the correct user_id
+        Assessedmemberid: selectedMember.user_id, // Set to the correct user_id in the Cooperation Dimension
       }));
-      console.log('Selected Member ID:', selectedMember.user_id); // Log the selected user ID
     }
   };
   
   // Handle form input changes
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData({ ...formData, [name]: value });  //Cooperation Contribution input change
   };
 
 
@@ -178,8 +187,8 @@ useEffect(() => {
     // Add logic to submit formData to backend
      
     setFormData({
-      Assessorid: '',
-      Assessedmemberid: '',
+      Assessorid: formData.Assessorid,
+      Assessedmemberid: formData.Assessedmemberid,
       Communication: '',
       Participation: '',
       Assistance: '',
@@ -188,10 +197,15 @@ useEffect(() => {
       Cooperation: '', 
       Conflict_Resolution: '', 
       AdaptibilityandFlexibility: '', 
-      Team_id: team,
+      Team_id: formData.Team_id,
     });
-    navigate("/Confirmpage", {
-      state:{ member: formData.Assessedmemberid, team: formData.Team_id }, 
+    navigate("/ConceptualAssessment", {
+      state:{ 
+        //member: formData.Assessedmemberid, team: formData.Team_id }, 
+        Assessorid: formData.Assessorid, 
+        Assessedmemberid: formData.Assessedmemberid, 
+        Team_id: formData.Team_id,
+      }
     }); 
   } catch (error) {
     console.error('Error submitting form:', error.message);
@@ -291,6 +305,7 @@ useEffect(() => {
             </select>
           </div>
       
+<h2>ASSESSMENT DIMENSION: COOPERATION</h2>
 <h4>Please choose the number best describing the teammate (1 to 5):</h4>
 <div>
     <p><br/></p>
@@ -520,10 +535,11 @@ useEffect(() => {
           <div>
     <p><br/></p>
   </div> 
-          <label htmlFor="Commentsection"><b>Additional Feedback:</b></label>
+  {/* COMMENT SECTION */}
+          <label htmlFor="Commentsection"><b>COOPERATION - Additional Feedback:</b></label>
           <div>
     <p><br/></p>
-  </div> 
+  </div>  
           <div className="form-group">  
             <textarea
               id="Commentsection"
@@ -535,14 +551,18 @@ useEffect(() => {
               placeholder="Write any comments here..."
             />
           </div>
-        {/* Link to the Assessment page with the Button */}
+
+
+
+
+        {/* Go to Next Assessment dimension: Conceptual Contribution */}
         <div style={{ marginTop: "20px" }}>
-        <button type="submit">Submit Assessment</button>
+        <button type="submit">NEXT</button>
         </div> 
         </form>
             <Link
               to={{
-                pathname: "/Confirmpage",
+                pathname: "/ConceptualAssessment",
                 state: { member: selectedMember,
                   team: selectedTeam
                  },
