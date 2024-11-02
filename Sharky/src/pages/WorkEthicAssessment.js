@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
 
-const PracticalAssessment = () => {
+const WorkEthicAssessment = () => {
     const location = useLocation();
     const navigate=useNavigate(); 
     //const member = location.state?.member;
@@ -16,17 +16,17 @@ const PracticalAssessment = () => {
       Team_id: location.state?.Team_id || ' ', 
     };
   
-    // Form State for PRACTICAL CONTRIBUTION DIMENTSION
+    // Form State for Work Ethic DIMENTSION
     const [formData, setFormData] = useState({
       ... initialData, //initialize with data passed from Assessment.js
-      Practical1: '0',
-      Practical2: '0',
-      Practical3: '0',
-      Practical4: '0',
-      Practical5: '0', 
-      Practical6: '0', 
-      Practical7: '0', 
-      PracticalComment: ' ',
+      Work1: '0',
+      Work2: '0',
+      Work3: '0',
+      Work4: '0',
+      Work5: '0', 
+      Work6: '0', 
+      Work7: '0', 
+      WorkComment: ' ',
     });
     
       // Handle form input changes
@@ -47,7 +47,7 @@ const PracticalAssessment = () => {
         console.log('Form Data:', formData);
       
         //Validate that required field are set
-        const requiredFields = ['Assessorid', 'Assessedmemberid', 'Team_id', 'Practical1', 'Practical2', 'Practical3', 'Practical4', 'Practical5', 'Practical6', 'Practical7', 'PracticalComment'];
+        const requiredFields = ['Assessorid', 'Assessedmemberid', 'Team_id', 'Work1', 'Work2', 'Work3', 'Work4', 'Work5', 'Work6', 'Work7', 'WorkComment'];
         for (const field of requiredFields){
           if(!formData[field] || formData[field]===''){
             alert(`Field ${field} is required and is missing or undefined.`);
@@ -56,7 +56,7 @@ const PracticalAssessment = () => {
       
         try{
           const { data, error } = await supabase
-          .from('PracticalContribution')
+          .from('WorkEthic')
           .insert([formData]);
           if(error){
             console.error('Supabase error details: ', error);
@@ -72,25 +72,25 @@ const PracticalAssessment = () => {
         setFormData({
           Assessorid: 0,
           Assessedmemberid: 0,
-          PracticalComment: ' ', 
-          Practical1: '0', 
-          Practical2: '0', 
-          Practical3: '0', 
-          Practical4: '0', 
-          Practical5: '0', 
-          Practical6: '0', 
-          Practical7: '0',
+          WorkComment: ' ', 
+          Work1: '0', 
+          Work2: '0', 
+          Work3: '0', 
+          Work4: '0', 
+          Work5: '0', 
+          Work6: '0', 
+          Work7: '0',
           Team_id: 0,
         });
 
-        //Navigate to the next page with inherited data
-        navigate("/WorkEthicAssessment", {
+        //Navigate to the next page 
+        navigate("/Confirmpage", {
             state:{  
-              Assessorid: formData.Assessorid, 
-              Assessedmemberid: formData.Assessedmemberid, 
-              Team_id: formData.Team_id,
-            }
-          }); 
+                Assessorid: formData.Assessorid, 
+                Assessedmemberid: formData.Assessedmemberid, 
+                Team_id: formData.Team_id,
+              }
+        }); 
       } catch (error) {
         console.error('Error submitting form:', error.message);
         alert('Error submitting the assessment. Please try again.'); // Provide user feedback
@@ -138,14 +138,14 @@ const PracticalAssessment = () => {
 
                               {/* QUESTIONS */}      
                               
-    <h2>ASSESSMENT DIMENSION 3: PRACTICAL CONTRIBUTION</h2>
+    <h2>ASSESSMENT DIMENSION 4: WORK ETHIC</h2>
     <h4>Please choose the number best describing the teammate (1 to 5):</h4>
     <div>
         <p><br/></p>
       </div> 
               <div className="form-group">
                 <div className="rating">
-                <label><b>1. How effectively did this team member contribute to the project?</b></label> <div>
+                <label><b>1. How reliable was this team member in fulfilling their responsibilities and commitments to the team?</b></label> <div>
        
       </div>
       <div style={{ display: 'flex', gap: '5px', cursor: 'pointer' }}>
@@ -153,9 +153,9 @@ const PracticalAssessment = () => {
                 <label key={value}>
                   <input
                     type="radio"
-                    name="Practical1"
+                    name="Work1"
                     value={value}
-                    checked={formData.Practical1 === String(value)}
+                    checked={formData.Work1 === String(value)}
                     onChange={handleInputChange}
                     style={{ display: 'none' }} // Hide radio buttons
                     required
@@ -163,7 +163,7 @@ const PracticalAssessment = () => {
                   <span
                     style={{
                       fontSize: '1.5rem',
-                      color: value <= formData.Practical1 ? '#FFD700' : '#ccc'
+                      color: value <= formData.Work1 ? '#FFD700' : '#ccc'
                     }}
                   >
                     ★
@@ -179,15 +179,15 @@ const PracticalAssessment = () => {
     <div className="form-group">
                 
                 <div className="rating">
-                <label><b>2. How effectively did this team member troubleshoot any issues or obstacles that arose during the project?</b></label>
+                <label><b>2. How well did this team member manage their time and prioritize tasks to meet project deadlines?</b></label>
                 <div style={{ display: 'flex', gap: '5px', cursor: 'pointer' }}>
               {[1, 2, 3, 4, 5].map((value) => (
                 <label key={value}>
                   <input
                     type="radio"
-                    name="Practical2"
+                    name="Work2"
                     value={value}
-                    checked={formData.Practical2 === String(value)}
+                    checked={formData.Work2 === String(value)}
                     onChange={handleInputChange}
                     style={{ display: 'none' }} // Hide radio buttons
                     required
@@ -195,7 +195,7 @@ const PracticalAssessment = () => {
                   <span
                     style={{
                       fontSize: '1.5rem',
-                      color: value <= formData.Practical2 ? '#FFD700' : '#ccc'
+                      color: value <= formData.Work2 ? '#FFD700' : '#ccc'
                     }}
                   >
                     ★
@@ -210,16 +210,16 @@ const PracticalAssessment = () => {
       </div> 
               <div className="form-group">
                 <div className="rating">
-                <label><b>3. Did this team member actively ensure that all project components were consistent and aligned with the team's objectives?</b></label>
+                <label><b>3. How effectively did this team member handle constructive criticism and feedback from the team?</b></label>
     
                 <div style={{ display: 'flex', gap: '5px', cursor: 'pointer' }}>
               {[1, 2, 3, 4, 5].map((value) => (
                 <label key={value}>
                   <input
                     type="radio"
-                    name="Practical3"
+                    name="Work3"
                     value={value}
-                    checked={formData.Practical3 === String(value)}
+                    checked={formData.Work3 === String(value)}
                     onChange={handleInputChange}
                     style={{ display: 'none' }} // Hide radio buttons
                     required
@@ -227,7 +227,7 @@ const PracticalAssessment = () => {
                   <span
                     style={{
                       fontSize: '1.5rem',
-                      color: value <= formData.Practical3 ? '#FFD700' : '#ccc'
+                      color: value <= formData.Work3 ? '#FFD700' : '#ccc'
                     }}
                   >
                     ★
@@ -242,16 +242,16 @@ const PracticalAssessment = () => {
       </div> 
               <div className="form-group">
                 <div className="rating">
-                <label><b>4. How well did this team member take initiative in gathering or organizing resources that were beneficial to the team's practical tasks?</b></label>
+                <label><b>4. How well did this team member demonstrate accountability for their work, taking responsibility for mistakes and learning from them?</b></label>
     
                 <div style={{ display: 'flex', gap: '5px', cursor: 'pointer' }}>
               {[1, 2, 3, 4, 5].map((value) => (
                 <label key={value}>
                   <input
                     type="radio"
-                    name="Practical4"
+                    name="Work4"
                     value={value}
-                    checked={formData.Practical4 === String(value)}
+                    checked={formData.Work4 === String(value)}
                     onChange={handleInputChange}
                     style={{ display: 'none' }} // Hide radio buttons
                     required
@@ -259,7 +259,7 @@ const PracticalAssessment = () => {
                   <span
                     style={{
                       fontSize: '1.5rem',
-                      color: value <= formData.Practical4 ? '#FFD700' : '#ccc'
+                      color: value <= formData.Work4 ? '#FFD700' : '#ccc'
                     }}
                   >
                     ★
@@ -274,16 +274,16 @@ const PracticalAssessment = () => {
       </div> 
       <div className="form-group">
                 <div className="rating">
-                <label><b>5. How much effort did this team member put into refining the project's final output to ensure it met the expected standards? </b></label>
+                <label><b>5. How positive and proactive was this team member's attitude towards challenges and setbacks?</b></label>
     
                 <div style={{ display: 'flex', gap: '5px', cursor: 'pointer' }}>
               {[1, 2, 3, 4, 5].map((value) => (
                 <label key={value}>
                   <input
                     type="radio"
-                    name="Practical5"
+                    name="Work5"
                     value={value}
-                    checked={formData.Practical5 === String(value)}
+                    checked={formData.Work5 === String(value)}
                     onChange={handleInputChange}
                     style={{ display: 'none' }} // Hide radio buttons
                     required
@@ -291,7 +291,7 @@ const PracticalAssessment = () => {
                   <span
                     style={{
                       fontSize: '1.5rem',
-                      color: value <= formData.Practical5 ? '#FFD700' : '#ccc'
+                      color: value <= formData.Work5 ? '#FFD700' : '#ccc'
                     }}
                   >
                     ★
@@ -306,16 +306,16 @@ const PracticalAssessment = () => {
       </div> 
       <div className="form-group">
                 <div className="rating">
-                <label><b>6. How often did this team member volunteer to take on additional practical tasks to support the project?</b></label>
+                <label><b>6. How well did this team member balance their workload to avoid impacting the team negatively during critical phases of the project?</b></label>
     
                 <div style={{ display: 'flex', gap: '5px', cursor: 'pointer' }}>
               {[1, 2, 3, 4, 5].map((value) => (
                 <label key={value}>
                   <input
                     type="radio"
-                    name="Practical6"
+                    name="Work6"
                     value={value}
-                    checked={formData.Practical6 === String(value)}
+                    checked={formData.Work6 === String(value)}
                     onChange={handleInputChange}
                     style={{ display: 'none' }} // Hide radio buttons
                     required
@@ -323,7 +323,7 @@ const PracticalAssessment = () => {
                   <span
                     style={{
                       fontSize: '1.5rem',
-                      color: value <= formData.Practical6 ? '#FFD700' : '#ccc'
+                      color: value <= formData.Work6 ? '#FFD700' : '#ccc'
                     }}
                   >
                     ★
@@ -338,16 +338,16 @@ const PracticalAssessment = () => {
       </div> 
       <div className="form-group">
                 <div className="rating">
-                <label><b>7. How supportive was this team member in assisting others with their practical tasks when they encountered difficulties?</b></label>
+                <label><b>7. How well was this team member prepared for team meetings and group work sessions?</b></label>
     
                 <div style={{ display: 'flex', gap: '5px', cursor: 'pointer' }}>
               {[1, 2, 3, 4, 5].map((value) => (
                 <label key={value}>
                   <input
                     type="radio"
-                    name="Practical7"
+                    name="Work7"
                     value={value}
-                    checked={formData.Practical7 === String(value)}
+                    checked={formData.Work7 === String(value)}
                     onChange={handleInputChange}
                     style={{ display: 'none' }} // Hide radio buttons
                     required
@@ -355,7 +355,7 @@ const PracticalAssessment = () => {
                   <span
                     style={{
                       fontSize: '1.5rem',
-                      color: value <= formData.Practical7 ? '#FFD700' : '#ccc'
+                      color: value <= formData.Work7 ? '#FFD700' : '#ccc'
                     }}
                   >
                     ★
@@ -369,19 +369,19 @@ const PracticalAssessment = () => {
         <p><br/></p>
       </div> 
       {/* COMMENT SECTION */}
-              <label htmlFor="PracticalComment"><b>PRACTICAL CONTRIBUTION - Additional Feedback:</b></label>
+              <label htmlFor="WorkComment"><b>Work Ethic - Additional Feedback:</b></label>
               <div>
         <p><br/></p>
       </div>  
               <div className="form-group">  
                 <textarea
-                  id="PracticalComment"
-                  name="PracticalComment"
+                  id="WorkComment"
+                  name="WorkComment"
                   rows="3"
                   style={{width:"100%"}}
-                  value={formData.PracticalComment}
+                  value={formData.WorkComment}
                   onChange={handleInputChange}
-                  placeholder="Write any comments concering the Practical Contribution here..."
+                  placeholder="Write any comments concerning the work ethic here..."
                 />
               </div>
 
@@ -389,14 +389,14 @@ const PracticalAssessment = () => {
     
     
     
-            {/* Go to next assessment dimension: Work Ethic Contribution */}
+            {/* Go to Confirm Page */}
             <div style={{ marginTop: "20px" }}>
-            <button type="submit">Next</button>
+            <button type="submit">Submit Assessment</button>
             </div> 
             </form>
                 <Link
                   to={{
-                    pathname: "/WorkEthicAssessment",
+                    pathname: "/Confirmpage",
                   }}
                 >
                 </Link>
@@ -411,4 +411,4 @@ const PracticalAssessment = () => {
       );
     };
     
-    export default PracticalAssessment;
+    export default WorkEthicAssessment;
