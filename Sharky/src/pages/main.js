@@ -12,6 +12,7 @@ import HandleTeams from "./HandleTeamInstructure";
 import Welcomepage from "./Welcomepage";
 import Confirmpage from "./Confirmpage";
 import ConceptualAssessment from "./ConceptualAssessment";
+import PracticalAssessment from "./PracticalAssessment";
 
 export {
   LogIn,
@@ -28,4 +29,5 @@ export {
   Welcomepage,
   Confirmpage,
   ConceptualAssessment,
+  PracticalAssessment,
 };
