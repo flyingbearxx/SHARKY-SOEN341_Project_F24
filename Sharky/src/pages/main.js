@@ -13,6 +13,7 @@ import Welcomepage from "./Welcomepage";
 import Confirmpage from "./Confirmpage";
 import ConceptualAssessment from "./ConceptualAssessment";
 import PracticalAssessment from "./PracticalAssessment";
+import WorkEthicAssessment from "./WorkEthicAssessment";
 
 export {
   LogIn,
@@ -30,4 +31,5 @@ export {
   Confirmpage,
   ConceptualAssessment,
   PracticalAssessment,
+  WorkEthicAssessment,
 };
