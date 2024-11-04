@@ -76,7 +76,6 @@ This command will start the React development server and open the SHARKY Peer As
 |**NAME**|**STUDENT ID**|**ROLE**|
 |--------|--------------|--------|
 |Shaili Hakimpour|40201808|Full Stack developer|
-|Hala Belamri|40221036|Full Stack developer|
 |Ana Rostam|40187433|Full Stack developer|
 |Raghda Elkei|40251216|Full Stack developer|
 |Khujista Faqiri|40249541|Full Stack developer|
