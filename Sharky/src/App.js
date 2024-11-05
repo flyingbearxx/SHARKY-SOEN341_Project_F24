@@ -50,9 +50,10 @@ const App = () => {
       <Route path="/conceptualassessment" element={<ConceptualAssessment />} /> 
       <Route path="/practicalassessment" element={<PracticalAssessment />} />
       <Route path="/workethicassessment" element={<WorkEthicAssessment />} />
-      <Route path="/Dashboard" element={<Dashboard />} />
 
       {/* Protected Routes */}
+      
+
 
       {/* Student Homepage */}
       <Route
@@ -134,7 +135,7 @@ const App = () => {
       path="/Dashboard"
       element={
         <ProtectedRoute token={token}>
-          <Dashboard/>
+          <Dashboard />
         </ProtectedRoute>
       }
       />

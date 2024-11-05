@@ -8,7 +8,7 @@ import ShowTeams from './ShowTeams';
 
 const AverageCalculator = () => {
     const location = useLocation();
-    const navigate=useNavigate(); 
+    const navigate = useNavigate(); 
     const member = location.state?.member;
     const team = location.state?.team;
   const [teams, setTeams] = useState([]); // Holds the teams fetched from the database
@@ -259,13 +259,13 @@ const AverageCalculator = () => {
     const selectedMemberEmail = event.target.value;
     const selectedMember = teamMembers.find(member => member.email === selectedMemberEmail);
     
-    // if (selectedMember) {
-    //   setSelectedMember(selectedMemberEmail);
+    if (selectedMember) {
+      setSelectedMember(selectedMemberEmail);
     //   setFormData(prevFormData => ({
     //     ...prevFormData,
     //     Assessedmemberid: selectedMember.user_id, // Set to the correct user_id in the Cooperation Dimension
     //   }));
-    // }
+    }
   };
   
   // Handle form input changes
@@ -305,6 +305,20 @@ return (
         {/* Main content or additional logic can go here */}
       </main>
 
+      <div className="content2" id="content2">
+      <h3 style={{ color: 'black', textAlign: 'center'}}><i>Evaluation Form</i></h3>
+        {/* <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="Assessorid">Your Name:</label>
+            <input
+              type="text"
+              id="Assessorid"
+              name="Assessorid"
+              value={formData.Assessorid}
+              onChange={handleInputChange}
+              required
+            /> */}
+          </div>
       <div style={{ marginTop: "20px" }}>
           <button
               onClick={() => alert(`You are in team: ${selectedTeam}`)}
