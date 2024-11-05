@@ -38,6 +38,9 @@ const Homepage = () => {
           <Link to="/logout" className="menu-btn">
             Logout
           </Link>
+          <Link to="/Dahsboard" className="menu-btn">
+            dashboard check
+          </Link>
         </div>
       </div>
     </div>
