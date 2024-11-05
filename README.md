@@ -34,7 +34,7 @@ Before you begin, ensure you have the following installed:
 First, clone the SHARKY project repository to your local machine using Git. Open your terminal and run the following command:
 
 ```bash
-git clone https://github.com/khujista-01/SHARKY-SOEN341_Project_F24.git  
+git clone https://github.com/flyingbearxx/SHARKY-SOEN341_Project_F24.git  
 ```
 
 **Step 2: Navigate to the Project Directory**  
@@ -76,7 +76,6 @@ This command will start the React development server and open the SHARKY Peer As
 |**NAME**|**STUDENT ID**|**ROLE**|
 |--------|--------------|--------|
 |Shaili Hakimpour|40201808|Full Stack developer|
-|Hala Belamri|40221036|Full Stack developer|
 |Ana Rostam|40187433|Full Stack developer|
 |Raghda Elkei|40251216|Full Stack developer|
 |Khujista Faqiri|40249541|Full Stack developer|
