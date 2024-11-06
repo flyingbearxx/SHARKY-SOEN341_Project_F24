@@ -11,7 +11,6 @@ const ContactUs = () => {
         <h4>Contact Information for the application's managers</h4>
         <p>Yameen Adi - ya_adi@live.concordia.ca</p>
         <p>Ana Rostam - rostamana927@gmail.com</p>
-        <p>Hala Belamri - Halabelamri198@gmail.com</p>
         <p>Shaili Hakimpour - shailihakimpour@gmail.com</p>
         <p>Khujista Faqiri - faqiri.khujista@gmail.com</p>
         <p>Raghda Elkei - Raghdaelkei72@gmail.com</p>
