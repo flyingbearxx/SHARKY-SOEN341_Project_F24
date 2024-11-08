@@ -28,6 +28,8 @@ const ConceptualAssessment = () => {
       Conceptual7: '0', 
       ConceptualComment: ' ',
     });
+
+    const [averagescore, setaveragescore] = useState("");
     
       // Handle form input changes
       const handleInputChange = (e) => {
@@ -38,7 +40,23 @@ const ConceptualAssessment = () => {
         }));  
       };
     
+      useEffect(() => {
+        const calcualteAverage = () => {
+        const totalscore = 
+        Number(formData.Conceptual1) + 
+        Number(formData.Conceptual2) +
+        Number(formData.Conceptual3) + 
+        Number(formData.Conceptual4) +
+        Number(formData.Conceptual5) + 
+        Number(formData.Conceptual6) +
+        Number(formData.Conceptual7);
     
+        const average = totalscore / 7;
+        setaveragescore(average);
+      };
+      calcualteAverage();
+    }, [formData]);
+
       // Handle form submission (if needed, you can implement submit logic)
       const handleSubmit = async (e) => {
         e.preventDefault();
@@ -57,7 +75,22 @@ const ConceptualAssessment = () => {
         try{
           const { data, error } = await supabase
           .from('ConceptualContribution')
-          .insert([formData]);
+          .insert([
+            {
+              Assessedmemberid: formData.Assessedmemberid,
+              Assessorid: formData.Assessorid,
+              Team_id: formData.Team_id,
+              Conceptual1: formData.Conceptual1,
+              Conceptual2: formData.Conceptual2,
+              Conceptual3: formData.Conceptual3,
+              Conceptual4: formData.Conceptual4,
+              Conceptual5: formData.Conceptual5,
+              Conceptual6: formData.Conceptual6,
+              Conceptual7: formData.Conceptual7,
+              ConceptualComment: formData.ConceptualComment,
+              averages: averagescore,
+            }
+          ]);
           if(error){
             console.error('Supabase error details: ', error);
             throw error;

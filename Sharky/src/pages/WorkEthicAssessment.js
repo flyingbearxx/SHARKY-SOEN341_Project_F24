@@ -29,6 +29,8 @@ const WorkEthicAssessment = () => {
       WorkComment: ' ',
     });
     
+    const [averagescore, setaveragescore] = useState("");
+
       // Handle form input changes
       const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -37,7 +39,22 @@ const WorkEthicAssessment = () => {
         [name]: value,
         }));  
       };
+    useEffect(() => {
+        const calcualteAverage = () => {
+        const totalscore = 
+        Number(formData.Work1) + 
+        Number(formData.Work2) +
+        Number(formData.Work3) + 
+        Number(formData.Work4) +
+        Number(formData.Work5) + 
+        Number(formData.Work6) +
+        Number(formData.Work7);
     
+        const average = totalscore / 7;
+        setaveragescore(average);
+      };
+      calcualteAverage();
+    }, [formData]);
     
       // Handle form submission (if needed, you can implement submit logic)
       const handleSubmit = async (e) => {
@@ -57,7 +74,22 @@ const WorkEthicAssessment = () => {
         try{
           const { data, error } = await supabase
           .from('WorkEthic')
-          .insert([formData]);
+          .insert([
+            {
+              Assessedmemberid: formData.Assessedmemberid,
+              Assessorid: formData.Assessorid,
+              Team_id: formData.Team_id,
+              Work1: formData.Work1,
+              Work2: formData.Work2,
+              Work3: formData.Work3,
+              Work4: formData.Work4,
+              Work5: formData.Work5,
+              Work6: formData.Work6,
+              Work7: formData.Work7,
+              WorkComment: formData.WorkComment,
+              averages: averagescore,
+            }
+          ]);
           if(error){
             console.error('Supabase error details: ', error);
             throw error;
