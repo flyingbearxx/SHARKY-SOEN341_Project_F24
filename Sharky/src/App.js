@@ -16,6 +16,7 @@ import {
   ConceptualAssessment,
   PracticalAssessment,
   WorkEthicAssessment,
+  Dashboard,
 } from "./pages/main";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./components/protectedRoute";
@@ -49,9 +50,10 @@ const App = () => {
       <Route path="/conceptualassessment" element={<ConceptualAssessment />} /> 
       <Route path="/practicalassessment" element={<PracticalAssessment />} />
       <Route path="/workethicassessment" element={<WorkEthicAssessment />} />
-    
 
       {/* Protected Routes */}
+      
+
 
       {/* Student Homepage */}
       <Route
@@ -128,6 +130,15 @@ const App = () => {
         </ProtectedRoute>
       }
       /> 
+      
+      <Route 
+      path="/Dashboard"
+      element={
+        <ProtectedRoute token={token}>
+          <Dashboard />
+        </ProtectedRoute>
+      }
+      />
 
       {/* Instructor Show/Handle Teams */}
       <Route
@@ -139,6 +150,7 @@ const App = () => {
         }
       />
     </Routes>
+    
   );
 };
 
