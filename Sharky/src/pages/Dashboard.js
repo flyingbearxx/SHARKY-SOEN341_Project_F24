@@ -6,6 +6,10 @@ import Papa from "papaparse";
 import ShowTeams from './ShowTeams';
 
 const Dashboard = () => {
+    const location = useLocation();
+  const navigate = useNavigate(); 
+    const member = location.state?.member;
+  const team = location.state?.team;
 
   const [selectedoption, setselectedoption] = useState(null);
   const [teams, setTeams] = useState([]); // Holds the teams fetched from the database
@@ -13,7 +17,13 @@ const Dashboard = () => {
   const [teamMembers, setTeamMembers] = useState([]); // Holds the team members for the selected team
   const [selectedMember, setSelectedMember] = useState(""); // Will hold the selected team member for evaluation
   const [scores, setscores] = useState({});
-  const [showResults, setShowResults] = useState(false);
+  const [ShowResults, setShowResults] = useState(false);
+  
+  const [formData, setFormData] = useState({
+    Assessorid: '',
+    Assessedmemberid: member,
+    Team_id: team, 
+  });
 
     const toggleOption = (option) => {
         if(selectedoption === option){
@@ -76,48 +86,16 @@ const Dashboard = () => {
         };
         fetchTeamMembers();
       }, [selectedTeam]);
-
+//////////////////////////////////
     //   useEffect(() => {
-        const fetchscores = async () => {
-            if(!selectedTeam || !selectedMember) {
-                // alert("Please select both a team and a team member!");
-                return;
-            }
-            try{
-                const [cooperationdata, conceptualdata, practicaldata, workdata] = await Promise.all([
-                    supabase.from("Peer Assessment Questions").select("averages").eq("user_id", selectedMember.user_id),
-                    supabase.from("ConceptualContribution").select("averages").eq("user_id", selectedMember.user_id),
-                    supabase.from("PracticalContribution").select("averages").eq("user_id", selectedMember.user_id),
-                    supabase.from("WorkEthic").select("averages").eq("user_id", selectedMember.user_id),
-                ]);
-                if(
-                    cooperationdata.error ||
-                    conceptualdata.error ||
-                    practicaldata.error ||
-                    workdata.error 
-                ) {
-                    console.error("Error fetching averages");
-                    return;
-                }
-
-        const cooperation = cooperationdata.data[0]?.score || 0;
-        const conceptual = conceptualdata.data[0]?.score || 0;
-        const practical = practicaldata.data[0]?.score || 0;
-        const work = workdata.data[0]?.score || 0;
-        const average = ((cooperation + conceptual + practical + work) / 4).toFixed(2);
-
-        setscores({ cooperation, conceptual, practical, work, average});
-        setShowResults(true);
-
-            }catch(error){
-                console.error("Error fetching scores: ", error);
-            }
-        };
-        fetchscores();
+       
+        // fetchscores();
     // });
     //   }, [selectedMember]);
+    /////////////////////////////////////////
+      
 
-      const handleTeamSelection = async (event) => {
+       const handleTeamSelection = async (event) => {
         const selectedTeamName = event.target.value;
         setSelectedTeam(selectedTeamName); // Updates the selected team name
         
@@ -135,17 +113,17 @@ const Dashboard = () => {
             )
           );
     
-        //   setFormData((prevFormData) => ({
-        //     ...prevFormData,
-        //     Team_id: selectedTeamObj.id, // Set the correct team ID
-        //   }));
+          setFormData((prevFormData) => ({
+            ...prevFormData,
+            Team_id: selectedTeamObj.id, // Set the correct team ID
+          }));
     
         }else {
-        //   setTeamMembers([]); // Clear if no team is selected
-        //   setFormData((prevFormData) => ({
-        //     ...prevFormData,
-        //     Team_id: "", // Clear team ID if no team is selected
-        //   }));
+          setTeamMembers([]); // Clear if no team is selected
+          setFormData((prevFormData) => ({
+            ...prevFormData,
+            Team_id: "", // Clear team ID if no team is selected
+          }));
         }
     
         
@@ -158,16 +136,57 @@ const Dashboard = () => {
     
         const selectedMemberEmail = event.target.value;
         const selectedMember = teamMembers.find(member => member.email === selectedMemberEmail);
+       
         
         if (selectedMember) {
           setSelectedMember(selectedMemberEmail);
-        //   setFormData(prevFormData => ({
-        //     ...prevFormData,
-        //     Assessedmemberid: selectedMember.user_id, // Set to the correct user_id in the Cooperation Dimension
-        //   }));
+          setFormData(prevFormData => ({
+            ...prevFormData,
+            Assessedmemberid: selectedMember.user_id, // Set to the correct user_id in the Cooperation Dimension
+          }));
         }
       };
 
+      const fetchscores = async () => {
+        if(!selectedTeam || !selectedMember) {
+            alert("Please select both a team and a team member!");
+           return;
+        }
+    
+        try{
+            const [cooperationdata, conceptualdata, practicaldata, workdata] = await Promise.all([
+                supabase.from("Peer Assessment Questions").select("averages").eq("user_id", selectedMember.user_id),
+                supabase.from("ConceptualContribution").select("averages").eq("user_id", selectedMember.user_id),
+                supabase.from("PracticalContribution").select("averages").eq("user_id", selectedMember.user_id),
+                supabase.from("WorkEthic").select("averages").eq("user_id", selectedMember.user_id),
+            ]);
+            if(
+                cooperationdata.error ||
+                conceptualdata.error ||
+                practicaldata.error ||
+                workdata.error 
+            ) {
+                console.error("Error fetching averages");
+                return;
+            }
+
+    // const cooperation = cooperationdata.data[0]?.score || 0;
+    // const conceptual = conceptualdata.data[0]?.score || 0;
+    // const practical = practicaldata.data[0]?.score || 0;
+    // const work = workdata.data[0]?.score || 0;
+    const cooperation = cooperationdata.data;
+    const conceptual = conceptualdata.data;
+    const practical = practicaldata.data;
+    const work = workdata.data;
+    const average = ((cooperation + conceptual + practical + work) / 4).toFixed(2);
+
+    setscores({ cooperation, conceptual, practical, work, average});
+    setShowResults(true);
+
+        }catch(error){
+            console.error("Error fetching scores: ", error);
+        }
+    };
     return(
 
         <div className = "container">
@@ -200,7 +219,7 @@ const Dashboard = () => {
                     <div className = "selectors">
                         <label>
                             Select Team: 
-                            <select value = {selectedTeam.teamname || ""} onChange={handleTeamSelection}>
+                            <select value = {selectedTeam.teamname} onChange={handleTeamSelection}>
                                 <option value=""> --Select Team --</option>
                                 {teams.map((team) => (
                     <option key={team.id} value={team.teamname}>{team.teamname}</option>
@@ -210,10 +229,12 @@ const Dashboard = () => {
                         {teamMembers.length > 0 && (
                 <label>
                   Select Member:
-                  <select value={selectedMember.email || ""} onChange={handleMemberSelection}>
-                    <option value="">-- Select Member --</option>
-                    {teamMembers.map((member) => (
-                      <option key={member.user_id} value={member.email}>{member.email}</option>
+                  <select value={selectedMember} onChange={handleMemberSelection}>
+                    <option value="">-- Select a Member --</option>
+                    {teamMembers.map(member => (
+                      <option key={member.user_id} value={member.email}>
+                        {member.email}
+                        </option>
                     ))}
                   </select>
                 </label>
@@ -221,13 +242,13 @@ const Dashboard = () => {
 
               {/* Show Results Button */}
             {selectedTeam && selectedMember && (
-              <button onClick={() => fetchscores()}>Show Results</button>
+              <button onClick={() => fetchscores}>Show Results</button>
             )}
 
 
 
                 {/* Summary of Results*/}
-                {showResults && (
+                {ShowResults && (
                     <table className = "table">
                         <thead>
                             <tr>
