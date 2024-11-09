@@ -207,11 +207,14 @@ const TeamManagement = () => {
             <Link to="/handle-teams">
               <button className="btn">Show Teams</button>
             </Link>
-
+            <Link to="/dashboard">
+              <button className="btn">Dashboard</button>{" "}
+              {/* Dashboard Button */}
+            </Link>
             <Link to="/contact-us">
               <button className="btn">Contact Us</button>
             </Link>
-            <Link to="/Logout">
+            <Link to="/logout">
               <button className="btn">Logout</button>
             </Link>
           </nav>
@@ -221,7 +224,6 @@ const TeamManagement = () => {
       {/* Create Team and Upload CSV Sections */}
       {teamFormVisible && (
         <>
-          {/* Moved Team Management title to the top, right after the main title */}
           <div className="description">
             <h2 style={{ color: "#6c3483" }}>Team Management</h2>
           </div>

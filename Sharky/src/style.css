@@ -89,7 +89,6 @@ h2 {
   background-color: rgba(0, 0, 0, 0.75);
   z-index: 100;
   transition: left 0.3s ease; /* Smooth transition */
- 
 }
 
 /* Adjusting the hover effect */
@@ -105,7 +104,7 @@ h2 {
   padding: 0;
   margin: 0;
   list-style: none;
-  width:100%; 
+  width: 100%;
 }
 
 .sidebar ul li {
@@ -124,7 +123,6 @@ h2 {
   text-transform: uppercase;
   font-weight: bold;
   transition: background-color 0.3s ease;
-  
 }
 
 .sidebar ul li a:hover {
@@ -685,15 +683,17 @@ footer {
   padding: 20px;
 }
 
-.team-item{
+.team-item {
   margin: 10px 0;
 }
 
-.team-selection-container, .member-selection-container,.evaluation-link-container {
+.team-selection-container,
+.member-selection-container,
+.evaluation-link-container {
   margin-top: 20px;
 }
 
-.team-button{
+.team-button {
   margin-bottom: 10px;
   padding: 10px 20px;
   background-color: #9b59b6;
@@ -707,3 +707,60 @@ footer {
   background-color: #7d3c98;
 }
 
+/* General Table Styling */
+.results-table {
+  width: 90%;
+  margin: 20px auto;
+  border-collapse: collapse;
+  background-color: #ffffff; /* White background for the tables */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for better visual */
+  overflow: hidden;
+}
+
+.results-table th,
+.results-table td {
+  padding: 12px 15px;
+  text-align: left;
+  font-size: 16px;
+  border-bottom: 1px solid #dddddd;
+}
+
+.results-table th {
+  background-color: #9b59b6; /* Purple header background */
+  color: #ffffff; /* White text for the header */
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.results-table tr:last-child td {
+  border-bottom: none;
+}
+
+.results-table td {
+  color: #333; /* Dark text color for readability */
+}
+
+.results-table .team-name {
+  color: #6a0dad;
+  font-weight: bold;
+  font-size: 1.2em;
+  margin-top: 10px;
+}
+
+/* Detailed View Specific Styling */
+.detailed-container h4 {
+  color: #6a0dad;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.detailed-container h5 {
+  font-size: 1.1em;
+  color: #333;
+}
+
+/* Additional Styling for Layout */
+.options-container {
+  margin-top: 20px;
+}
