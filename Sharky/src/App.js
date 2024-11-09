@@ -213,6 +213,15 @@ const App = () => {
         }
       />
 
+<Route 
+      path="/Dashboard"
+      element={
+        <ProtectedRoute token={token}>
+          <Dashboard />
+        </ProtectedRoute>
+      }
+      />
+
       {/* Instructor Show/Handle Teams */}
       <Route
         path="/handle-teams"

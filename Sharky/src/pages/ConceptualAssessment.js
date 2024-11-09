@@ -53,6 +53,7 @@ const ConceptualAssessment = () => {
       const average = totalscore / 7;
       setaveragescore(average);
     };
+
     calcualteAverage();
   }, [formData]);
 
