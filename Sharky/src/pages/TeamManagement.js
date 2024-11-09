@@ -201,9 +201,6 @@ const TeamManagement = () => {
             <Link to="/">
               <button className="btn">Welcome Page</button>
             </Link>
-            <Link to="/assessment">
-              <button className="btn">Assessment</button>
-            </Link>
             <Link to="/handle-teams">
               <button className="btn">Show Teams</button>
             </Link>

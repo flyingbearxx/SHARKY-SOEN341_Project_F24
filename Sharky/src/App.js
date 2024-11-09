@@ -37,6 +37,8 @@ const App = () => {
     setToken(false); // Clear token from state
   };
 
+  //Yasmeen updated the routing so the Date and time cn display on all pages
+
   return (
     <Routes>
       {/* Public Routes */}
@@ -141,15 +143,16 @@ const App = () => {
         element={
           <ProtectedRoute token={token}>
             <Layout>
+              {" "}
               <TeamManagement />
             </Layout>
           </ProtectedRoute>
         }
       />
 
-      {/* Student Show Teams */}
+      {/* Student Show teams */}
       <Route
-        path="/show-teams"
+        path="/Show-teams"
         element={
           <ProtectedRoute token={token}>
             <Layout>
@@ -159,10 +162,11 @@ const App = () => {
         }
       />
       <Route
-        path="/assessment"
+        path="/Assessment"
         element={
           <ProtectedRoute token={token}>
             <Layout>
+              {" "}
               <Assessment />
             </Layout>
           </ProtectedRoute>
@@ -170,10 +174,11 @@ const App = () => {
       />
 
       <Route
-        path="/conceptual-assessment"
+        path="/ConceptualAssessment"
         element={
           <ProtectedRoute token={token}>
             <Layout>
+              {" "}
               <ConceptualAssessment />
             </Layout>
           </ProtectedRoute>
@@ -181,10 +186,11 @@ const App = () => {
       />
 
       <Route
-        path="/practical-assessment"
+        path="/PracticalAssessment"
         element={
           <ProtectedRoute token={token}>
             <Layout>
+              {" "}
               <PracticalAssessment />
             </Layout>
           </ProtectedRoute>
@@ -192,7 +198,7 @@ const App = () => {
       />
 
       <Route
-        path="/work-ethic-assessment"
+        path="/WorkEthicAssessment"
         element={
           <ProtectedRoute token={token}>
             <Layout>
@@ -203,7 +209,7 @@ const App = () => {
       />
 
       <Route
-        path="/confirm-page"
+        path="/Confirmpage"
         element={
           <ProtectedRoute token={token}>
             <Layout>
@@ -213,13 +219,13 @@ const App = () => {
         }
       />
 
-<Route 
-      path="/Dashboard"
-      element={
-        <ProtectedRoute token={token}>
-          <Dashboard />
-        </ProtectedRoute>
-      }
+      <Route
+        path="/Dashboard"
+        element={
+          <ProtectedRoute token={token}>
+            <Dashboard />
+          </ProtectedRoute>
+        }
       />
 
       {/* Instructor Show/Handle Teams */}
@@ -229,18 +235,6 @@ const App = () => {
           <ProtectedRoute token={token}>
             <Layout>
               <HandleTeams />
-            </Layout>
-          </ProtectedRoute>
-        }
-      />
-
-      {/* Instructor Dashboard */}
-      <Route
-        path="/dashboard"
-        element={
-          <ProtectedRoute token={token}>
-            <Layout>
-              <Dashboard />
             </Layout>
           </ProtectedRoute>
         }
