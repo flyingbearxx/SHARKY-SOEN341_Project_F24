@@ -8,7 +8,7 @@ import ShowTeams from './ShowTeams';
 
 const Assessment = () => {
   const location = useLocation();
-  const navigate=useNavigate(); 
+  const navigate = useNavigate(); 
   const member = location.state?.member;
   const team = location.state?.team;
   
@@ -26,6 +26,7 @@ const Assessment = () => {
     Conflict_Resolution: '', 
     AdaptibilityandFlexibility: '', 
     Commentsection: '',
+    // averages: '',
   });
 
 
@@ -33,6 +34,7 @@ const Assessment = () => {
   const [selectedTeam, setSelectedTeam] = useState(""); // Holds the selected team from the dropdown
   const [teamMembers, setTeamMembers] = useState([]); // Holds the team members for the selected team
   const [selectedMember, setSelectedMember] = useState(""); // Will hold the selected team member for evaluation
+  const [averagescore, setaveragescore] = useState("");
 
   useEffect(() => {
     const fetchTeams = async () => {
@@ -150,6 +152,26 @@ useEffect(() => {
     setFormData({ ...formData, [name]: value });  //Cooperation Contribution input change
   };
 
+  //calculating the avergae score for the inputs
+  useEffect(() => {
+    const calcualteAverage = () => {
+    const totalscore = 
+    Number(formData.Communication) + 
+    Number(formData.Participation) +
+    Number(formData.Assistance) + 
+    Number(formData.Respect) +
+    Number(formData.Cooperation) + 
+    Number(formData.Conflict_Resolution) +
+    Number(formData.AdaptibilityandFlexibility);
+
+    const average = totalscore / 7;
+    setaveragescore(average);
+  };
+  calcualteAverage();
+}, [formData]);
+  
+   
+
 
   // Handle form submission (if needed, you can implement submit logic)
   const handleSubmit = async (e) => {
@@ -157,7 +179,6 @@ useEffect(() => {
 
     
     console.log('Form Data:', formData);
-  
   
     try{
       const { data, error } = await supabase
@@ -175,6 +196,7 @@ useEffect(() => {
           Conflict_Resolution: formData.Conflict_Resolution,
           AdaptibilityandFlexibility: formData.AdaptibilityandFlexibility, 
           Team_id: formData.Team_id,
+          averages: averagescore,
         },
       ]);
       if(error){
@@ -198,7 +220,9 @@ useEffect(() => {
       Conflict_Resolution: '', 
       AdaptibilityandFlexibility: '', 
       Team_id: formData.Team_id,
+      // averages: '',
     });
+    setaveragescore(null);
     navigate("/ConceptualAssessment", {
       state:{ 
         //member: formData.Assessedmemberid, team: formData.Team_id }, 

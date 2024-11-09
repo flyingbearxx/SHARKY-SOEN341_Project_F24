@@ -28,6 +28,8 @@ const PracticalAssessment = () => {
       Practical7: '0', 
       PracticalComment: ' ',
     });
+
+    const [averagescore, setaveragescore] = useState("");
     
       // Handle form input changes
       const handleInputChange = (e) => {
@@ -38,6 +40,22 @@ const PracticalAssessment = () => {
         }));  
       };
     
+      useEffect(() => {
+        const calcualteAverage = () => {
+        const totalscore = 
+        Number(formData.Practical1) + 
+        Number(formData.Practical2) +
+        Number(formData.Practical3) + 
+        Number(formData.Practical4) +
+        Number(formData.Practical5) + 
+        Number(formData.Practical6) +
+        Number(formData.Practical7);
+    
+        const average = totalscore / 7;
+        setaveragescore(average);
+      };
+      calcualteAverage();
+    }, [formData]);
     
       // Handle form submission (if needed, you can implement submit logic)
       const handleSubmit = async (e) => {
@@ -57,7 +75,22 @@ const PracticalAssessment = () => {
         try{
           const { data, error } = await supabase
           .from('PracticalContribution')
-          .insert([formData]);
+          .insert([
+            {
+              Assessedmemberid: formData.Assessedmemberid,
+              Assessorid: formData.Assessorid,
+              Team_id: formData.Team_id,
+              Practical1: formData.Practical1,
+              Practical2: formData.Practical2,
+              Practical3: formData.Practical3,
+              Practical4: formData.Practical4,
+              Practical5: formData.Practical5,
+              Practical6: formData.Practical6,
+              Practical7: formData.Practical7,
+              PracticalComment: formData.PracticalComment,
+              averages: averagescore,
+            }
+          ]);
           if(error){
             console.error('Supabase error details: ', error);
             throw error;
