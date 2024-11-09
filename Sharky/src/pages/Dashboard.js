@@ -1,288 +1,284 @@
 import React, { useState, useEffect } from "react";
 import { supabase } from "../client";
-import { Link, useNavigate } from "react-router-dom";
-import { useLocation } from "react-router-dom";
-import Papa from "papaparse";
-import ShowTeams from './ShowTeams';
 
 const Dashboard = () => {
-    const location = useLocation();
-  const navigate = useNavigate(); 
-    const member = location.state?.member;
-  const team = location.state?.team;
+  const [workEthicData, setWorkEthicData] = useState([]);
+  const [practicalData, setPracticalData] = useState([]);
+  const [cooperationData, setCooperationData] = useState([]);
+  const [conceptualData, setConceptualData] = useState([]);
+  const [teams, setTeams] = useState([]);
+  const [view, setView] = useState("Summary");
 
-  const [selectedoption, setselectedoption] = useState(null);
-  const [teams, setTeams] = useState([]); // Holds the teams fetched from the database
-  const [selectedTeam, setSelectedTeam] = useState(""); // Holds the selected team from the dropdown
-  const [teamMembers, setTeamMembers] = useState([]); // Holds the team members for the selected team
-  const [selectedMember, setSelectedMember] = useState(""); // Will hold the selected team member for evaluation
-  const [scores, setscores] = useState({});
-  const [ShowResults, setShowResults] = useState(false);
-  
-  const [formData, setFormData] = useState({
-    Assessorid: '',
-    Assessedmemberid: member,
-    Team_id: team, 
-  });
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { data: teamsData, error: teamsError } = await supabase
+          .from("teams")
+          .select("id, teamname")
+          .order("id", { ascending: true });
+        if (teamsError) throw teamsError;
+        setTeams(teamsData);
 
-    const toggleOption = (option) => {
-        if(selectedoption === option){
-            setselectedoption(null);
-        } else{
-            setselectedoption(option);
+        const { data: workEthicData, error: workEthicError } = await supabase
+          .from("WorkEthic")
+          .select(
+            `
+            Team_id,
+            Assessedmemberid,
+            Assessorid,
+            averages,
+            WorkComment,
+            users:Assessedmemberid (email)
+          `
+          )
+          .order("Team_id", { ascending: true });
+        if (workEthicError) throw workEthicError;
+        setWorkEthicData(workEthicData);
 
-        }
-    };
-    useEffect(() => {
-        const fetchTeams = async () => {
-          const { data: teamsData, error } = await supabase
-            .from("teams")
+        const { data: practicalData, error: practicalError } = await supabase
+          .from("PracticalContribution")
+          .select(
+            `
+            Team_id,
+            Assessedmemberid,
+            Assessorid,
+            averages,
+            PracticalComment,
+            users:Assessedmemberid (email)
+          `
+          )
+          .order("Team_id", { ascending: true });
+        if (practicalError) throw practicalError;
+        setPracticalData(practicalData);
+
+        const { data: cooperationData, error: cooperationError } =
+          await supabase
+            .from("Cooperation")
             .select(
               `
-              id,
-              teamname,
-              team_members(
-                user_id,
-                users(
-                  email
-                )
-              )
-              `
+            Team_id,
+            Assessedmemberid,
+            Assessorid,
+            averages,
+            Commentsection,
+            users:Assessedmemberid (email)
+          `
             )
-            .order("id", { ascending: true });
-          if (error) {
-            console.error("Error fetching teams:", error.message);
-          } else {
-            // Map over the teams to format the data
-            const formattedTeams = teamsData.map((team) => ({
-              ...team,
-              members: team.team_members
-                .map((member) => member.users.email)
-                .join(", "),
-            }));
-            setTeams(formattedTeams);
-          }
-        };
-        fetchTeams();
-      }, []);
+            .order("Team_id", { ascending: true });
+        if (cooperationError) throw cooperationError;
+        setCooperationData(cooperationData);
 
-      useEffect(() => {
-        const fetchTeamMembers = async () => {
-          if (!selectedTeam) return; // If no team is selected, exit early
-          const { data: membersData, error } = await supabase
-            .from("team_members")
-            .select("user_id, users(email)")
-            .eq("team_id", selectedTeam.id); // Assuming you have a field for team_id in team_members
-          
-          if (error) {
-            console.error("Error fetching team members:", error.message);
-          } else {
-            // Update the teamMembers state with the fetched data
-            setTeamMembers(membersData.map(member => ({
-              email: member.users.email,
-              user_id: member.user_id,
-            })));
-          }
-        };
-        fetchTeamMembers();
-      }, [selectedTeam]);
-//////////////////////////////////
-    //   useEffect(() => {
-       
-        // fetchscores();
-    // });
-    //   }, [selectedMember]);
-    /////////////////////////////////////////
-      
-
-       const handleTeamSelection = async (event) => {
-        const selectedTeamName = event.target.value;
-        setSelectedTeam(selectedTeamName); // Updates the selected team name
-        
-        const selectedTeamObj = teams.find(
-          (team) => team.teamname === selectedTeamName
-        );
-    
-        if (selectedTeamObj) {
-          // Update the teamMembers state with the emails of the selected team's members
-          setTeamMembers(
-            selectedTeamObj.team_members.map((member) => ({
-              ////////////
-              email: member.users.email,
-              user_id: member.user_id,})
-            )
-          );
-    
-          setFormData((prevFormData) => ({
-            ...prevFormData,
-            Team_id: selectedTeamObj.id, // Set the correct team ID
-          }));
-    
-        }else {
-          setTeamMembers([]); // Clear if no team is selected
-          setFormData((prevFormData) => ({
-            ...prevFormData,
-            Team_id: "", // Clear team ID if no team is selected
-          }));
-        }
-    
-        
-    
-    
-      };
-
-      const handleMemberSelection = (event) => {
-        // setSelectedMember(event.target.value); // Updates the selected member
-    
-        const selectedMemberEmail = event.target.value;
-        const selectedMember = teamMembers.find(member => member.email === selectedMemberEmail);
-       
-        
-        if (selectedMember) {
-          setSelectedMember(selectedMemberEmail);
-          setFormData(prevFormData => ({
-            ...prevFormData,
-            Assessedmemberid: selectedMember.user_id, // Set to the correct user_id in the Cooperation Dimension
-          }));
-        }
-      };
-
-      const fetchscores = async () => {
-        if(!selectedTeam || !selectedMember) {
-            alert("Please select both a team and a team member!");
-           return;
-        }
-    
-        try{
-            const [cooperationdata, conceptualdata, practicaldata, workdata] = await Promise.all([
-                supabase.from("Peer Assessment Questions").select("averages").eq("user_id", selectedMember.user_id),
-                supabase.from("ConceptualContribution").select("averages").eq("user_id", selectedMember.user_id),
-                supabase.from("PracticalContribution").select("averages").eq("user_id", selectedMember.user_id),
-                supabase.from("WorkEthic").select("averages").eq("user_id", selectedMember.user_id),
-            ]);
-            if(
-                cooperationdata.error ||
-                conceptualdata.error ||
-                practicaldata.error ||
-                workdata.error 
-            ) {
-                console.error("Error fetching averages");
-                return;
-            }
-
-    // const cooperation = cooperationdata.data[0]?.score || 0;
-    // const conceptual = conceptualdata.data[0]?.score || 0;
-    // const practical = practicaldata.data[0]?.score || 0;
-    // const work = workdata.data[0]?.score || 0;
-    const cooperation = cooperationdata.data;
-    const conceptual = conceptualdata.data;
-    const practical = practicaldata.data;
-    const work = workdata.data;
-    const average = ((cooperation + conceptual + practical + work) / 4).toFixed(2);
-
-    setscores({ cooperation, conceptual, practical, work, average});
-    setShowResults(true);
-
-        }catch(error){
-            console.error("Error fetching scores: ", error);
-        }
+        const { data: conceptualData, error: conceptualError } = await supabase
+          .from("ConceptualContribution")
+          .select(
+            `
+            Team_id,
+            Assessedmemberid,
+            Assessorid,
+            averages,
+            ConceptualComment,
+            users:Assessedmemberid (email)
+          `
+          )
+          .order("Team_id", { ascending: true });
+        if (conceptualError) throw conceptualError;
+        setConceptualData(conceptualData);
+      } catch (error) {
+        console.error("Error fetching data:", error.message);
+      }
     };
-    return(
 
-        <div className = "container">
-            <header className = "header1">
-            <img
-          src={`${process.env.PUBLIC_URL}/logo.png`}
-          alt="Logo"
-          className="logo"
-        />
-        <h2>Sharky Peer Assessment</h2>
-            </header>
-            <div className = "options-container">
-                <h2>Team Evaluation Results</h2>
-                <div className = "options">
-                    <button 
-                    className = "option-btn"
-                    onClick={() => toggleOption("SummaryofResults")}>
-                        Summary of Results
-                    </button>
-                    <button 
-                    className = "option-btn"
-                    onClick= {() => toggleOption("DetailedResults")}>
-                        Detailed Results
-                    </button>
-                </div>
+    fetchData();
+  }, []);
 
-                {/*Team and Teammember selection*/}
-                {selectedoption === "SummaryofResults" && (
-                    <div>
-                    <div className = "selectors">
-                        <label>
-                            Select Team: 
-                            <select value = {selectedTeam.teamname} onChange={handleTeamSelection}>
-                                <option value=""> --Select Team --</option>
-                                {teams.map((team) => (
-                    <option key={team.id} value={team.teamname}>{team.teamname}</option>
-                  ))}
-                            </select>
-                        </label>
-                        {teamMembers.length > 0 && (
-                <label>
-                  Select Member:
-                  <select value={selectedMember} onChange={handleMemberSelection}>
-                    <option value="">-- Select a Member --</option>
-                    {teamMembers.map(member => (
-                      <option key={member.user_id} value={member.email}>
-                        {member.email}
-                        </option>
-                    ))}
-                  </select>
-                </label>
-              )}</div>
+  const calculateOverallAverage = (scores) => {
+    const values = Object.values(scores);
+    const total = values.reduce((acc, curr) => acc + (curr || 0), 0);
+    return (total / values.length).toFixed(2);
+  };
 
-              {/* Show Results Button */}
-            {selectedTeam && selectedMember && (
-              <button onClick={() => fetchscores}>Show Results</button>
-            )}
+  return (
+    <div className="dashboard-container">
+      <header className="header1">
+        <h2 className="dashboard-title">Instructor Dashboard</h2>
+      </header>
 
-
-
-                {/* Summary of Results*/}
-                {ShowResults && (
-                    <table className = "table">
-                        <thead>
-                            <tr>
-                                <th> Name </th>
-                                <th> Team Name </th>
-                                <th> Cooperation </th>
-                                <th> Conceptual </th>
-                                <th> Practical </th>
-                                <th> Work </th>
-                                <th> Average </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        {scores && (
-                <tr>
-                  <td>{selectedMember}</td>
-                  <td>{selectedTeam}</td>
-                  <td>{scores.cooperation}</td>
-                  <td>{scores.conceptual}</td>
-                  <td>{scores.practical}</td>
-                  <td>{scores.work}</td>
-                  <td>{scores.average}</td>
-                </tr>
-              )}
-                        </tbody>
-                    </table>
-                    )}
-                    </div>
-                )}
-
-
-            </div>
-            
+      <div className="options-container">
+        <h2>Team Evaluation Results</h2>
+        <div className="options">
+          <button
+            className="option-btn"
+            onClick={() => setView("Summary")}
+            style={{
+              backgroundColor: view === "Summary" ? "#7d3c98" : "#9b59b6",
+            }}
+          >
+            Summary of Results
+          </button>
+          <button
+            className="option-btn"
+            onClick={() => setView("Detailed")}
+            style={{
+              backgroundColor: view === "Detailed" ? "#7d3c98" : "#9b59b6",
+            }}
+          >
+            Detailed Results
+          </button>
         </div>
-         );
+      </div>
+
+      {view === "Summary" && (
+        <div className="results-container">
+          <h3>Summary of Assessment Results</h3>
+          <table className="results-table">
+            <thead>
+              <tr>
+                <th>Student ID</th>
+                <th>Email</th>
+                <th>Team</th>
+                <th>Work Ethic</th>
+                <th>Practical</th>
+                <th>Cooperation</th>
+                <th>Conceptual</th>
+                <th>Average</th>
+              </tr>
+            </thead>
+            <tbody>
+              {teams.map((team) =>
+                workEthicData
+                  .filter((entry) => entry.Team_id === team.id)
+                  .map((entry, index) => {
+                    const practicalEntry = practicalData.find(
+                      (p) =>
+                        p.Assessedmemberid === entry.Assessedmemberid &&
+                        p.Team_id === entry.Team_id
+                    );
+                    const cooperationEntry = cooperationData.find(
+                      (c) =>
+                        c.Assessedmemberid === entry.Assessedmemberid &&
+                        c.Team_id === entry.Team_id
+                    );
+                    const conceptualEntry = conceptualData.find(
+                      (cc) =>
+                        cc.Assessedmemberid === entry.Assessedmemberid &&
+                        cc.Team_id === entry.Team_id
+                    );
+
+                    const scores = {
+                      workEthic: entry.averages,
+                      practical: practicalEntry?.averages || 0,
+                      cooperation: cooperationEntry?.averages || 0,
+                      conceptual: conceptualEntry?.averages || 0,
+                    };
+
+                    return (
+                      <tr key={index}>
+                        <td>{entry.Assessedmemberid}</td>
+                        <td>{entry.users.email}</td>
+                        <td>{team.teamname}</td>
+                        <td>{scores.workEthic}</td>
+                        <td>{scores.practical}</td>
+                        <td>{scores.cooperation}</td>
+                        <td>{scores.conceptual}</td>
+                        <td>{calculateOverallAverage(scores)}</td>
+                      </tr>
+                    );
+                  })
+              )}
+            </tbody>
+          </table>
+        </div>
+      )}
+
+      {view === "Detailed" && (
+        <div className="results-container">
+          <h3>Detailed Assessment Results</h3>
+          {teams.map((team) =>
+            workEthicData
+              .filter((entry) => entry.Team_id === team.id)
+              .map((entry) => {
+                const assessedMemberId = entry.Assessedmemberid;
+                const evaluatedStudentEmail = entry.users?.email || "N/A";
+
+                // Gather all assessments by assessor for this student
+                const assessmentsByAssessor = {};
+
+                workEthicData
+                  .filter((we) => we.Assessedmemberid === assessedMemberId)
+                  .forEach((we) => {
+                    assessmentsByAssessor[we.Assessorid] = {
+                      ...assessmentsByAssessor[we.Assessorid],
+                      workEthic: we.averages,
+                    };
+                  });
+
+                practicalData
+                  .filter((p) => p.Assessedmemberid === assessedMemberId)
+                  .forEach((p) => {
+                    assessmentsByAssessor[p.Assessorid] = {
+                      ...assessmentsByAssessor[p.Assessorid],
+                      practical: p.averages,
+                    };
+                  });
+
+                cooperationData
+                  .filter((c) => c.Assessedmemberid === assessedMemberId)
+                  .forEach((c) => {
+                    assessmentsByAssessor[c.Assessorid] = {
+                      ...assessmentsByAssessor[c.Assessorid],
+                      cooperation: c.averages,
+                    };
+                  });
+
+                conceptualData
+                  .filter((cc) => cc.Assessedmemberid === assessedMemberId)
+                  .forEach((cc) => {
+                    assessmentsByAssessor[cc.Assessorid] = {
+                      ...assessmentsByAssessor[cc.Assessorid],
+                      conceptual: cc.averages,
+                    };
+                  });
+
+                return (
+                  <div key={assessedMemberId} style={{ marginBottom: "30px" }}>
+                    <h4 className="team-name">Team: {team.teamname}</h4>
+                    <h5 style={{ fontSize: "1.1em" }}>
+                      Evaluated Student Email: {evaluatedStudentEmail}
+                    </h5>
+                    <table className="results-table">
+                      <thead>
+                        <tr>
+                          <th>Assessor ID</th>
+                          <th>Cooperation</th>
+                          <th>Conceptual</th>
+                          <th>Practical</th>
+                          <th>Work Ethic</th>
+                          <th>Average</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {Object.entries(assessmentsByAssessor).map(
+                          ([assessorId, scores], idx) => (
+                            <tr key={idx}>
+                              <td>{assessorId}</td>
+                              <td>{scores.cooperation || "N/A"}</td>
+                              <td>{scores.conceptual || "N/A"}</td>
+                              <td>{scores.practical || "N/A"}</td>
+                              <td>{scores.workEthic || "N/A"}</td>
+                              <td>{calculateOverallAverage(scores)}</td>
+                            </tr>
+                          )
+                        )}
+                      </tbody>
+                    </table>
+                  </div>
+                );
+              })
+          )}
+        </div>
+      )}
+    </div>
+  );
 };
+
 export default Dashboard;
