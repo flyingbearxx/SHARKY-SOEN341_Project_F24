@@ -40,16 +40,17 @@ const App = () => {
   return (
     <Routes>
       {/* Public Routes */}
-      <Route path="/" element={<Welcomepage />} />
-      <Route path="/login" element={<LogIn setToken={setToken} />} />
-      <Route path="/signup" element={<SignUp />} />
-      <Route path="/forgot-password" element={<ForgotPw />} />
-      <Route path="/reset-password" element={<ResetPW />} />
-      <Route path="/contact-us" element={<ContactUs />} />
-      <Route path="/logout" element={<Logout onLogout={handleLogout} />} />
-      <Route path="/conceptualassessment" element={<ConceptualAssessment />} /> 
-      <Route path="/practicalassessment" element={<PracticalAssessment />} />
-      <Route path="/workethicassessment" element={<WorkEthicAssessment />} />
+      <Route path="/" element={<Layout><Welcomepage /></Layout>} />
+        <Route path="/login" element={<Layout><LogIn setToken={setToken} /></Layout>} />
+        <Route path="/signup" element={<Layout><SignUp /></Layout>} />
+        <Route path="/forgot-password" element={<Layout><ForgotPw /></Layout>} />
+        <Route path="/reset-password" element={<Layout><ResetPW /></Layout>} />
+        <Route path="/contact-us" element={<Layout><ContactUs /></Layout>} />
+        <Route path="/logout" element={<Layout><Logout onLogout={handleLogout} /></Layout>} />
+        <Route path="/conceptualassessment" element={<Layout><ConceptualAssessment /></Layout>} />
+        <Route path="/practicalassessment" element={<Layout><PracticalAssessment /></Layout>} />
+        <Route path="/workethicassessment" element={<Layout><WorkEthicAssessment /></Layout>} />
+
 
       {/* Protected Routes */}
       
