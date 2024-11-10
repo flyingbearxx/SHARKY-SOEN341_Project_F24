@@ -8,7 +8,7 @@ import TeamManagement from "./TeamManagement";
 import ShowTeams from "./ShowTeams";
 import Logout from "./Logout";
 import Assessment from "./Assessment";
-import HandleTeams from "./HandleTeamInstructure";
+import HandleTeams from "./HandleTeamInstructor";
 import Welcomepage from "./Welcomepage";
 import Confirmpage from "./Confirmpage";
 import ConceptualAssessment from "./ConceptualAssessment";
