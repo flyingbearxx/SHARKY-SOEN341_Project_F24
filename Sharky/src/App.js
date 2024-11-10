@@ -8,7 +8,7 @@ import {
   ResetPW,
   TeamManagement,
   ShowTeams,
-  Confirmpage, 
+  Confirmpage,
   Logout,
   Assessment,
   HandleTeams,
@@ -20,7 +20,7 @@ import {
 } from "./pages/main";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./components/protectedRoute";
-
+import Layout from "./components/Layout";
 
 const App = () => {
   const [token, setToken] = useState(false);
@@ -37,30 +37,102 @@ const App = () => {
     setToken(false); // Clear token from state
   };
 
+  //Yasmeen updated the routing so the Date and time cn display on all pages
+
   return (
     <Routes>
       {/* Public Routes */}
-      <Route path="/" element={<Welcomepage />} />
-      <Route path="/login" element={<LogIn setToken={setToken} />} />
-      <Route path="/signup" element={<SignUp />} />
-      <Route path="/forgot-password" element={<ForgotPw />} />
-      <Route path="/reset-password" element={<ResetPW />} />
-      <Route path="/contact-us" element={<ContactUs />} />
-      <Route path="/logout" element={<Logout onLogout={handleLogout} />} />
-      <Route path="/conceptualassessment" element={<ConceptualAssessment />} /> 
-      <Route path="/practicalassessment" element={<PracticalAssessment />} />
-      <Route path="/workethicassessment" element={<WorkEthicAssessment />} />
+      <Route
+        path="/"
+        element={
+          <Layout>
+            <Welcomepage />
+          </Layout>
+        }
+      />
+      <Route
+        path="/login"
+        element={
+          <Layout>
+            <LogIn setToken={setToken} />
+          </Layout>
+        }
+      />
+      <Route
+        path="/signup"
+        element={
+          <Layout>
+            <SignUp />
+          </Layout>
+        }
+      />
+      <Route
+        path="/forgot-password"
+        element={
+          <Layout>
+            <ForgotPw />
+          </Layout>
+        }
+      />
+      <Route
+        path="/reset-password"
+        element={
+          <Layout>
+            <ResetPW />
+          </Layout>
+        }
+      />
+      <Route
+        path="/contact-us"
+        element={
+          <Layout>
+            <ContactUs />
+          </Layout>
+        }
+      />
+      <Route
+        path="/logout"
+        element={
+          <Layout>
+            <Logout onLogout={handleLogout} />
+          </Layout>
+        }
+      />
+      <Route
+        path="/conceptualassessment"
+        element={
+          <Layout>
+            <ConceptualAssessment />
+          </Layout>
+        }
+      />
+      <Route
+        path="/practicalassessment"
+        element={
+          <Layout>
+            <PracticalAssessment />
+          </Layout>
+        }
+      />
+      <Route
+        path="/workethicassessment"
+        element={
+          <Layout>
+            <WorkEthicAssessment />
+          </Layout>
+        }
+      />
 
       {/* Protected Routes */}
-      
-
 
       {/* Student Homepage */}
       <Route
         path="/homepage"
         element={
           <ProtectedRoute token={token}>
-            <Homepage />
+            <Layout>
+              <Homepage />
+            </Layout>
           </ProtectedRoute>
         }
       />
@@ -70,7 +142,10 @@ const App = () => {
         path="/team-management"
         element={
           <ProtectedRoute token={token}>
-            <TeamManagement />
+            <Layout>
+              {" "}
+              <TeamManagement />
+            </Layout>
           </ProtectedRoute>
         }
       />
@@ -80,64 +155,77 @@ const App = () => {
         path="/Show-teams"
         element={
           <ProtectedRoute token={token}>
-           
-            <ShowTeams/>
+            <Layout>
+              <ShowTeams />
+            </Layout>
           </ProtectedRoute>
         }
       />
-       <Route
+      <Route
         path="/Assessment"
         element={
           <ProtectedRoute token={token}>
-            <Assessment />
+            <Layout>
+              {" "}
+              <Assessment />
+            </Layout>
           </ProtectedRoute>
         }
-      /> 
+      />
 
-        <Route
+      <Route
         path="/ConceptualAssessment"
         element={
           <ProtectedRoute token={token}>
-            <ConceptualAssessment />
+            <Layout>
+              {" "}
+              <ConceptualAssessment />
+            </Layout>
           </ProtectedRoute>
         }
-      /> 
+      />
 
-        <Route
+      <Route
         path="/PracticalAssessment"
         element={
           <ProtectedRoute token={token}>
-            <PracticalAssessment />
+            <Layout>
+              {" "}
+              <PracticalAssessment />
+            </Layout>
           </ProtectedRoute>
         }
-      /> 
+      />
 
-        <Route
+      <Route
         path="/WorkEthicAssessment"
         element={
           <ProtectedRoute token={token}>
-            <WorkEthicAssessment />
+            <Layout>
+              <WorkEthicAssessment />
+            </Layout>
           </ProtectedRoute>
         }
-      /> 
+      />
 
+      <Route
+        path="/Confirmpage"
+        element={
+          <ProtectedRoute token={token}>
+            <Layout>
+              <Confirmpage />
+            </Layout>
+          </ProtectedRoute>
+        }
+      />
 
-      <Route 
-      path="/Confirmpage"
-      element={
-        <ProtectedRoute token={token}>
-          <Confirmpage/>
-        </ProtectedRoute>
-      }
-      /> 
-      
-      <Route 
-      path="/Dashboard"
-      element={
-        <ProtectedRoute token={token}>
-          <Dashboard />
-        </ProtectedRoute>
-      }
+      <Route
+        path="/Dashboard"
+        element={
+          <ProtectedRoute token={token}>
+            <Dashboard />
+          </ProtectedRoute>
+        }
       />
 
       {/* Instructor Show/Handle Teams */}
@@ -145,12 +233,13 @@ const App = () => {
         path="/handle-teams"
         element={
           <ProtectedRoute token={token}>
-            <HandleTeams />
+            <Layout>
+              <HandleTeams />
+            </Layout>
           </ProtectedRoute>
         }
       />
     </Routes>
-    
   );
 };
 
