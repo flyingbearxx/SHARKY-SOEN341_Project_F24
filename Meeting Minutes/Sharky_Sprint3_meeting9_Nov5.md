@@ -1,5 +1,5 @@
 MINUTES WRITER: Khujista 
-MEETING PARTICIPANTS: Ana and Khujista
+MEETING PARTICIPANTS: Ana and Khujista on November 5
 
 REVIEW OF ACTIONS:
 
