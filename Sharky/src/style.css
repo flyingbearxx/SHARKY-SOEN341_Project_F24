@@ -767,14 +767,13 @@ footer {
 .options-container {
   margin-top: 20px;
 }
-
-  .table-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    overflow-x: auto;
-    margin: 0 auto;
-  }
+.table-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: auto;
+  margin: 0 auto;
+}
   
   .table-title {
     background-color: #7d3c98;
@@ -830,3 +829,4 @@ footer {
   font-size: 1em;
   color: black; /* Slightly darker for assessor ID */
 }
+
