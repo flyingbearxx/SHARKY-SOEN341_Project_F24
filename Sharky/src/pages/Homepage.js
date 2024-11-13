@@ -38,9 +38,6 @@ const Homepage = () => {
           <Link to="/logout" className="menu-btn">
             Logout
           </Link>
-          <Link to="/Dashboard" className="menu-btn">
-            dashboard check
-          </Link>
         </div>
       </div>
     </div>
