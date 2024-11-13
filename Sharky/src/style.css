@@ -12,7 +12,8 @@ body {
   background: linear-gradient(135deg, #9b59b6, #d4a5ff, #b39ddb, #8e44ad);
   background-size: 400% 400%;
   animation: backgroundMove 10s ease infinite;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: auto;
 }
 
 @keyframes backgroundMove {
@@ -45,7 +46,8 @@ body {
     rgba(255, 255, 255, 0.4),
     transparent
   );
-  overflow: hidden;
+  overflow: auto;
+  overflow-x: auto; 
 }
 
 /* Header (for Sharky Peer Assessment Title) */
@@ -336,6 +338,7 @@ button:hover,
   text-align: center;
   max-width: 800px;
   width: 100%;
+  margin: 0 auto;
 }
 
 .options h2 {
@@ -714,7 +717,7 @@ footer {
   background-color: #ffffff; /* White background for the tables */
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for better visual */
-  overflow: hidden;
+  overflow-x: auto;
 }
 
 .results-table th,
@@ -752,6 +755,7 @@ footer {
   color: #6a0dad;
   font-weight: bold;
   font-size: 1.2em;
+ 
 }
 
 .detailed-container h5 {
@@ -762,4 +766,67 @@ footer {
 /* Additional Styling for Layout */
 .options-container {
   margin-top: 20px;
+}
+
+  .table-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: auto;
+    margin: 0 auto;
+  }
+  
+  .table-title {
+    background-color: #7d3c98;
+    color: #fff;
+    padding: 15px 20px;
+    border-radius: 5px;
+    position: relative;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-left: 40%;
+    width: fit-content; 
+    box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+  }
+  
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: -16px;
+  }
+
+
+
+  /* Styling for the box containing team name and assessor ID */
+.team-assessment h3,
+.team-assessment h4 {
+  margin: 0;
+  padding: 5px;
+  color: #333;
+}
+
+/* Box styling for team and assessor info */
+.team-info-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 7px;
+  margin-bottom: 15px;
+  margin-left: 57px;
+  width: 200px;
+  border-radius: 8px;
+  background-color:#9b59b6; /* Light blue background */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.team-info-box h3 {
+  font-size: 1em;
+  margin-bottom: 2.5px;
+  color: black; /* Blue color for team name */
+}
+
+.team-info-box h4 {
+  font-size: 1em;
+  color: black; /* Slightly darker for assessor ID */
 }
