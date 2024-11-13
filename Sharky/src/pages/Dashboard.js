@@ -10,6 +10,8 @@ const Dashboard = () => {
   const [view, setView] = useState("Summary");
 
   useEffect(() => {
+
+// added code. 
     const fetchData = async () => {
       try {
         const { data: teamsData, error: teamsError } = await supabase
@@ -34,6 +36,7 @@ const Dashboard = () => {
           .order("Team_id", { ascending: true });
         if (workEthicError) throw workEthicError;
         setWorkEthicData(workEthicData);
+
 
         const { data: practicalData, error: practicalError } = await supabase
           .from("PracticalContribution")
@@ -83,13 +86,15 @@ const Dashboard = () => {
           .order("Team_id", { ascending: true });
         if (conceptualError) throw conceptualError;
         setConceptualData(conceptualData);
+
       } catch (error) {
         console.error("Error fetching data:", error.message);
       }
     };
 
+
     fetchData();
-  }, []);
+  }, []); 
 
   const calculateOverallAverage = (scores) => {
     const values = Object.values(scores);
@@ -100,12 +105,22 @@ const Dashboard = () => {
   return (
     <div className="dashboard-container">
       <header className="header1">
-        <h2 className="dashboard-title">Instructor Dashboard</h2>
+        <h2 className="dashboard-title">SHARKY PEER Assessment
+        </h2>
       </header>
 
-      <div className="options-container">
+      <div className="options-container" style={{
+         display: "flex",
+         flexDirection: "column",
+          alignItems: "center",
+          textAlign: "center",
+  }}>
         <h2>Team Evaluation Results</h2>
-        <div className="options">
+        <div className="options"
+         style={{
+          display: "flex",
+          gap: "10px",
+        }}>
           <button
             className="option-btn"
             onClick={() => setView("Summary")}
@@ -129,70 +144,79 @@ const Dashboard = () => {
 
       {view === "Summary" && (
         <div className="results-container">
-          <h3>Summary of Assessment Results</h3>
+           <div className="table-title" >Summary of Assessment Results</div>
           <table className="results-table">
             <thead>
               <tr>
                 <th>Student ID</th>
-                <th>Email</th>
                 <th>Team</th>
-                <th>Work Ethic</th>
-                <th>Practical</th>
+                <th>Student Email</th>
                 <th>Cooperation</th>
                 <th>Conceptual</th>
-                <th>Average</th>
+                <th>Practical</th>
+                <th>Work Ethic</th>
+                <th>Overall Average</th>
               </tr>
             </thead>
             <tbody>
               {teams.map((team) =>
                 workEthicData
                   .filter((entry) => entry.Team_id === team.id)
-                  .map((entry, index) => {
-                    const practicalEntry = practicalData.find(
-                      (p) =>
-                        p.Assessedmemberid === entry.Assessedmemberid &&
-                        p.Team_id === entry.Team_id
-                    );
-                    const cooperationEntry = cooperationData.find(
-                      (c) =>
-                        c.Assessedmemberid === entry.Assessedmemberid &&
-                        c.Team_id === entry.Team_id
-                    );
-                    const conceptualEntry = conceptualData.find(
-                      (cc) =>
-                        cc.Assessedmemberid === entry.Assessedmemberid &&
-                        cc.Team_id === entry.Team_id
-                    );
-
-                    const scores = {
-                      workEthic: entry.averages,
-                      practical: practicalEntry?.averages || 0,
-                      cooperation: cooperationEntry?.averages || 0,
-                      conceptual: conceptualEntry?.averages || 0,
-                    };
-
-                    return (
-                      <tr key={index}>
-                        <td>{entry.Assessedmemberid}</td>
-                        <td>{entry.users.email}</td>
-                        <td>{team.teamname}</td>
-                        <td>{scores.workEthic}</td>
-                        <td>{scores.practical}</td>
-                        <td>{scores.cooperation}</td>
-                        <td>{scores.conceptual}</td>
-                        <td>{calculateOverallAverage(scores)}</td>
-                      </tr>
-                    );
-                  })
+                  .map((entry, idx) => (
+                    <tr key={idx}>
+                     
+                      <td>{entry.Assessedmemberid}</td>
+                      <td>{team.teamname}</td>
+                      <td>{entry.users?.email || "N/A"}</td>
+                      <td>
+                        {
+                          cooperationData.find(
+                            (c) => c.Assessedmemberid === entry.Assessedmemberid
+                          )?.averages || "N/A"
+                        }
+                      </td>
+                      <td>
+                        {
+                          conceptualData.find(
+                            (cc) =>
+                              cc.Assessedmemberid === entry.Assessedmemberid
+                          )?.averages || "N/A"
+                        }
+                      </td>
+                      <td>
+                        {
+                          practicalData.find(
+                            (p) => p.Assessedmemberid === entry.Assessedmemberid
+                          )?.averages || "N/A"
+                        }
+                      </td>
+                      <td>{entry.averages || "N/A"}</td>
+                      <td>
+                        {calculateOverallAverage({
+                          workEthic: entry.averages,
+                          practical: practicalData.find(
+                            (p) => p.Assessedmemberid === entry.Assessedmemberid
+                          )?.averages,
+                          cooperation: cooperationData.find(
+                            (c) => c.Assessedmemberid === entry.Assessedmemberid
+                          )?.averages,
+                          conceptual: conceptualData.find(
+                            (cc) =>
+                              cc.Assessedmemberid === entry.Assessedmemberid
+                          )?.averages,
+                        })}
+                      </td>
+                    </tr>
+                  ))
               )}
             </tbody>
           </table>
         </div>
       )}
 
-      {view === "Detailed" && (
+{view === "Detailed" && (
         <div className="results-container">
-          <h3>Detailed Assessment Results</h3>
+          <div className="table-title" >Detailed Assessment Results</div>
           {teams.map((team) =>
             workEthicData
               .filter((entry) => entry.Team_id === team.id)
@@ -200,7 +224,6 @@ const Dashboard = () => {
                 const assessedMemberId = entry.Assessedmemberid;
                 const evaluatedStudentEmail = entry.users?.email || "N/A";
 
-                // Gather all assessments by assessor for this student
                 const assessmentsByAssessor = {};
 
                 workEthicData
@@ -209,6 +232,7 @@ const Dashboard = () => {
                     assessmentsByAssessor[we.Assessorid] = {
                       ...assessmentsByAssessor[we.Assessorid],
                       workEthic: we.averages,
+                      workComment: we.WorkComment,
                     };
                   });
 
@@ -218,6 +242,7 @@ const Dashboard = () => {
                     assessmentsByAssessor[p.Assessorid] = {
                       ...assessmentsByAssessor[p.Assessorid],
                       practical: p.averages,
+                      practicalComment: p.PracticalComment,
                     };
                   });
 
@@ -227,6 +252,7 @@ const Dashboard = () => {
                     assessmentsByAssessor[c.Assessorid] = {
                       ...assessmentsByAssessor[c.Assessorid],
                       cooperation: c.averages,
+                      cooperationComment: c.Commentsection,
                     };
                   });
 
@@ -236,36 +262,55 @@ const Dashboard = () => {
                     assessmentsByAssessor[cc.Assessorid] = {
                       ...assessmentsByAssessor[cc.Assessorid],
                       conceptual: cc.averages,
+                      conceptualComment: cc.ConceptualComment,
                     };
                   });
 
                 return (
-                  <div key={assessedMemberId} style={{ marginBottom: "30px" }}>
-                    <h4 className="team-name">Team: {team.teamname}</h4>
-                    <h5 style={{ fontSize: "1.1em" }}>
-                      Evaluated Student Email: {evaluatedStudentEmail}
-                    </h5>
+                  <div key={entry.Assessedmemberid} className="team-assessment">
+                    <div className="team-info-box">
+                    <h3>Team: {team.teamname}</h3>
+                    <h4>Assessor ID: {entry.Assessorid}</h4>
+                    </div>
+
                     <table className="results-table">
                       <thead>
                         <tr>
-                          <th>Assessor ID</th>
+                          <th>Team Member Email</th>
                           <th>Cooperation</th>
                           <th>Conceptual</th>
                           <th>Practical</th>
                           <th>Work Ethic</th>
                           <th>Average</th>
+                          <th>Comments</th>
                         </tr>
                       </thead>
                       <tbody>
                         {Object.entries(assessmentsByAssessor).map(
                           ([assessorId, scores], idx) => (
+
                             <tr key={idx}>
-                              <td>{assessorId}</td>
+                              <td>{evaluatedStudentEmail}</td>
                               <td>{scores.cooperation || "N/A"}</td>
                               <td>{scores.conceptual || "N/A"}</td>
                               <td>{scores.practical || "N/A"}</td>
                               <td>{scores.workEthic || "N/A"}</td>
-                              <td>{calculateOverallAverage(scores)}</td>
+                              <td>
+                                {calculateOverallAverage({
+                                  cooperation: scores.cooperation,
+                                  conceptual: scores.conceptual,
+                                  practical: scores.practical,
+                                  workEthic: scores.workEthic,
+                                })}
+                              </td>
+                              <td>
+                                <ul>
+                                  <li><b>Work:</b> {scores.workComment || "No comment"}</li>
+                                  <li><b>Practical:</b> {scores.practicalComment || "No comment"}</li>
+                                  <li><b>Cooperation:</b> {scores.cooperationComment || "No comment"}</li>
+                                  <li><b>Conceptual:</b> {scores.conceptualComment || "No comment"}</li>
+                                </ul>
+                              </td>
                             </tr>
                           )
                         )}
@@ -280,5 +325,4 @@ const Dashboard = () => {
     </div>
   );
 };
-
 export default Dashboard;
