@@ -233,7 +233,7 @@ const ConceptualAssessment = () => {
             <div className="rating">
               <label>
                 <b>
-                  2. How would you rate the quality of this team member's
+                  2. How would you rate the quality of this team member&apos;s
                   contribution to the project?
                 </b>
               </label>
@@ -432,7 +432,7 @@ const ConceptualAssessment = () => {
             <div className="rating">
               <label>
                 <b>
-                  7. Overall, did this team member's conceptual contribution
+                  7. Overall, did this team member&apos;s conceptual contribution
                   help guide the team in the right direction?
                 </b>
               </label>

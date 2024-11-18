@@ -151,7 +151,7 @@ const LogIn = ({ setToken }) => {
         {/* Links for Sign Up and Reset Password */}
         <div className="extra-links">
           <p>
-            Don't have an account? <Link to="/signup">Sign up</Link>
+            Don&apos;t have an account? <Link to="/signup">Sign up</Link>
           </p>
           <p>
             Forgot password? <Link to="/forgot-password">Reset password</Link>

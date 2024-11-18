@@ -306,7 +306,7 @@ const WorkEthicAssessment = () => {
       </div> 
       <div className="form-group">
                 <div className="rating">
-                <label><b>5. How positive and proactive was this team member's attitude towards challenges and setbacks?</b></label>
+                <label><b>5. How positive and proactive was this team member&apos;s attitude towards challenges and setbacks?</b></label>
     
                 <div style={{ display: 'flex', gap: '5px', cursor: 'pointer' }}>
               {[1, 2, 3, 4, 5].map((value) => (
