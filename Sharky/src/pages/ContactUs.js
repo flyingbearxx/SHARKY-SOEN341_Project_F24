@@ -8,7 +8,7 @@ const ContactUs = () => {
         <p>
           For inquiries regarding our services or if you have any questions, please contact us.
         </p>
-        <h4>Contact Information for the application's managers</h4>
+        <h4>Contact Information for the application&apos;s managers</h4>    
         <p>Yameen Adi - ya_adi@live.concordia.ca</p>
         <p>Ana Rostam - rostamana927@gmail.com</p>
         <p>Shaili Hakimpour - shailihakimpour@gmail.com</p>
