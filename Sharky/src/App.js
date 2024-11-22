@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { restoreSession, getCurrentSession, supabase } from "./client";
+
 import {
   LogIn,
   SignUp,
@@ -27,10 +29,15 @@ const App = () => {
   const [token, setToken] = useState(false);
 
   useEffect(() => {
-    const storedToken = sessionStorage.getItem("token");
-    if (storedToken) {
-      setToken(JSON.parse(storedToken));
-    }
+    const initializeSession = async () => {
+      await restoreSession(); // Restore session from localStorage
+      const session = getCurrentSession(); // Get current session from restored state
+      if (session) {
+        setToken(session.access_token);
+      }
+    };
+
+    initializeSession();
   }, []);
 
   const handleLogout = () => {
