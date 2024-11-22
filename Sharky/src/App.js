@@ -29,26 +29,39 @@ const App = () => {
   const [token, setToken] = useState(false);
 
   useEffect(() => {
-    const initializeSession = async () => {
-      await restoreSession(); // Restore session from localStorage
-      const session = getCurrentSession(); // Get current session from restored state
-      if (session) {
-        setToken(session.access_token);
+    const checkSession = async () => {
+      const {
+        data: { session },
+        error,
+      } = await supabase.auth.getSession();
+
+      if (error) {
+        console.error("Session Error:", error.message);
+        setToken(false);
+      } else if (session) {
+        console.log("Session Found:", session);
+        setToken(true);
+      } else {
+        console.log("No session found.");
+        setToken(false);
       }
     };
 
-    initializeSession();
+    checkSession();
   }, []);
 
-  const handleLogout = () => {
-    sessionStorage.removeItem("token");
-    setToken(false); // Clear token from state
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    setToken(false);
   };
 
   //Yasmeen updated the routing so the Date and time cn display on all pages
 
   return (
     <Routes>
+      <Route path="/login" element={<LogIn setToken={setToken} />} />
+      <Route path="/contact-us" element={<ContactUs />} />
+      
       {/* Public Routes */}
       <Route
         path="/"
