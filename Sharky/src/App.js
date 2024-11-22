@@ -17,6 +17,7 @@ import {
   PracticalAssessment,
   WorkEthicAssessment,
   Dashboard,
+  CourseEvaluation, // Import the CourseEvaluation page here
 } from "./pages/main";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./components/protectedRoute";
@@ -36,8 +37,6 @@ const App = () => {
     sessionStorage.removeItem("token");
     setToken(false); // Clear token from state
   };
-
-  //Yasmeen updated the routing so the Date and time cn display on all pages
 
   return (
     <Routes>
@@ -143,7 +142,6 @@ const App = () => {
         element={
           <ProtectedRoute token={token}>
             <Layout>
-              {" "}
               <TeamManagement />
             </Layout>
           </ProtectedRoute>
@@ -166,7 +164,6 @@ const App = () => {
         element={
           <ProtectedRoute token={token}>
             <Layout>
-              {" "}
               <Assessment />
             </Layout>
           </ProtectedRoute>
@@ -178,7 +175,6 @@ const App = () => {
         element={
           <ProtectedRoute token={token}>
             <Layout>
-              {" "}
               <ConceptualAssessment />
             </Layout>
           </ProtectedRoute>
@@ -190,7 +186,6 @@ const App = () => {
         element={
           <ProtectedRoute token={token}>
             <Layout>
-              {" "}
               <PracticalAssessment />
             </Layout>
           </ProtectedRoute>
@@ -235,6 +230,18 @@ const App = () => {
           <ProtectedRoute token={token}>
             <Layout>
               <HandleTeams />
+            </Layout>
+          </ProtectedRoute>
+        }
+      />
+
+      {/* Course Evaluation Route */}
+      <Route
+        path="/course-evaluation"
+        element={
+          <ProtectedRoute token={token}>
+            <Layout>
+              <CourseEvaluation />
             </Layout>
           </ProtectedRoute>
         }
