@@ -17,6 +17,7 @@ import {
   PracticalAssessment,
   WorkEthicAssessment,
   Dashboard,
+  Profile,
 } from "./pages/main";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./components/protectedRoute";
@@ -224,6 +225,15 @@ const App = () => {
         element={
           <ProtectedRoute token={token}>
             <Dashboard />
+          </ProtectedRoute>
+        }
+      />
+
+<Route
+        path="/Profile"
+        element={
+          <ProtectedRoute token={token}>
+            <Profile />
           </ProtectedRoute>
         }
       />
