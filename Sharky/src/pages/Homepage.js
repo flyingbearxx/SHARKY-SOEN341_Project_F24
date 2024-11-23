@@ -35,7 +35,7 @@ const Homepage = () => {
           <Link to="/course-evaluation" className="menu-btn">
             Course Evaluation
           </Link>
-          <Link to="/profile" className="menu-btn">
+          <Link to="/Profile" className="menu-btn">
             Your Profile
           </Link>
           <Link to="/logout" className="menu-btn">
