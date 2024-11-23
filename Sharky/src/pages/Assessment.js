@@ -12,7 +12,7 @@ const Assessment = () => {
   const member = location.state?.member;
   const team = location.state?.team;
 
-  // Form State for COOPERATION DIMENTSION
+  // Form State for COOPERATION DIMENSION
   const [formData, setFormData] = useState({
     Assessorid: "",
     Assessedmemberid: member,
@@ -272,7 +272,7 @@ const Assessment = () => {
               onChange={handleInputChange}
               required
             />
-          </div> 
+          </div>
           {/* Show the selected team and member */}
           {/* <h3>Selected Team: {team}</h3>
         <h3>Evaluating Member: {member}</h3> */}
