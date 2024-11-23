@@ -122,6 +122,14 @@ const App = () => {
           </Layout>
         }
       />
+<Route
+        path="/Dashboard"
+        element={
+          <Layout>
+            <Dashboard />
+          </Layout>
+        }
+      />
 
       {/* Protected Routes */}
 
