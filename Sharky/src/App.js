@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { restoreSession, getCurrentSession, supabase } from "./client";
+
 import {
   LogIn,
   SignUp,
@@ -17,6 +19,7 @@ import {
   PracticalAssessment,
   WorkEthicAssessment,
   Dashboard,
+  Profile,
 } from "./pages/main";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./components/protectedRoute";
@@ -26,21 +29,39 @@ const App = () => {
   const [token, setToken] = useState(false);
 
   useEffect(() => {
-    const storedToken = sessionStorage.getItem("token");
-    if (storedToken) {
-      setToken(JSON.parse(storedToken));
-    }
+    const checkSession = async () => {
+      const {
+        data: { session },
+        error,
+      } = await supabase.auth.getSession();
+
+      if (error) {
+        console.error("Session Error:", error.message);
+        setToken(false);
+      } else if (session) {
+        console.log("Session Found:", session);
+        setToken(true);
+      } else {
+        console.log("No session found.");
+        setToken(false);
+      }
+    };
+
+    checkSession();
   }, []);
 
-  const handleLogout = () => {
-    sessionStorage.removeItem("token");
-    setToken(false); // Clear token from state
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    setToken(false);
   };
 
   //Yasmeen updated the routing so the Date and time cn display on all pages
 
   return (
     <Routes>
+      <Route path="/login" element={<LogIn setToken={setToken} />} />
+      <Route path="/contact-us" element={<ContactUs />} />
+      
       {/* Public Routes */}
       <Route
         path="/"
@@ -232,6 +253,15 @@ const App = () => {
         element={
           <ProtectedRoute token={token}>
             <Dashboard />
+          </ProtectedRoute>
+        }
+      />
+
+<Route
+        path="/Profile"
+        element={
+          <ProtectedRoute token={token}>
+            <Profile />
           </ProtectedRoute>
         }
       />
