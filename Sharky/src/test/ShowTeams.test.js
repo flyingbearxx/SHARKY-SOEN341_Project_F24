@@ -5,6 +5,7 @@ import ShowTeams from "../pages/ShowTeams";
 import "@testing-library/jest-dom";
 
 describe("ShowTeams Component - Student View with Real Data", () => {
+  //Acceptance Test: Display of Data from the database
   test("displays 'TeamA' and member 'student1@example.com, student2@example.com, shayheartforever@gmail.com' from real database", async () => {
     // Render the ShowTeams component
     await act(async () => {
