@@ -15,21 +15,21 @@ describe("Assessment Component - Basic Rendering and Functionality", () => {
     // Mock alert function to catch alert calls
     jest.spyOn(window, "alert").mockImplementation(() => {});
   });
-
+//Unit Test: The Header
   test("renders the main headers", () => {
     expect(screen.getByText(/SHARKY PEER ASSESSMENT/i)).toBeInTheDocument();
     expect(screen.getByText(/Evaluation Form/i)).toBeInTheDocument();
   });
-
+//Unit Test: input field 
   test("renders 'Your Name' input field", () => {
     expect(screen.getByLabelText(/Your Name:/i)).toBeInTheDocument();
   });
-
+//Unit Test: dropdown menu
   test("renders team selection dropdown", () => {
     expect(screen.getByText(/Which team are you in\?/i)).toBeInTheDocument();
     expect(screen.getAllByRole("combobox")[0]).toBeInTheDocument(); // Select a team dropdown
   });
-
+//Unit Test: dropdown menu
   test("renders team member selection dropdown", () => {
     expect(
       screen.getByText(
@@ -38,13 +38,13 @@ describe("Assessment Component - Basic Rendering and Functionality", () => {
     ).toBeInTheDocument();
     expect(screen.getAllByRole("combobox")[1]).toBeInTheDocument(); // Select a team member dropdown
   });
-
+//Unit Test: The header in assessment page
   test("renders assessment dimension section header", () => {
     expect(
       screen.getByText(/ASSESSMENT DIMENSION: COOPERATION/i)
     ).toBeInTheDocument();
   });
-
+//Unit Test question displaying
   test("renders questions under cooperation dimension", () => {
     expect(
       screen.getByText(
@@ -62,17 +62,17 @@ describe("Assessment Component - Basic Rendering and Functionality", () => {
       )
     ).toBeInTheDocument();
   });
-
+//Unit Test: the comment section
   test("renders the comment section for cooperation feedback", () => {
     expect(
       screen.getByLabelText(/COOPERATION - Additional Feedback:/i)
     ).toBeInTheDocument();
   });
-
+//Unit Test: The button
   test("renders 'NEXT' button for form submission", () => {
     expect(screen.getByRole("button", { name: /NEXT/i })).toBeInTheDocument();
   });
-
+//Acceptance Test: Attempt to submit
   test("does not submit if any input field is empty", async () => {
     // Fill in the 'Your Name' field
     fireEvent.change(screen.getByLabelText(/Your Name:/i), {
