@@ -284,7 +284,6 @@ const chartOptions = {
             <table className="results-table">
               <thead>
                 <tr>
-                  <th>Assessor</th>
                   <th>Cooperation</th>
                   <th>Practical</th>
                   <th>Work Ethic</th>
@@ -295,7 +294,6 @@ const chartOptions = {
               <tbody>
                 {assessmentData.map((row, idx) => (
                   <tr key={idx}>
-                    <td>{row.Assessor}</td>
                     <td>{row.Cooperation}</td>
                     <td>{row.Practical}</td>
                     <td>{row.WorkEthic}</td>
