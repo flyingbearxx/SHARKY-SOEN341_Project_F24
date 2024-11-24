@@ -9,5 +9,5 @@ Ana:
 Shaili:  
 1. Fetching the data of the evaluation of the logged in user  
 2. Profile page's test  
-*ACTIONS FOR NEXT MEETING:* 
+*ACTIONS FOR NEXT MEETING:*   
 The tasks should be done by Nov 24  
