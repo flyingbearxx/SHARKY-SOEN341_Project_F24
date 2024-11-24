@@ -7,9 +7,9 @@ const Layout = ({ children }) => {
       {/* DateTime component with inline style */}
       <DateTime
   style={{
-    paddingTop: "80px",
+    paddingTop: "10px",
     position: "absolute",
-    top: "100px",
+    top: "100px", // Adjusted to push it below the navigation
     right: "20px",
     fontSize: "16px",
     fontWeight: "bold",
@@ -22,7 +22,6 @@ const Layout = ({ children }) => {
     textAlign: "center",
   }}
 />
-
       
       {/* Page content */}
       <div>{children}</div>
