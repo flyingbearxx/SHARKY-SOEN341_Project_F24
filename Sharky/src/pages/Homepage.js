@@ -30,9 +30,12 @@ const Homepage = () => {
             Manage Teams
           </Link>
           <Link to="/Assessment" className="menu-btn">
-            Evaluation
+            Peer Evaluation
           </Link>
-          <Link to="/profile" className="menu-btn">
+          <Link to="/course-evaluation" className="menu-btn">
+            Course Evaluation
+          </Link>
+          <Link to="/Profile" className="menu-btn">
             Your Profile
           </Link>
           <Link to="/logout" className="menu-btn">

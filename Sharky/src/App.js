@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { restoreSession, getCurrentSession, supabase } from "./client";
+
 import {
   LogIn,
   SignUp,
@@ -17,6 +19,8 @@ import {
   PracticalAssessment,
   WorkEthicAssessment,
   Dashboard,
+  CourseEvaluation, // Import the CourseEvaluation page here
+  Profile,
 } from "./pages/main";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./components/protectedRoute";
@@ -26,21 +30,37 @@ const App = () => {
   const [token, setToken] = useState(false);
 
   useEffect(() => {
-    const storedToken = sessionStorage.getItem("token");
-    if (storedToken) {
-      setToken(JSON.parse(storedToken));
-    }
+    const checkSession = async () => {
+      const {
+        data: { session },
+        error,
+      } = await supabase.auth.getSession();
+
+      if (error) {
+        console.error("Session Error:", error.message);
+        setToken(false);
+      } else if (session) {
+        console.log("Session Found:", session);
+        setToken(true);
+      } else {
+        console.log("No session found.");
+        setToken(false);
+      }
+    };
+
+    checkSession();
   }, []);
 
-  const handleLogout = () => {
-    sessionStorage.removeItem("token");
-    setToken(false); // Clear token from state
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    setToken(false);
   };
-
-  //Yasmeen updated the routing so the Date and time cn display on all pages
 
   return (
     <Routes>
+      <Route path="/login" element={<LogIn setToken={setToken} />} />
+      <Route path="/contact-us" element={<ContactUs />} />
+      
       {/* Public Routes */}
       <Route
         path="/"
@@ -122,6 +142,14 @@ const App = () => {
           </Layout>
         }
       />
+<Route
+        path="/Dashboard"
+        element={
+          <Layout>
+            <Dashboard />
+          </Layout>
+        }
+      />
 
       {/* Protected Routes */}
 
@@ -143,7 +171,6 @@ const App = () => {
         element={
           <ProtectedRoute token={token}>
             <Layout>
-              {" "}
               <TeamManagement />
             </Layout>
           </ProtectedRoute>
@@ -166,7 +193,6 @@ const App = () => {
         element={
           <ProtectedRoute token={token}>
             <Layout>
-              {" "}
               <Assessment />
             </Layout>
           </ProtectedRoute>
@@ -178,7 +204,6 @@ const App = () => {
         element={
           <ProtectedRoute token={token}>
             <Layout>
-              {" "}
               <ConceptualAssessment />
             </Layout>
           </ProtectedRoute>
@@ -190,7 +215,6 @@ const App = () => {
         element={
           <ProtectedRoute token={token}>
             <Layout>
-              {" "}
               <PracticalAssessment />
             </Layout>
           </ProtectedRoute>
@@ -228,6 +252,15 @@ const App = () => {
         }
       />
 
+<Route
+        path="/Profile"
+        element={
+          <ProtectedRoute token={token}>
+            <Profile />
+          </ProtectedRoute>
+        }
+      />
+
       {/* Instructor Show/Handle Teams */}
       <Route
         path="/handle-teams"
@@ -235,6 +268,18 @@ const App = () => {
           <ProtectedRoute token={token}>
             <Layout>
               <HandleTeams />
+            </Layout>
+          </ProtectedRoute>
+        }
+      />
+
+      {/* Course Evaluation Route */}
+      <Route
+        path="/course-evaluation"
+        element={
+          <ProtectedRoute token={token}>
+            <Layout>
+              <CourseEvaluation />
             </Layout>
           </ProtectedRoute>
         }

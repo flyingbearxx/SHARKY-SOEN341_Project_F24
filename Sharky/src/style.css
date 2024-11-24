@@ -47,7 +47,7 @@ body {
     transparent
   );
   overflow: auto;
-  overflow-x: auto; 
+  overflow-x: auto;
 }
 
 /* Header (for Sharky Peer Assessment Title) */
@@ -433,6 +433,9 @@ select {
   font-size: 28px;
   margin-bottom: 20px;
 }
+.options-container h3 {
+  margin-top: 0;
+}
 
 /* SignUp Page Styles */
 .signup-box {
@@ -622,6 +625,74 @@ h4 {
   margin: 10px 0;
 }
 
+/* Styling the feedback form */
+.feedback-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.feedback-form label {
+  font-size: 1.1rem;
+  color: #6a0dad;
+}
+
+.feedback-form textarea {
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  width: 100%;
+  height: 150px;
+  resize: none;
+  background-color: #f9f9f9; /* Lighter background */
+  color: #4b0082; /* Same purple text */
+}
+
+.feedback-form textarea:focus {
+  border-color: #6a0dad; /* Purple focus border */
+  outline: none;
+  background-color: #fff; /* Light background on focus */
+}
+
+.feedback-form button {
+  padding: 12px 20px;
+  font-size: 1.1rem;
+  background-color: #6a0dad; /* Purple button */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+.feedback-form button:hover {
+  background-color: #4b0082; /* Darker purple on hover */
+}
+
+.feedback-form p {
+  color: #28a745; /* Green for success messages */
+}
+.submitted-feedback {
+  background-color: #f4f4f9;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+.submitted-feedback h4 {
+  color: #6a0dad; /* Purple color for the heading */
+  margin-bottom: 10px;
+}
+
+.submitted-feedback p {
+  font-size: 1rem;
+  color: #4b0082; /* Same purple color for the text */
+}
+
 footer {
   margin-top: 20px;
   text-align: center;
@@ -755,7 +826,6 @@ footer {
   color: #6a0dad;
   font-weight: bold;
   font-size: 1.2em;
- 
 }
 
 .detailed-container h5 {
@@ -774,30 +844,28 @@ footer {
   overflow-x: auto;
   margin: 0 auto;
 }
-  
-  .table-title {
-    background-color: #7d3c98;
-    color: #fff;
-    padding: 15px 20px;
-    border-radius: 5px;
-    position: relative;
-    text-align: center;
-    font-weight: bold;
-    margin-top: 20px;
-    margin-left: 40%;
-    width: fit-content; 
-    box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
-  }
-  
-  table {
-    border-collapse: collapse;
-    width: 100%;
-    margin-top: -16px;
-  }
 
+.table-title {
+  background-color: #7d3c98;
+  color: #fff;
+  padding: 15px 20px;
+  border-radius: 5px;
+  position: relative;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-left: 40%;
+  width: fit-content;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
 
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: -16px;
+}
 
-  /* Styling for the box containing team name and assessor ID */
+/* Styling for the box containing team name and assessor ID */
 .team-assessment h3,
 .team-assessment h4 {
   margin: 0;
@@ -815,7 +883,7 @@ footer {
   margin-left: 57px;
   width: 200px;
   border-radius: 8px;
-  background-color:#9b59b6; /* Light blue background */
+  background-color: #9b59b6; /* Light blue background */
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -828,5 +896,381 @@ footer {
 .team-info-box h4 {
   font-size: 1em;
   color: black; /* Slightly darker for assessor ID */
+}
+
+/* Course Evaluation Container */
+.course-evaluation-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+  width: 100%;
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.95
+  ); /* Match the light background style */
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Soft shadow */
+  margin-top: 150px; /* Ensure space below the header */
+  max-width: 800px; /* Consistent with homepage content */
+  text-align: center;
+}
+
+/* Title for Course Evaluation */
+.course-evaluation-container h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #6c3483; /* Purple color for headings */
+  text-transform: uppercase; /* Consistent with homepage titles */
+}
+
+/* Question Styling */
+.course-evaluation-container label {
+  font-size: 18px;
+  color: #333; /* Dark gray text */
+  display: block;
+  margin: 20px 0 10px;
+}
+
+/* Radio Buttons Styling */
+.course-evaluation-container .form-group {
+  margin-bottom: 20px;
+}
+
+.radio-group {
+  display: flex; /* Align radio buttons horizontally */
+  justify-content: center; /* Center the group */
+  gap: 15px; /* Space between the radio buttons */
+  margin-top: 10px; /* Add some spacing above the group */
+}
+
+.radio-group label {
+  display: flex;
+  align-items: center; /* Align the radio button with the label text */
+  font-size: 16px; /* Optional: Adjust the text size */
+  color: #333; /* Dark gray text */
+}
+
+.radio-group input[type="radio"] {
+  margin-right: 5px; /* Space between the radio button and the label */
+  transform: scale(1.2); /* Slightly larger radio buttons */
+  accent-color: #9b59b6; /* Matches the purple theme */
+}
+
+/* Additional Comments Section */
+textarea {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 2px solid #9b59b6;
+  outline: none;
+  color: #333;
+  font-size: 16px;
+  border-radius: 8px;
+}
+
+textarea:focus {
+  border-color: #7d3c98; /* Slightly darker purple when focused */
+}
+
+/* Submit Button */
+.course-evaluation-container button {
+  background: #9b59b6;
+  border: 2px solid #9b59b6;
+  padding: 12px 40px;
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.course-evaluation-container button:hover {
+  background-color: #7d3c98;
+  border-color: #7d3c98;
+}
+
+/* Success/Alert Message */
+.success-message {
+  color: #28a745; /* Green for success */
+  font-size: 16px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.error-message {
+  color: #e74c3c; /* Red for error */
+  font-size: 16px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* Course Evaluation Container */
+.course-evaluation-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+  width: 100%;
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.95
+  ); /* Match the light background style */
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Soft shadow */
+  margin-top: 150px; /* Ensure space below the header */
+  max-width: 800px; /* Consistent with homepage content */
+  text-align: center;
+}
+
+/* Title for Course Evaluation */
+.course-evaluation-container h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #6c3483; /* Purple color for headings */
+  text-transform: uppercase; /* Consistent with homepage titles */
+}
+
+/* Question Styling */
+.course-evaluation-container label {
+  font-size: 18px;
+  color: #333; /* Dark gray text */
+  display: block;
+  margin: 20px 0 10px;
+}
+
+/* Radio Buttons Styling */
+.course-evaluation-container .form-group {
+  margin-bottom: 20px;
+}
+
+.radio-group {
+  display: flex; /* Align radio buttons horizontally */
+  justify-content: center; /* Center the group */
+  gap: 15px; /* Space between the radio buttons */
+  margin-top: 10px; /* Add some spacing above the group */
+}
+
+.radio-group label {
+  display: flex;
+  align-items: center; /* Align the radio button with the label text */
+  font-size: 16px; /* Optional: Adjust the text size */
+  color: #333; /* Dark gray text */
+}
+
+.radio-group input[type="radio"] {
+  margin-right: 5px; /* Space between the radio button and the label */
+  transform: scale(1.2); /* Slightly larger radio buttons */
+  accent-color: #9b59b6; /* Matches the purple theme */
+}
+
+/* Additional Comments Section */
+textarea {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 2px solid #9b59b6;
+  outline: none;
+  color: #333;
+  font-size: 16px;
+  border-radius: 8px;
+}
+
+textarea:focus {
+  border-color: #7d3c98; /* Slightly darker purple when focused */
+}
+
+/* Submit Button */
+.course-evaluation-container button {
+  background: #9b59b6;
+  border: 2px solid #9b59b6;
+  padding: 12px 40px;
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.course-evaluation-container button:hover {
+  background-color: #7d3c98;
+  border-color: #7d3c98;
+}
+
+/* Success/Alert Message */
+.success-message {
+  color: #28a745; /* Green for success */
+  font-size: 16px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.error-message {
+  color: #e74c3c; /* Red for error */
+  font-size: 16px;
+  margin-top: 20px;
+  text-align: center;
+}
+.user-email {
+  font-size: 20px;
+  font-weight: bold;
+  color: #6c3483; /* Purple color */
+  text-align: center;
+  margin-bottom: 20px;
+}
+/* Updated CSS for Profile Page */
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #9b59b6, #d4a5ff, #b39ddb, #8e44ad);
+  animation: backgroundMove 10s ease infinite;
+}
+
+.results-container {
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-top: 20px;
+  width: 100%;
+  max-width: 900px;
+  text-align: center;
+}
+
+.header1 {
+  width: 100%;
+  height: 80px;
+  background-color: #9b59b6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 25px 0 black;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.dashboard-title {
+  font-size: 28px;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+.table-title {
+  font-size: 20px;
+  color: #6c3483;
+  text-align: center;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.results-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 16px;
+  text-align: left;
+}
+
+.results-table th,
+.results-table td {
+  border: 1px solid #dddddd;
+  padding: 12px;
+}
+
+.results-table th {
+  background-color: #7d3c98;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+.results-table td ul {
+  list-style: disc;
+  margin-left: 20px;
+  text-align: left;
+}
+
+.user-email {
+  font-size: 20px;
+  font-weight: bold;
+  color: #6c3483;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.pie-chart-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 200px; /* Adjust based on chart size */
+  height: 200px;
+  margin: 30px auto;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #f0f0f0, #ffffff); /* Smooth gradient */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), inset 0 2px 3px rgba(255, 255, 255, 0.6);
+  padding: 10px;
+  position: relative;
+  margin-left:500px;
+  margin-top: -200px;
+}
+
+.pie-chart-container h3 {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333; /* Neutral text color */
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.pie-chart-container canvas {
+  width: 100%;
+  height: 100%;
+}
+
+.pie-chart-container .result {
+  margin-top: 15px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333; /* Neutral, professional color */
+  text-align: center;
+}
+
+.pie-chart-container .result span {
+  color: #6a0dad; /* Highlighted color for the score */
+}
+.profile-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 0 auto;
+  padding: 20px;
+  padding-top: 80px;
+  font-family: Arial, sans-serif;
+}
+.profile-title{
+  margin: 0;
+  font-size: 24px;
+  overflow: auto;
+}
+.profile-container img {
+  margin-left: -500px; /* Negative margin to move the image slightly to the left */
+  margin-bottom: 20px;
 }
 

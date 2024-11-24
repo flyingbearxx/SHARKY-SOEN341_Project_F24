@@ -15,6 +15,8 @@ import ConceptualAssessment from "./ConceptualAssessment";
 import PracticalAssessment from "./PracticalAssessment";
 import WorkEthicAssessment from "./WorkEthicAssessment";
 import Dashboard from "./Dashboard";
+import CourseEvaluation from "./CourseEvaluation";
+import Profile from "./Profile";
 
 export {
   LogIn,
@@ -34,4 +36,6 @@ export {
   PracticalAssessment,
   WorkEthicAssessment,
   Dashboard,
+  CourseEvaluation,
+  Profile,
 };

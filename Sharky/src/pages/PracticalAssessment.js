@@ -272,7 +272,7 @@ const PracticalAssessment = () => {
               <label>
                 <b>
                   3. Did this team member actively ensure that all project
-                  components were consistent and aligned with the team's
+                  components were consistent and aligned with the team&apos;s
                   objectives?
                 </b>
               </label>
@@ -313,7 +313,7 @@ const PracticalAssessment = () => {
               <label>
                 <b>
                   4. How well did this team member take initiative in gathering
-                  or organizing resources that were beneficial to the team's
+                  or organizing resources that were beneficial to the team&apos;s
                   practical tasks?
                 </b>
               </label>
@@ -354,7 +354,7 @@ const PracticalAssessment = () => {
               <label>
                 <b>
                   5. How much effort did this team member put into refining the
-                  project's final output to ensure it met the expected
+                  project&apos;s final output to ensure it met the expected
                   standards?{" "}
                 </b>
               </label>
