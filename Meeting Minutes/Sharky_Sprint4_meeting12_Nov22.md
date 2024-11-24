@@ -39,4 +39,4 @@ DECISIONS:
 - Each member will record how we will present in 1 minute in the presentation.  
 - All members should finish their work of sprint 4 by Nov 26.
 - We will keep the comments to be presented to users not only developers in the Contact us page. 
-Footer
+  
