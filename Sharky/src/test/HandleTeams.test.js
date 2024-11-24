@@ -41,12 +41,12 @@ describe("HandleTeamInstructor Component", () => {
       return {};
     });
   });
-
+//Acceptance Test: Loading text
   test("renders loading initially", async () => {
     render(<HandleTeamInstructor />);
     expect(screen.queryByText(/loading teams/i)).toBeInTheDocument();
   });
-
+//Unit Test: Team management options
   test("displays team management options after loading", async () => {
     render(<HandleTeamInstructor />);
 
@@ -54,7 +54,7 @@ describe("HandleTeamInstructor Component", () => {
       expect(screen.getByText(/Team Management Options/i)).toBeInTheDocument();
     });
   });
-
+//Unit Test: Toggle of the teams
   test("toggles display teams view", async () => {
     render(<HandleTeamInstructor />);
     await waitFor(() => {
@@ -64,7 +64,7 @@ describe("HandleTeamInstructor Component", () => {
     fireEvent.click(screen.getByText(/Display Teams/i));
     expect(screen.getByRole("heading", { name: /Teams/i })).toBeInTheDocument();
   });
-
+//Unit Test: Toggle of modify teams
   test("toggles modify teams view", async () => {
     render(<HandleTeamInstructor />);
     await waitFor(() => {
@@ -76,7 +76,7 @@ describe("HandleTeamInstructor Component", () => {
       screen.getByRole("heading", { name: /Modify Teams/i })
     ).toBeInTheDocument();
   });
-
+//Unit Test: Toggle add member
   test("toggles add member to teams view", async () => {
     render(<HandleTeamInstructor />);
     await waitFor(() => {
