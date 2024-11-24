@@ -21,12 +21,12 @@ describe("TeamManagement Component Basic Functionality", () => {
       </MemoryRouter>
     );
   });
-
+//Unit Test: The form
   test("renders team management form", () => {
     expect(screen.getByText(/Sharky Peer Assessment/i)).toBeInTheDocument();
     expect(screen.getByText(/Menu/i)).toBeInTheDocument();
   });
-
+//Acceptance Test: Toggle team visibility
   test("toggles the team form visibility", () => {
     fireEvent.click(screen.getByText(/Menu/i));
     fireEvent.click(screen.getByText(/Team Management/i));
@@ -34,7 +34,7 @@ describe("TeamManagement Component Basic Functionality", () => {
     expect(screen.getByText(/Create a Team/i)).toBeInTheDocument();
     expect(screen.getByText(/Upload CSV to Create Teams/i)).toBeInTheDocument();
   });
-
+//Unit Test: The error message display
   test("shows error if fields are empty on submit", () => {
     fireEvent.click(screen.getByText(/Menu/i));
     fireEvent.click(screen.getByText(/Team Management/i));
@@ -45,7 +45,7 @@ describe("TeamManagement Component Basic Functionality", () => {
       "Please fill in all fields before submitting."
     );
   });
-
+//Unit Test: The error message display
   test("displays error if CSV file is not uploaded", () => {
     fireEvent.click(screen.getByText(/Menu/i));
     fireEvent.click(screen.getByText(/Team Management/i));
@@ -57,7 +57,7 @@ describe("TeamManagement Component Basic Functionality", () => {
 
     expect(window.alert).toHaveBeenCalledWith("Please upload a CSV file.");
   });
-
+//Unit Test: The success message display
   test("displays success message on form submission", async () => {
     // Mock the alert call
     jest.spyOn(window, "alert").mockImplementation(() => {});
