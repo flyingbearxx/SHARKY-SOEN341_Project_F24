@@ -78,6 +78,7 @@ beforeEach(() => {
 });
 
 describe("Profile Component Tests", () => {
+  //Unit Test: Loading state
   test("renders loading state initially", () => {
     render(
       <MemoryRouter>
@@ -86,7 +87,7 @@ describe("Profile Component Tests", () => {
     );
     expect(screen.getByText("Loading...")).toBeInTheDocument();
   });
-
+//Acceptance Test: Fetch of the data
   test("fetches and displays user data", async () => {
     await act(async () => {
       render(
