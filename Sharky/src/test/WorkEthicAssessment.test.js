@@ -15,16 +15,16 @@ describe("WorkEthicAssessment Component - Basic Rendering and Functionality", ()
     // Mock alert function to catch alert calls
     jest.spyOn(window, "alert").mockImplementation(() => {});
   });
-
+//Unit Test: The header
   test("renders the main headers", () => {
     expect(screen.getByText(/SHARKY PEER ASSESSMENT/i)).toBeInTheDocument();
     expect(screen.getByText(/Evaluation Form/i)).toBeInTheDocument();
   });
-
+//Unit Test: The section's header
   test("renders 'Work Ethic' section header", () => {
     expect(screen.getByText(/ASSESSMENT DIMENSION 4: WORK ETHIC/i)).toBeInTheDocument();
   });
-
+//Unit Test: The questions of the page
   test("renders questions under Work Ethic dimension", () => {
     expect(
       screen.getByText(
@@ -42,11 +42,11 @@ describe("WorkEthicAssessment Component - Basic Rendering and Functionality", ()
       )
     ).toBeInTheDocument();
   });
-
+//Unit Test: The comment section
   test("renders the comment section for work ethic feedback", () => {
     expect(screen.getByLabelText(/Work Ethic - Additional Feedback:/i)).toBeInTheDocument();
   });
-
+//Unit Test: The submit button
   test("renders 'Submit Assessment' button", () => {
     expect(screen.getByRole("button", { name: /Submit Assessment/i })).toBeInTheDocument();
   });
