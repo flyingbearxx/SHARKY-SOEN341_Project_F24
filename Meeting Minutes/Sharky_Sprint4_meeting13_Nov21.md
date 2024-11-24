@@ -1,7 +1,9 @@
 *MEETING WRITER:* Ana Rostam *MEETING PARTICIPANTS:* Ana Rostam and Shaili Hakimpour    
 Nov21(Online)  
+
 *DISCUSSION OF TOPICS:*  
-Discussed the distribution of tasks for sprint 4.  
+Discussed the distribution of tasks for sprint 4.
+
 *SEPARATION OF TASK:*  
 Ana:
 1. Adding the profile picture feature to the profile page.
