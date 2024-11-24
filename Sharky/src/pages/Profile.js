@@ -21,109 +21,105 @@ const Profile = () => {
     const fetchData = async () => {
       try {
         // Fetch the logged-in user
-        const {
-          data: { user },
-          error: userError,
-        } = await supabase.auth.getUser();
-
-        if (userError) throw userError;
-
+        const { data: userResponse, error: userError } = await supabase.auth.getUser();
+        if (userError || !userResponse?.user) {
+          console.error("Error fetching user:", userError || "User not found.");
+          throw new Error(userError || "User not found.");
+        }
+  
+        const user = userResponse.user;
         setUserEmail(user.email);
-
-        // Fetch the user's ID from the "users" table
+  
+        // Fetch the user's ID and profile picture from the "users" table
         const { data: userData, error: userFetchError } = await supabase
           .from("users")
           .select("id, profilepic")
           .eq("email", user.email)
           .single();
-
-        if (userFetchError) throw userFetchError;
-
+        if (userFetchError || !userData) {
+          console.error("Error fetching user data:", userFetchError || "No user data found.");
+          throw new Error(userFetchError || "No user data found.");
+        }
+  
         const userId = userData.id;
-
-        // Debugging: Log the profile picture URL to check if it's being retrieved correctly
-        console.log("Stored profilepic URL:", userData.profilepic);
-
-
-
-        if(userFetchError) throw userFetchError;
-        // setimgurl(publicURL);
+  
+        // Handle profile picture download
         if (userData.profilepic) {
-
-        const { data, error: downloadError } = await supabase.storage
-            .from("Profilepictures")
-            .download(userData.profilepic);
-
-          if (downloadError) {
-            console.error("Error downloading the file:", downloadError);
-            alert(`Error: ${downloadError.message}`);
-          } else {
-            const url = URL.createObjectURL(data);  // Create a URL from the file data
-            console.log("Download URL:", url);
-            setimgurl(url);  // Set this as the temporary image URL
+          try {
+            const { data: profilePicData, error: downloadError } = await supabase.storage
+              .from("Profilepictures")
+              .download(userData.profilepic);
+            if (downloadError || !profilePicData) {
+              console.error("Error downloading profile picture:", downloadError || "No profile picture found.");
+              throw new Error(downloadError || "No profile picture found.");
+            }
+  
+            const url = URL.createObjectURL(profilePicData);
+            setimgurl(url);
+          } catch (error) {
+            console.error("Error processing profile picture:", error);
           }
-          }
-
-        // Fetch data from all four assessment tables
-        const { data: cooperationData } = await supabase.from("Cooperation").select("*");
-        const { data: practicalData } = await supabase.from("PracticalContribution").select("*");
-        const { data: workEthicData } = await supabase.from("WorkEthic").select("*");
-        const { data: conceptualData } = await supabase.from("ConceptualContribution").select("*");
-
-        // Process and combine all assessments into a unified format
+        }
+  
+        // Fetch data from all assessment tables
+        const assessmentTables = [
+          { table: "Cooperation", dimension: "Cooperation", commentField: "Commentsection" },
+          { table: "PracticalContribution", dimension: "Practical", commentField: "PracticalComment" },
+          { table: "WorkEthic", dimension: "WorkEthic", commentField: "WorkComment" },
+          { table: "ConceptualContribution", dimension: "Conceptual", commentField: "ConceptualComment" },
+        ];
+  
         const combinedData = [];
-
-        const addToCombinedData = (data, dimension, commentField) => {
-          data.forEach((row) => {
+        for (const { table, dimension, commentField } of assessmentTables) {
+          const { data: tableData, error: tableError } = await supabase.from(table).select("*");
+          if (tableError) {
+            console.error(`Error fetching data from ${table}:`, tableError);
+            continue;
+          }
+  
+          tableData.forEach((row) => {
             if (row.Assessedmemberid === userId) {
               const existing = combinedData.find((item) => item.Assessor === row.Assessorid);
               if (existing) {
-                existing[dimension] = row.averages;
+                existing[dimension] = row.averages || "-";
                 if (row[commentField]) {
                   existing.Comments.push(row[commentField]);
                 }
               } else {
                 combinedData.push({
                   Assessor: row.Assessorid,
-                  Cooperation: dimension === "Cooperation" ? row.averages : "-",
-                  Practical: dimension === "Practical" ? row.averages : "-",
-                  WorkEthic: dimension === "WorkEthic" ? row.averages : "-",
-                  Conceptual: dimension === "Conceptual" ? row.averages : "-",
+                  Cooperation: dimension === "Cooperation" ? row.averages || "-" : "-",
+                  Practical: dimension === "Practical" ? row.averages || "-" : "-",
+                  WorkEthic: dimension === "WorkEthic" ? row.averages || "-" : "-",
+                  Conceptual: dimension === "Conceptual" ? row.averages || "-" : "-",
                   Comments: row[commentField] ? [row[commentField]] : [],
                 });
               }
             }
           });
-        };
-
-        addToCombinedData(cooperationData, "Cooperation", "Commentsection");
-        addToCombinedData(practicalData, "Practical", "PracticalComment");
-        addToCombinedData(workEthicData, "WorkEthic", "WorkComment");
-        addToCombinedData(conceptualData, "Conceptual", "ConceptualComment");
-
+        }
+  
         setAssessmentData(combinedData);
-         // Calculate the total average of the four dimensions
-         let totalSum = 0;
-         let totalCount = 0;
-         combinedData.forEach(row => {
-           const cooperation = parseFloat(row.Cooperation) || 0;
-           const practical = parseFloat(row.Practical) || 0;
-           const workEthic = parseFloat(row.WorkEthic) || 0;
-           const conceptual = parseFloat(row.Conceptual) || 0;
- 
-           totalSum += cooperation + practical + workEthic + conceptual;
-           totalCount += 4; // Four dimensions
-         });
- 
-         const average = totalCount ? totalSum / totalCount : 0;
-         setaverage(average);
+  
+        // Calculate the total average of the four dimensions
+        const totalSum = combinedData.reduce(
+          (sum, row) =>
+            sum +
+            ["Cooperation", "Practical", "WorkEthic", "Conceptual"].reduce(
+              (dimensionSum, dimension) => dimensionSum + (parseFloat(row[dimension]) || 0),
+              0
+            ),
+          0
+        );
+        const totalCount = combinedData.length * 4; // Four dimensions per row
+        setaverage(totalCount ? totalSum / totalCount : 0);
       } catch (err) {
         console.error("Error fetching data:", err);
       } finally {
         setLoading(false);
       }
     };
-
+  
     fetchData();
   }, []);
 
@@ -255,6 +251,7 @@ const chartOptions = {
         <div style={{ textAlign: "center", marginTop: "15px", width: "40%"}}>
           <input
             type="file"
+            data-testid="file-input"
             onChange={(e) => setnewimgurl(e.target.files[0])}
           />
           <button onClick={handleProfilePictureChange} disabled={uploading}>
