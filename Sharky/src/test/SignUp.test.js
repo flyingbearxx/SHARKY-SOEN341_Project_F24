@@ -17,7 +17,7 @@ describe("SignUp Component Basic Functionality", () => {
       </MemoryRouter>
     );
   });
-
+//Unit Test: The sign up form
   test("renders sign-up form", () => {
     // Check if the email, username, and password fields are rendered
     expect(screen.getByPlaceholderText("Email")).toBeInTheDocument();
@@ -31,7 +31,7 @@ describe("SignUp Component Basic Functionality", () => {
     );
     expect(signUpFormButton).toBeInTheDocument();
   });
-
+//Acceptance Test: Display of Error message
   test("successful sign-up displays no error", async () => {
     supabase.auth.signUp.mockResolvedValueOnce({
       data: { user: "mockUserData" },
