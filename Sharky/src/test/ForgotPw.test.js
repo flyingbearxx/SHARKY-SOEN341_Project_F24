@@ -31,7 +31,7 @@ describe("ForgotPw Component Advanced Tests", () => {
         cleanup(); // Ensure proper cleanup
     });
 
-    // Test that the Forgot Password form renders correctly
+    // Unit Test: Test that the Forgot Password form renders correctly
     test("renders the Forgot Password form", () => {
         render(<ForgotPw />);
         expect(screen.getByText("Forgot Password")).toBeInTheDocument();
@@ -39,7 +39,7 @@ describe("ForgotPw Component Advanced Tests", () => {
         expect(screen.getByRole("button", { name: /submit/i })).toBeInTheDocument();
     });
 
-    // Test that an invalid email input displays an error message
+    // Unit Test: Test that an invalid email input displays an error message
     test("displays error for invalid email", async () => {
         render(<ForgotPw />);
         const emailInput = screen.getByPlaceholderText("Email");
@@ -54,7 +54,7 @@ describe("ForgotPw Component Advanced Tests", () => {
         expect(errorMessage).toBeInTheDocument();
     });
 
-    // Test that a valid email input calls the resetPasswordForEmail function
+    // Acceptance Test: Test that a valid email input calls the resetPasswordForEmail function
     test("calls resetPasswordForEmail with valid email", async () => {
         render(<ForgotPw />);
         const emailInput = screen.getByPlaceholderText("Email");
