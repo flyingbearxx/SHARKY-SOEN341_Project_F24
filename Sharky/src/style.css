@@ -1120,6 +1120,7 @@ textarea:focus {
   font-size: 16px;
   margin-top: 20px;
   text-align: center;
+}
 .user-email {
   font-size: 20px;
   font-weight: bold;
@@ -1272,4 +1273,4 @@ textarea:focus {
   margin-left: -500px; /* Negative margin to move the image slightly to the left */
   margin-bottom: 20px;
 }
-}
+
