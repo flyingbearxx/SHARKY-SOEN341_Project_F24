@@ -845,7 +845,7 @@ footer {
   margin: 0 auto;
 }
 
-.table-title {
+.table-title2 {
   background-color: #7d3c98;
   color: #fff;
   padding: 15px 20px;
@@ -1140,6 +1140,20 @@ textarea:focus {
   animation: backgroundMove 10s ease infinite;
 }
 
+.dashboard-container2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 100px;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #9b59b6, #d4a5ff, #b39ddb, #8e44ad);
+  animation: backgroundMove 10s ease infinite;
+
+}
+
+
+
 .results-container {
   background-color: rgba(255, 255, 255, 0.95);
   border-radius: 15px;
@@ -1272,5 +1286,75 @@ textarea:focus {
 .profile-container img {
   margin-left: -500px; /* Negative margin to move the image slightly to the left */
   margin-bottom: 20px;
+
 }
 
+.course-evaluation-results-container{
+
+  /* Centering the container */
+  display: flex;
+  flex-direction: column; /* Ensures vertical stacking inside */
+  justify-content: center; /* Centers vertically */
+  align-items: center; /* Centers horizontally */
+
+  /* Positioning and spacing */
+  position: relative; /* Allows fine-tuning with top/left if needed */
+  margin: 0 auto; /* Centers horizontally within the parent container */
+  padding: 20px;
+  margin-top: 150px; /* Adjust this to move the container lower */
+  max-width: 800px; /* Adjust the width for layout as needed */
+
+  /* Styling */
+  height: auto; /* Allows dynamic height based on content */
+  background-color: #f9f9f9; /* Optional for visual separation */
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 300px;
+
+  /* Ensure the container is responsive */
+  box-sizing: border-box;
+}
+
+
+/* General Table Styling */
+
+.results-table2 {
+  width: 90%;
+  border-collapse: collapse;
+  margin: 20px auto;
+  border-collapse: collapse;
+  background-color: #ffffff; /* White background for the tables */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for better visual */
+  overflow-x: auto;
+}
+
+.results-table2 th,
+.results-table2 td {
+  padding: 12px 15px;
+  text-align: left;
+  font-size: 16px;
+  border-bottom: 1px solid #dddddd;
+}
+
+.results-table2 th {
+  background-color: #9b59b6; /* Purple header background */
+  color: #ffffff; /* White text for the header */
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.results-table2 tr:last-child td {
+  border-bottom: none;
+}
+
+.results-table2 td {
+  color: #333; /* Dark text color for readability */
+}
+
+.results-table2 .team-name {
+  color: #6a0dad;
+  font-weight: bold;
+  font-size: 1.2em;
+  margin-top: 10px;
+}

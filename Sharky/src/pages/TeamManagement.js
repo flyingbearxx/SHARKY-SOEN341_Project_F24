@@ -208,6 +208,9 @@ const TeamManagement = () => {
               <button className="btn">Dashboard</button>{" "}
               {/* Dashboard Button */}
             </Link>
+            <Link to="/course-evaluation-results">
+              <button className="btn">Evaluation Result</button>
+            </Link>
             <Link to="/contact-us">
               <button className="btn">Contact Us</button>
             </Link>

@@ -103,7 +103,7 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="dashboard-container">
+    <div className="dashboard-container2">
       <header className="header1">
         <h2 className="dashboard-title">SHARKY PEER Assessment
         </h2>
@@ -143,8 +143,8 @@ const Dashboard = () => {
       </div>
 
       {view === "Summary" && (
-        <div className="results-container">
-           <div className="table-title" >Summary of Assessment Results</div>
+        <div className="result-container">
+           <div className="table-title2" >Summary of Assessment Results</div>
           <table className="results-table">
             <thead>
               <tr>
@@ -215,8 +215,8 @@ const Dashboard = () => {
       )}
 
 {view === "Detailed" && (
-        <div className="results-container">
-          <div className="table-title" >Detailed Assessment Results</div>
+        <div className="result-container">
+          <div className="table-title2" >Detailed Assessment Results</div>
           {teams.map((team) =>
             workEthicData
               .filter((entry) => entry.Team_id === team.id)

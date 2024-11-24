@@ -21,6 +21,7 @@ import {
   Dashboard,
   CourseEvaluation, // Import the CourseEvaluation page here
   Profile,
+  CourseEvaluationResults,
 } from "./pages/main";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./components/protectedRoute";
@@ -284,7 +285,19 @@ const App = () => {
           </ProtectedRoute>
         }
       />
+{/* Course Evaluation Results  Route */}
+<Route
+        path="/course-evaluation-results"
+        element={
+          <ProtectedRoute token={token}>
+            <Layout>
+              <CourseEvaluationResults />
+            </Layout>
+          </ProtectedRoute>
+        }
+      />
     </Routes>
+    
   );
 };
 
