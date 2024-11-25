@@ -56,12 +56,14 @@ beforeEach(() => {
   });
 });
 
+// Unit Test 1: Renders contact information and feedback form
 describe("ContactUs Component Tests", () => {
   test("renders contact information and feedback form", () => {
     render(<ContactUs />);
     expect(screen.getByText(/We'd love to hear your feedback/i)).toBeInTheDocument();
   });
 
+  //Unit Test 2: Displays error when submitting empty feedback
   test("fetches and displays feedbacks from database", async () => {
     await act(async () => {
       render(<ContactUs />);
@@ -72,6 +74,7 @@ describe("ContactUs Component Tests", () => {
     });
   });
 
+// Unit Test 3: Submits feedback and displays success message
   test("submits feedback and displays success message", async () => {
     await act(async () => {
       render(<ContactUs />);
@@ -97,6 +100,7 @@ describe("ContactUs Component Tests", () => {
     });
   });
 
+  // Unit Test 4: Displays feedbacks fetched from database
   test("displays error when submitting empty feedback", async () => {
     render(<ContactUs />);
     const submitButton = screen.getByText("Submit Feedback");
