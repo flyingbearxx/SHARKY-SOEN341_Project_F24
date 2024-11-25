@@ -55,11 +55,12 @@ beforeEach(() => {
 });
 
 describe("CourseEvaluationResults Component", () => {
+  //Unit Test: Checks the loading state
   test("renders loading state initially", () => {
     render(<CourseEvaluationResults />);
     expect(screen.getByText("Loading results...")).toBeInTheDocument();
   });
-
+//Acceptance Test: Checks the fetch of data
   test("fetches and displays evaluation data", async () => {
     render(<CourseEvaluationResults />);
   
@@ -83,7 +84,7 @@ describe("CourseEvaluationResults Component", () => {
       expect(screen.getByText("Excellent course organization.")).toBeInTheDocument();
     });
   });
-  
+  //Unit Test: Checks handling of empty data response
   test("renders no evaluations submitted message if data is empty", async () => {
     // Mock empty data response
     supabase.from.mockImplementation(() => ({
