@@ -15,16 +15,16 @@ describe("ConceptualAssessment Component - Basic Rendering and Functionality", (
     // Mock alert function to catch alert calls
     jest.spyOn(window, "alert").mockImplementation(() => {});
   });
-
+//Unit Test: The header
   test("renders the main headers", () => {
     expect(screen.getByText(/SHARKY PEER ASSESSMENT/i)).toBeInTheDocument();
     expect(screen.getByText(/Evaluation Form/i)).toBeInTheDocument();
   });
-
+//Unit Test: The header of Conceptual Contribution
   test("renders 'Conceptual Contribution' section header", () => {
     expect(screen.getByText(/ASSESSMENT DIMENSION 2: CONCEPTUAL CONTRIBUTION/i)).toBeInTheDocument();
   });
-
+//Unit Test: The questions of the page
   test("renders questions under Conceptual Contribution dimension", () => {
     expect(
       screen.getByText(
@@ -43,11 +43,11 @@ describe("ConceptualAssessment Component - Basic Rendering and Functionality", (
     ).toBeInTheDocument();
     // Add other questions as needed
   });
-
+//Unit Test: The comment section
   test("renders the comment section for conceptual contribution feedback", () => {
     expect(screen.getByLabelText(/CONCEPTUAL CONTRIBUTION- Additional Feedback:/i)).toBeInTheDocument();
   });
-
+//Unit Test: The button of submission
   test("renders 'Next' button for form submission", () => {
     expect(screen.getByRole("button", { name: /Next/i })).toBeInTheDocument();
   });
