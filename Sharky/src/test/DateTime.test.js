@@ -12,6 +12,7 @@ describe("DateTime Component", () => {
       fontWeight: "bold",
     };
 
+//Unit test: checks if the style is aapplied correctly.
     // Render the component with a custom style
     render(<DateTime style={style} />);
 
@@ -21,6 +22,7 @@ describe("DateTime Component", () => {
     expect(dateTimeElement.parentElement).toHaveStyle("font-weight: bold");
   });
 
+  //unit test: checks if the date and time is updated every second.
   test("updates the displayed date and time every second", async () => {
     jest.useFakeTimers();
 
@@ -49,6 +51,7 @@ describe("DateTime Component", () => {
     jest.useRealTimers();
   });
 
+  //Unit test: check if the DateTime component is cleaning up the interval.
   test("cleans up the interval on component unmount", () => {
     jest.useFakeTimers();
     const clearIntervalSpy = jest.spyOn(global, "clearInterval");
