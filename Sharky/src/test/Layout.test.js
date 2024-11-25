@@ -1,10 +1,11 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import Layout from "../components/Layout"; // Update path if necessary
+import Layout from "../components/Layout"; 
 import "@testing-library/jest-dom";
 
 describe("Layout Component", () => {
     test("renders the DateTime component with correct styling and position", () => {
+        // Unit test: Verifies if the DateTime component is rendered correctly within the Layout
       // Render the Layout component
       render(<Layout>Test Content</Layout>);
   
@@ -30,7 +31,8 @@ describe("Layout Component", () => {
     textAlign: "center",
       `);
     });
-  
+    
+  // Unit test: Verifies if the Layout component correctly renders its child content
     test("renders child content correctly", () => {
       // Render the Layout component with child content
       render(
