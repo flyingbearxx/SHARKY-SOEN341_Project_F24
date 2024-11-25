@@ -9,35 +9,34 @@ const ContactUs = () => {
   // Fetch existing feedbacks on component mount
   useEffect(() => {
     const fetchFeedbacks = async () => {
-      const { data, error } = await supabase.from('feedback').select('*');
+      try {
+        const { data, error } = await supabase.from('feedback').select('*');
+        if (error) throw error;
 
-      if (error) {
+        // Fetch user emails by user_id
+        const feedbackWithEmails = await Promise.all(
+          data.map(async (feedback) => {
+            try {
+              const { data: userData, error: userError } = await supabase
+                .from('users')
+                .select('email')
+                .eq('id', feedback.user_id)
+                .single();
+              feedback.email = userError ? 'Unknown user' : userData.email;
+            } catch {
+              feedback.email = 'Unknown user';
+            }
+            return feedback;
+          })
+        );
+
+        setFeedbacks(feedbackWithEmails);
+      } catch (error) {
         console.error('Error fetching feedbacks:', error);
         setStatus('Failed to load feedbacks.');
-        return;
       }
-
-      // Now, fetch the user emails by user_id
-      const feedbackWithEmails = await Promise.all(data.map(async (feedback) => {
-        const { data: userData, error: userError } = await supabase
-          .from('users')
-          .select('email')
-          .eq('id', feedback.user_id)
-          .single();
-
-        if (userError) {
-          console.error('Error fetching user email:', userError);
-          feedback.email = 'Unknown user';
-        } else {
-          feedback.email = userData.email; // Add email to the feedback object
-        }
-
-        return feedback;
-      }));
-
-      setFeedbacks(feedbackWithEmails);
     };
-    
+
     fetchFeedbacks();
   }, []); // Empty dependency array means this runs only once when the component mounts
 
