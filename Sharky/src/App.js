@@ -257,7 +257,9 @@ const App = () => {
         path="/Profile"
         element={
           <ProtectedRoute token={token}>
+          <Layout>
             <Profile />
+            </Layout>
           </ProtectedRoute>
         }
       />
